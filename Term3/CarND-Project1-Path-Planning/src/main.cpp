@@ -12,6 +12,7 @@
 using nlohmann::json;
 using std::string;
 using std::vector;
+using namespace std;
 
 int main() {
   uWS::Hub h;
@@ -77,6 +78,7 @@ int main() {
           double ego_car_yaw   = j[1]["yaw"];
           double ego_car_speed = j[1]["speed"];
           int    ego_car_lane  = ego_car_d/4 ;
+          cout<<"\n ego_car_speed ="<<ego_car_speed;
 
 
 
@@ -96,11 +98,12 @@ int main() {
           vector<double> next_x_vals;
           vector<double> next_y_vals;
           vector<double> next_point ;
+          double ego_next_s = ego_car_s + ego_car_speed*0.02;
 
           //Attempt 3: Car drives in straight line along s
           double dist_inc = 0.5;
           for (int i = 0; i < 50; ++i) {
-               double ego_next_s = ego_car_s + (0.5*i);
+               ego_next_s += + ego_car_speed*0.02;
                next_point = getXY(ego_next_s,ego_car_d, map_waypoints_s, map_waypoints_x, map_waypoints_y);
                next_x_vals.push_back(next_point[0]);
                next_y_vals.push_back(next_point[1]);
