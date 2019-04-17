@@ -78,7 +78,8 @@ int main() {
           double ego_car_yaw   = j[1]["yaw"];
           double ego_car_speed = j[1]["speed"];
           int    ego_car_lane  = ego_car_d/4 ;
-          cout<<"\n ego_car_speed ="<<ego_car_speed;
+          cout<<"\n\n ego_car_speed ="<<ego_car_speed <<"; ego_car_s ="    << ego_car_s ;
+          cout<<"\n   ego_car_d     ="<<ego_car_d     <<"; ego_car_lane =" << ego_car_lane ;
 
 
 
@@ -98,12 +99,14 @@ int main() {
           vector<double> next_x_vals;
           vector<double> next_y_vals;
           vector<double> next_point ;
-          double ego_next_s = ego_car_s + ego_car_speed*0.02;
+          double ego_next_s = ego_car_s;
 
           //Attempt 3: Car drives in straight line along s
-          double dist_inc = 0.5;
+          double dist_inc = 0.446;
+          cout<<"\n Begin for loop---------------------------------------";
           for (int i = 0; i < 50; ++i) {
-               ego_next_s += + ego_car_speed*0.02;
+               cout<<"\n ego_car_speed ="<<ego_car_speed <<"; ego_car_s =" << ego_car_s << "; ego_next_s =" << ego_next_s ;
+               ego_next_s = ego_next_s + dist_inc ;
                next_point = getXY(ego_next_s,ego_car_d, map_waypoints_s, map_waypoints_x, map_waypoints_y);
                next_x_vals.push_back(next_point[0]);
                next_y_vals.push_back(next_point[1]);
