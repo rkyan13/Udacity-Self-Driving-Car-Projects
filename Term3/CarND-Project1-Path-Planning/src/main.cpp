@@ -71,15 +71,15 @@ int main() {
           // j[1] is the data JSON object
 
           // Main car's localization Data
-          double ego_car_x     = j[1]["x"];
-          double ego_car_y     = j[1]["y"];
-          double ego_car_s     = j[1]["s"];
-          double ego_car_d     = j[1]["d"];
-          double ego_car_yaw   = j[1]["yaw"];
-          double ego_car_speed = j[1]["speed"];
-          int    ego_car_lane  = ego_car_d/4 ;
-          cout<<"\n\n ego_car_speed ="<<ego_car_speed <<"; ego_car_s ="    << ego_car_s ;
-          cout<<"\n   ego_car_d     ="<<ego_car_d     <<"; ego_car_lane =" << ego_car_lane ;
+          double ego_x     = j[1]["x"];
+          double ego_y     = j[1]["y"];
+          double ego_s     = j[1]["s"];
+          double ego_d     = j[1]["d"];
+          double ego_yaw   = j[1]["yaw"];
+          double ego_speed_mph = j[1]["speed"];
+          int    egoC_lane  = ego_d/4 ;
+          cout<<"\n\n ego_speed_mph ="<<ego_speed_mph <<"; ego_s ="     << ego_s ;
+          cout<<"\n   ego_d     ="<<ego_d     <<"; egoC_lane =" << egoC_lane ;
 
 
 
@@ -99,15 +99,54 @@ int main() {
           vector<double> next_x_vals;
           vector<double> next_y_vals;
           vector<double> next_point ;
-          double ego_next_s = ego_car_s;
+          double egoC_next_s    = ego_s;
+          double egoC_speed_mps = ego_speed_mph*0.44704;
+          double max_accel = 9.5 ; //m/s^2
+          double time_step = 0.02 ; //0.02 seconds = 20 milli seconds
 
           //Attempt 3: Car drives in straight line along s
           double dist_inc = 0.446;
           cout<<"\n Begin for loop---------------------------------------";
           for (int i = 0; i < 50; ++i) {
-               cout<<"\n ego_car_speed ="<<ego_car_speed <<"; ego_car_s =" << ego_car_s << "; ego_next_s =" << ego_next_s ;
-               ego_next_s = ego_next_s + dist_inc ;
-               next_point = getXY(ego_next_s,ego_car_d, map_waypoints_s, map_waypoints_x, map_waypoints_y);
+
+               cout<<"\n ego_speed_mph ="<<ego_speed_mph <<"; ego_s =" << ego_s << "; egoC_next_s =" << egoC_next_s ;
+               //50mph = 22.352 m/s
+               /*
+               ----------------------------------------------------------------------------------------
+                          Attempt at Lane Keeping along 's' using speed and acceleration limits
+               ----------------------------------------------------------------------------------------
+
+               Performance Comments:
+               i)    he car is able to maintain the lane and drive at center of Lane (that is the good news)
+               ii)  However ego car's speed hovers between 17-30mph. I think the time to reach 50mpph is too slow
+                    (so might need to use a different approach rather than using these motion equations)
+               iii) Occasionally at turns where the way points are clustered or something, the car exceeds speed limit to 100mph
+               iv)  Also the max acceleration and jerk get exceeded
+               v)   No mechanism for collision avoidance has benn included yet (so car will collide , but that is okay)
+
+               Verdict/Goal/TODO :
+               i)  Achieve lane keeping, without violating speed, acceleration and jerk limits
+               ii) Use eiher polynomial lane generation or spline to be able to do this
+               */
+
+               if(egoC_speed_mps < 22) //increase ego_speed_mph, egoC_speed_mps
+                { egoC_next_s    = egoC_next_s    + (egoC_speed_mps*time_step) + (0.5*max_accel*time_step*time_step);
+                  egoC_speed_mps = egoC_speed_mps + (max_accel*time_step);
+                  if(egoC_speed_mps> 22)
+                     egoC_speed_mps = 22;
+                }
+               else if (22.352 < egoC_speed_mps) //decrease ego_speed_mph, egoC_speed_mps
+               { egoC_next_s    = egoC_next_s    + (egoC_speed_mps*time_step) - (0.5*max_accel*time_step*time_step);
+                 egoC_speed_mps = egoC_speed_mps - (max_accel*time_step);
+                 if(egoC_speed_mps < 22)
+                    egoC_speed_mps = 22;
+               }
+               else if ((22< egoC_speed_mps) && (egoC_speed_mps<22.352)) //maintain speed
+               { egoC_next_s    = egoC_next_s    + (egoC_speed_mps*time_step) ;
+                 egoC_speed_mps = egoC_speed_mps ;
+               }
+
+               next_point = getXY(egoC_next_s,ego_d, map_waypoints_s, map_waypoints_x, map_waypoints_y);
                next_x_vals.push_back(next_point[0]);
                next_y_vals.push_back(next_point[1]);
          }
