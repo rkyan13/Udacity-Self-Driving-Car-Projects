@@ -62,7 +62,7 @@ def load_vgg(sess, vgg_path):
     #----------------------------------------------------------------------------------------------------------------------------------------------------
 
     # i) Use tf.saved_model.loader.load to load the model and weights
-    # sess:    The TensorFlow session to restore the graph variables into (i.e the session you are running)
+    # sess     : The TensorFlow session to restore the graph variables into (i.e the session you are running)
     # vgg_tag  : Set of string tags to identify the required MetaGraphDef.
     #          "vgg_tag" : should have been the tag used when saving the variables using the SavedModel save() API.
     # vgg_path : The path+folder in which the SavedModel protocol buffer and variables to be loaded are located
@@ -104,6 +104,7 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------
     # ii) Part of Encoder: Create 1X1 convolutions from vgg_layer3_out, vgg_layer4_out, vgg_layer7_out
+    #     The majority of the encoder is in the pretrained vgg16 model from above load_vgg function
     # ---> Replace the fully connected layers of VGG16 by 1X1convolutions: These are the vgg_layer3_1x1, vgg_layer4_1x1, & vgg_layer7_1x1
     # ---> See  Lesson 10:Scene-Understanding/Concept9-FCN-8-Encoder for syntax of 1X1 convolution
     # ---> Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:  Aaron Brown's instructions approx ~8.30 minutes into the video)
@@ -158,6 +159,9 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
                                       activity_regularizer = None,                   #default
                                       name                 = 'vgg_layer7_1x1')
 
+
+
+
     #----------------------------------------------------------------------------------------------------------------------------------------------------
     # iii) Decoder: Upsample by creating Deconvolution/Transpose Convolution Layers'.
     #              Also create skip connections
@@ -168,7 +172,6 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
     # ---> Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:  Aaron Brown's instructions
     # ---> setup kernel_regularizer based on Aaron Brown's instruction
     #----------------------------------------------------------------------------------------------------------------------------------------------------
-
 
     # Deconv1(doubles previous layers's size) & Skip1
     deconv1_upX2 = tf.layers.conv2d_transpose(inputs        = vgg_layer7_1x1,
@@ -231,7 +234,7 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
 tests.test_layers(layers)
 
 
-def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
+def optimize(nn_last_layer, correct_labels_ph, learning_rate_ph, num_classes):
     """
     Build the TensorFLow loss and optimizer operations.
     :param nn_last_layer: TF Tensor of the last layer in the neural network
@@ -249,7 +252,7 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
 
     # ii) The labels are also 4D and need to be reshaped to 2D
     # based on Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:  Aaron Brown's instructions approx ~17 minutes into the video)
-    shape_corrected_labels = tf.reshape(correct_label, (-1, num_classes))
+    shape_corrected_labels = tf.reshape(correct_labels_ph, (-1, num_classes))
 
     # iii) Define the loss-function= cross_entropy_loss
     # based on Lesson 10:Scene-Understanding/Concept11-FCN-8-Classification & Loss
@@ -257,7 +260,7 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
 
     # iv) Use Adam Optimizer
     # based on Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:  Aaron Brown's instructions approx ~17 minutes into the video)
-    adam_optimizer = tf.train.AdamOptimizer(learning_rate= learning_rate)
+    adam_optimizer = tf.train.AdamOptimizer(learning_rate= learning_rate_ph)
 
     # v) The actual training operation : Use the adam_optimizer to minimize the cross_entropy loss
     train_op  = adam_optimizer.minimize(cross_entropy_loss)
@@ -268,26 +271,26 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
 tests.test_optimize(optimize)
 
 
-def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_loss, input_image,
-             correct_label, keep_prob, learning_rate):
+def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_loss, input_images_ph,
+             correct_labels_ph, keep_prob_ph, learning_rate_ph):
     """
     Train neural network and print out the loss during training.
-    :param sess: TF Session
-    :param epochs: Number of epochs
-    :param batch_size: Batch size
-    :param get_batches_fn: Function to get batches of training data.  Call using get_batches_fn(batch_size)
-    :param train_op: TF Operation to train the neural network
-    :param cross_entropy_loss: TF Tensor for the amount of loss
-    :param input_image: TF Placeholder for input images
-    :param correct_label: TF Placeholder for label images
-    :param keep_prob: TF Placeholder for dropout keep probability
-    :param learning_rate: TF Placeholder for learning rate
+    :param sess               : TF Session
+    :param epochs             : Number of epochs
+    :param batch_size         : Batch size
+    :param get_batches_fn     : Function to get batches of training data.  Call using get_batches_fn(batch_size)
+    :param train_op           : TF Operation to train the neural network
+    :param cross_entropy_loss : TF Tensor for the amount of loss
+    :param input_images_ph    : TF Placeholder for input images
+    :param correct_labels_ph  : TF Placeholder for label images
+    :param keep_prob_ph       : TF Placeholder for dropout keep probability
+    :param learning_rate_ph   : TF Placeholder for learning rate
     """
     # TODO: Implement function
     #  See Lesson 12: Elective Project :Semantic Segmenation /Concept-2-Project Q&A:  Aaron Brown's instruction video ~19.30minutes
     sess.run(tf.global_variables_initializer())
 
-    print("Beginning Training...... Total #Epochs = ", epochs)
+    print("Beginning Training...... Total #Epochs = ", epochs, "batch_size =", batch_size)
     #Begin for loop1: iterate through Epochs-------------------------------------------------------------------------------
     for epoch_num in range(epochs):
         print("\n----------------------- EPOCH # :  ",epoch_num+1,"----------------------------------")
@@ -299,7 +302,10 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
         for images_array, labels_array in get_batches_fn(batch_size):
             batch_num = batch_num + 1
             _, loss = sess.run([train_op, cross_entropy_loss],
-                               feed_dict={input_image: images_array, correct_label: labels_array, keep_prob: 0.5, learning_rate: 0.00001})
+                               feed_dict={input_images_ph   : images_array,
+                                          correct_labels_ph : labels_array,
+                                          keep_prob_ph      : 0.5,
+                                          learning_rate_ph  : 0.00001})
             loss_cumulative.append(loss)
             loss_avg = loss_avg + loss
             print("Batch # = ", batch_num, " : Loss =", loss)
@@ -339,12 +345,50 @@ def run():
         # OPTIONAL: Augment Images for better results
         #  https://datascience.stackexchange.com/questions/5224/how-to-prepare-augment-images-for-neural-network
 
-        # TODO: Build NN using load_vgg, layers, and optimize function
+        # i) TODO: Build NN using load_vgg, layers, and optimize function
+        vgg_input_layer, vgg_keep_prob, vgg_layer3, vgg_layer4, vgg_layer7 \
+                                             = load_vgg(sess, vgg_path)
+        nn_last_layer                        = layers(vgg_layer3, vgg_layer4, vgg_layer7, num_classes)
 
-        # TODO: Train NN using the train_nn function
+        correct_labels_ph                    = tf.placeholder(tf.int32, [None, None, None, num_classes], name='correct_label')
+        learning_rate_ph                     = tf.placeholder(tf.float32, name='learning_rate')
+        logits, train_op, cross_entropy_loss = optimize(nn_last_layer, correct_labels_ph, learning_rate_ph, num_classes)
 
-        # TODO: Save inference data using helper.save_inference_samples
+
+
+        # ii) TODO: Train NN using the train_nn function
+        #ksw-comments-Note: the train_nn takes 4 placeholders as inputs
+        # a&b)  correct_labels_ph, learning_rate_ph : For this I have created placeholder with the necessary datatype, shape etc .
+        #       correct_labels_ph(4Dtensor)---gets_passed_to----->train_nn ---gets_passed_to----->optimize(where it is reshaped to 2D tensor),
+        # Hence correct_labels_ph shape is  [None, None, None, num_classes]
+        # c&d)  input_images_ph,keep_prob_ph : I should be creating placeholder for these too, but for some reason these are loaded
+        #       from pretrained VGG16: using load_vgg above. I thought only tensors/layers which have weights are loaded from pretrained models ??
+        #       my reasoning is input_images_ph,keep_prob_ph even when loaded from load_vgg only have the placeholder information (similar to tf.placeholder ....)
+        #       the tf.placeholder(type, name, shape, etal. ) instead of me having to create it , comes directly from saved vgg model
+        NUM_EPOCHS = 50
+        BATCH_SIZE = 5
+        train_nn(sess               = sess,
+                 epochs             = NUM_EPOCHS,
+                 batch_size         = BATCH_SIZE,
+                 get_batches_fn     = get_batches_fn,
+                 train_op           = train_op,
+                 cross_entropy_loss = cross_entropy_loss,
+                 input_images_ph    = vgg_input_layer,
+                 correct_labels_ph  = correct_labels_ph,
+                 keep_prob_ph       = vgg_keep_prob,
+                 learning_rate_ph   = learning_rate_ph)
+
+
+
+        # iii) TODO: Save inference data using helper.save_inference_samples
         #  helper.save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_prob, input_image)
+        helper.save_inference_samples(runs_dir    = runs_dir,
+                                   data_dir    = data_dir,
+                                   sess        = sess,
+                                   image_shape = image_shape,
+                                   logits      = logits,
+                                   keep_prob   = vgg_keep_prob,
+                                   input_image = vgg_input_layer)
 
         # OPTIONAL: Apply the trained model to a video
 
