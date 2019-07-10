@@ -25,8 +25,7 @@ def load_vgg(sess, vgg_path):
     :param vgg_path: Path to vgg folder, containing "variables/" and "saved_model.pb"
     :return: Tuple of Tensors from VGG model (image_input, keep_prob, layer3_out, layer4_out, layer7_out)
     """
-    # TODO: Implement function
-    #   Use tf.saved_model.loader.load to load the model and weights
+
     vgg_tag                    = 'vgg16'
     vgg_input_tensor_name      = 'image_input:0'
     vgg_keep_prob_tensor_name  = 'keep_prob:0'
@@ -34,13 +33,16 @@ def load_vgg(sess, vgg_path):
     vgg_layer4_out_tensor_name = 'layer4_out:0'
     vgg_layer7_out_tensor_name = 'layer7_out:0'
 
+    # TODO: Implement function
+    #   Use tf.saved_model.loader.load to load the model and weights
+
     tf.saved_model.loader.load(sess, [vgg_tag], vgg_path)
-    vgg_graph      = tf.get_default_graph()
-    vgg_input      = vgg_graph.get_tensor_by_name(vgg_input_tensor_name)
-    vgg_keep_prob  = vgg_graph.get_tensor_by_name(vgg_keep_prob_tensor_name)
-    vgg_layer3     = vgg_graph.get_tensor_by_name(vgg_layer3_out_tensor_name)
-    vgg_layer4     = vgg_graph.get_tensor_by_name(vgg_layer4_out_tensor_name)
-    vgg_layer7     = vgg_graph.get_tensor_by_name(vgg_layer7_out_tensor_name)
+    vgg_graph       = tf.get_default_graph()
+    vgg_input_layer = vgg_graph.get_tensor_by_name(vgg_input_tensor_name)
+    vgg_keep_prob   = vgg_graph.get_tensor_by_name(vgg_keep_prob_tensor_name)
+    vgg_layer3      = vgg_graph.get_tensor_by_name(vgg_layer3_out_tensor_name)
+    vgg_layer4      = vgg_graph.get_tensor_by_name(vgg_layer4_out_tensor_name)
+    vgg_layer7      = vgg_graph.get_tensor_by_name(vgg_layer7_out_tensor_name)
 
     return vgg_input_layer, vgg_keep_prob, vgg_layer3, vgg_layer4, vgg_layer7
 tests.test_load_vgg(load_vgg, tf)
@@ -179,7 +181,29 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
     :return: Tuple of (logits, train_op, cross_entropy_loss)
     """
     # TODO: Implement function
-    return None, None, None
+
+    # Logits: Output tensor is 4D nn_last_layer so we have to reshape it to 2D:
+    # logits are perfect for softmax
+    # based on Lesson 10:Scene-Understanding/Concept11-FCN-8-Classification & Loss
+    logits                 = tf.reshape(nn_last_layer, (-1, num_classes))
+
+    # The labels are also 4D and need to be reshaped to 2D
+    # based on Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:  Aaron Brown's instructions approx ~17 minutes into the video)
+    shape_corrected_labels = tf.reshape(correct_label, (-1, num_classes))
+
+    # Define the loss-function= cross_entropy_loss
+    # based on Lesson 10:Scene-Understanding/Concept11-FCN-8-Classification & Loss
+    cross_entropy_loss     = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits= logits, labels= shape_corrected_labels))
+
+    # Use Adam Optimizer
+    # based on Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:  Aaron Brown's instructions approx ~17 minutes into the video)
+    adam_optimizer = tf.train.AdamOptimizer(learning_rate= learning_rate)
+
+    # The actual training operation : Use the adam_optimizer to minimie the cross_entropy loss
+    train_op  = adam_optimizer.minimize(cross_entropy_loss)
+
+    # just returning these in the order provided by Udacity above in comments section
+    return logits, train_op, cross_entropy_loss
 tests.test_optimize(optimize)
 
 
