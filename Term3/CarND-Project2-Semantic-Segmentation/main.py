@@ -81,6 +81,7 @@ def load_vgg(sess, vgg_path):
     vgg_layer7      = vgg_graph.get_tensor_by_name(vgg_layer7_out_tensor_name)
 
     return vgg_input_layer, vgg_keep_prob, vgg_layer3, vgg_layer4, vgg_layer7
+
 tests.test_load_vgg(load_vgg, tf)
 
 
@@ -226,6 +227,7 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
 
     #Note deconv3_upX8 = nn_last_layer
     return deconv3_upX8
+
 tests.test_layers(layers)
 
 
@@ -262,6 +264,7 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
 
     # vi) Returning these in the order provided by Udacity above in comments section
     return logits, train_op, cross_entropy_loss
+
 tests.test_optimize(optimize)
 
 
@@ -281,7 +284,35 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
     :param learning_rate: TF Placeholder for learning rate
     """
     # TODO: Implement function
-    pass
+    #  See Lesson 12: Elective Project :Semantic Segmenation /Concept-2-Project Q&A:  Aaron Brown's instruction video ~19.30minutes
+    sess.run(tf.global_variables_initializer())
+
+    print("Beginning Training...... Total #Epochs = ", epochs)
+    #Begin for loop1: iterate through Epochs-------------------------------------------------------------------------------
+    for epoch_num in range(epochs):
+        print("\n----------------------- EPOCH # :  ",epoch_num+1,"----------------------------------")
+        loss_cumulative = []
+        loss_avg        = 0
+        batch_num       = 0
+        # Begin for loop2: iterate through Batches--------------------------------------------------------------------------
+        # get_batches_fn, returns: Batches of training data : np.array(images), np.array(gt_images)
+        for images_array, labels_array in get_batches_fn(batch_size):
+            batch_num = batch_num + 1
+            _, loss = sess.run([train_op, cross_entropy_loss],
+                               feed_dict={input_image: images_array, correct_label: labels_array, keep_prob: 0.5, learning_rate: 0.00001})
+            loss_cumulative.append(loss)
+            loss_avg = loss_avg + loss
+            print("Batch # = ", batch_num, " : Loss =", loss)
+        #EOF for loop2: iterate through Batches: for image, label in get_batches_fn(batch_size):----------------------------
+
+        loss_avg = loss_avg/float(batch_size)
+        print("Epoch # = ", epoch_num, "Average-Loss-Across-Batches(in this epoch) =", loss_avg)
+        print("Loss-cumulative =", loss_cumulative)
+    #End for loop1: iterate through Epochs : for epoch_num in range(epochs): -------------------------------------------------
+    print("\n Training Complete !!!! :D :D :D")
+
+    return
+
 tests.test_train_nn(train_nn)
 
 
