@@ -1,3 +1,20 @@
+"""
+Reference :
+Udacity Term3 : Project 2 : Semantic Segmentation: Lessons
+1) Lesson  9: Fully Convolutional Networks
+2) Lesson 10: Scene Understanding
+   especially/specifically
+   Concept 09: FCN-8 - Encoder
+   Concept 10: FCN-8 - Decoder
+   Concept 11: FCN-8 - Classification & Loss
+3) Lesson 11: Inference Performance
+4) Lesson 12: Elective Project :Semantic Segmenation
+   Concept-2-Project Q&A:  Aaron Brown's instruction video
+   Video @ https://www.youtube.com/watch?time_continue=576&v=5g9sZIwGubk
+
+"""
+
+
 #!/usr/bin/env python3
 import os.path
 import tensorflow as tf
@@ -34,10 +51,29 @@ def load_vgg(sess, vgg_path):
     vgg_layer7_out_tensor_name = 'layer7_out:0'
 
     # TODO: Implement function
-    #   Use tf.saved_model.loader.load to load the model and weights
 
+    #----------------------------------------------------------------------------------------------------------------------------------------------------
+    # KSW comments: We are actually extracting appropriate layers of the Encoder here
+    #----------------------------------------------------------------------------------------------------------------------------------------------------
+    # --> based on Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:
+    #     Aaron Brown's instructions approx ~2 minutes, ~4 minutes into the video)
+    # ---> For more information on Encoder see: Lesson 10:Scene-Understanding/Concept9-FCN-8-Encoder
+    #      also see the FCN-8 paper : https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf
+    #----------------------------------------------------------------------------------------------------------------------------------------------------
+
+    # i) Use tf.saved_model.loader.load to load the model and weights
+    # sess:    The TensorFlow session to restore the graph variables into (i.e the session you are running)
+    # vgg_tag  : Set of string tags to identify the required MetaGraphDef.
+    #          "vgg_tag" : should have been the tag used when saving the variables using the SavedModel save() API.
+    # vgg_path : The path+folder in which the SavedModel protocol buffer and variables to be loaded are located
+    # output   : The MetaGraphDef protocol buffer loaded in the provided session ('sess').
+    #          : Ksw thinks that the metaGraph is loaded as the default_graph and hence it requires no output variable to store the graph
     tf.saved_model.loader.load(sess, [vgg_tag], vgg_path)
+
+    # ii) The tf.saved_model.loader.load above has loaded the appropirate graph in default_graph
     vgg_graph       = tf.get_default_graph()
+
+    # iii) Load all the appropriate tensor-layers from the loaded graph
     vgg_input_layer = vgg_graph.get_tensor_by_name(vgg_input_tensor_name)
     vgg_keep_prob   = vgg_graph.get_tensor_by_name(vgg_keep_prob_tensor_name)
     vgg_layer3      = vgg_graph.get_tensor_by_name(vgg_layer3_out_tensor_name)
@@ -58,10 +94,22 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
     :return: The Tensor for the last layer of output
     """
     # TODO: Implement function
+    #----------------------------------------------------------------------------------------------------------------------------------------------------
+    #KSW: We are actually coding up part of the Encoder and all of the Decoder here
+    #----------------------------------------------------------------------------------------------------------------------------------------------------
+    #i) some hyper parameters
     param_stddev         = 0.01
     param_l2_regularizer = 1e-3
 
-    #Create 1X1 convolutions from vgg_layer3_out, vgg_layer4_out, vgg_layer7_out
+    #----------------------------------------------------------------------------------------------------------------------------------------------------
+    # ii) Part of Encoder: Create 1X1 convolutions from vgg_layer3_out, vgg_layer4_out, vgg_layer7_out
+    # ---> Replace the fully connected layers of VGG16 by 1X1convolutions: These are the vgg_layer3_1x1, vgg_layer4_1x1, & vgg_layer7_1x1
+    # ---> See  Lesson 10:Scene-Understanding/Concept9-FCN-8-Encoder for syntax of 1X1 convolution
+    # ---> Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:  Aaron Brown's instructions approx ~8.30 minutes into the video)
+    # ---> setup kernel_regularizer based on Aaron Brown's instruction
+    #----------------------------------------------------------------------------------------------------------------------------------------------------
+
+    # Create 1X1 convolutions from vgg_layer3_out,
     vgg_layer3_1x1 = tf.layers.conv2d(inputs      = vgg_layer3_out,
                                       filters     = num_classes,
                                       kernel_size = 1,
@@ -77,7 +125,7 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
                                       activity_regularizer = None,                   #default
                                       name                 = 'vgg_layer3_1x1')
 
-
+    # Create 1X1 convolutions from vgg_layer4_out
     vgg_layer4_1x1 = tf.layers.conv2d(inputs      = vgg_layer4_out,
                                       filters     = num_classes,
                                       kernel_size = 1,
@@ -93,7 +141,7 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
                                       activity_regularizer = None,                   #default
                                       name                 = 'vgg_layer4_1x1')
 
-
+    # Create 1X1 convolutions from vgg_layer7_out
     vgg_layer7_1x1 = tf.layers.conv2d(inputs      = vgg_layer7_out,
                                       filters     = num_classes,
                                       kernel_size = 1,
@@ -109,9 +157,19 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
                                       activity_regularizer = None,                   #default
                                       name                 = 'vgg_layer7_1x1')
 
-    #Create 'Deconvolution/Transpose Convolution Layers' and 'Skip connections'
-    #The first 2 Deconvolutions doubles the previous layer's size
-    # Deconv1 & Skip1
+    #----------------------------------------------------------------------------------------------------------------------------------------------------
+    # iii) Decoder: Upsample by creating Deconvolution/Transpose Convolution Layers'.
+    #              Also create skip connections
+    # ---> The first 2 Deconvolutions doubles the previous layer's size
+    # ---> The third Deconvolutions also the final layer) increases the previous layer's size by 8 times
+    # ---> See  Lesson 10:Scene-Understanding/FCN-8-Decoder to figure out the kernel_size, stride ,
+    #      number_filters to use (num_filters = num_classes) and also to see which layer to connect to what in skip connections
+    # ---> Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:  Aaron Brown's instructions
+    # ---> setup kernel_regularizer based on Aaron Brown's instruction
+    #----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    # Deconv1(doubles previous layers's size) & Skip1
     deconv1_upX2 = tf.layers.conv2d_transpose(inputs        = vgg_layer7_1x1,
                                               filters     = num_classes,
                                               kernel_size = 4,
@@ -130,7 +188,7 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
 
     skip1 = tf.add(deconv1_upX2, vgg_layer4_1x1, name='skip1')
 
-    # Deconv2 & Skip2
+    # Deconv2(doubles previous layers's size) & Skip2
     deconv2_upX2 = tf.layers.conv2d_transpose(inputs      = skip1,
                                               filters     = num_classes,
                                               kernel_size = 4,
@@ -149,7 +207,7 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
 
     skip2 = tf.add(deconv2_upX2, vgg_layer3_1x1, name='skip2')
 
-    # Deconv3(The final layer): This makes the output of the deconvolution 8 times as big as  skip2
+    # Deconv3(The final layer): This makes the output of the deconvolution 8 times as big as the previous layer
     deconv3_upX8 = tf.layers.conv2d_transpose(inputs       = skip2,
                                               filters     = num_classes,
                                               kernel_size = 16,
@@ -182,27 +240,27 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
     """
     # TODO: Implement function
 
-    # Logits: Output tensor is 4D nn_last_layer so we have to reshape it to 2D:
+    # i) Logits: Output tensor is 4D nn_last_layer so we have to reshape it to 2D:
     # logits are perfect for softmax
     # based on Lesson 10:Scene-Understanding/Concept11-FCN-8-Classification & Loss
     logits                 = tf.reshape(nn_last_layer, (-1, num_classes))
 
-    # The labels are also 4D and need to be reshaped to 2D
+    # ii) The labels are also 4D and need to be reshaped to 2D
     # based on Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:  Aaron Brown's instructions approx ~17 minutes into the video)
     shape_corrected_labels = tf.reshape(correct_label, (-1, num_classes))
 
-    # Define the loss-function= cross_entropy_loss
+    # iii) Define the loss-function= cross_entropy_loss
     # based on Lesson 10:Scene-Understanding/Concept11-FCN-8-Classification & Loss
     cross_entropy_loss     = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits= logits, labels= shape_corrected_labels))
 
-    # Use Adam Optimizer
+    # iv) Use Adam Optimizer
     # based on Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:  Aaron Brown's instructions approx ~17 minutes into the video)
     adam_optimizer = tf.train.AdamOptimizer(learning_rate= learning_rate)
 
-    # The actual training operation : Use the adam_optimizer to minimie the cross_entropy loss
+    # v) The actual training operation : Use the adam_optimizer to minimize the cross_entropy loss
     train_op  = adam_optimizer.minimize(cross_entropy_loss)
 
-    # just returning these in the order provided by Udacity above in comments section
+    # vi) Returning these in the order provided by Udacity above in comments section
     return logits, train_op, cross_entropy_loss
 tests.test_optimize(optimize)
 
