@@ -56,7 +56,116 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
     :return: The Tensor for the last layer of output
     """
     # TODO: Implement function
-    return None
+    param_stddev         = 0.01
+    param_l2_regularizer = 1e-3
+
+    #Create 1X1 convolutions from vgg_layer3_out, vgg_layer4_out, vgg_layer7_out
+    vgg_layer3_1x1 = tf.layers.conv2d(inputs      = vgg_layer3_out,
+                                      filters     = num_classes,
+                                      kernel_size = 1,
+                                      strides     = (1, 1),  #default
+                                      padding     = 'same',
+                                      kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
+                                      kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
+                                      kernel_constraint    = None,                   #default
+                                      use_bias             = True,                   #default
+                                      bias_initializer     = tf.zeros_initializer(), #default
+                                      bias_regularizer     = None,                   #default
+                                      bias_constraint      = None,                   #default
+                                      activity_regularizer = None,                   #default
+                                      name                 = 'vgg_layer3_1x1')
+
+
+    vgg_layer4_1x1 = tf.layers.conv2d(inputs      = vgg_layer4_out,
+                                      filters     = num_classes,
+                                      kernel_size = 1,
+                                      strides     = (1, 1),  #default
+                                      padding     = 'same',
+                                      kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
+                                      kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
+                                      kernel_constraint    = None,                   #default
+                                      use_bias             = True,                   #default
+                                      bias_initializer     = tf.zeros_initializer(), #default
+                                      bias_regularizer     = None,                   #default
+                                      bias_constraint      = None,                   #default
+                                      activity_regularizer = None,                   #default
+                                      name                 = 'vgg_layer4_1x1')
+
+
+    vgg_layer7_1x1 = tf.layers.conv2d(inputs      = vgg_layer7_out,
+                                      filters     = num_classes,
+                                      kernel_size = 1,
+                                      strides     = (1, 1),  #default
+                                      padding     = 'same',
+                                      kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
+                                      kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
+                                      kernel_constraint    = None,                   #default
+                                      use_bias             = True,                   #default
+                                      bias_initializer     = tf.zeros_initializer(), #default
+                                      bias_regularizer     = None,                   #default
+                                      bias_constraint      = None,                   #default
+                                      activity_regularizer = None,                   #default
+                                      name                 = 'vgg_layer7_1x1')
+
+    #Create 'Deconvolution/Transpose Convolution Layers' and 'Skip connections'
+    #The first 2 Deconvolutions doubles the previous layer's size
+    # Deconv1 & Skip1
+    deconv1_upX2 = tf.layers.conv2d_transpose(inputs        = vgg_layer7_1x1,
+                                              filters     = num_classes,
+                                              kernel_size = 4,
+                                              strides     = (2, 2), #no longer default
+                                              padding     = 'same',
+                                              activation           = None,
+                                              kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
+                                              kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
+                                              kernel_constraint    = None,                   #default
+                                              use_bias             = True,                   #default
+                                              bias_initializer     = tf.zeros_initializer(), #default
+                                              bias_regularizer     = None,                   #default
+                                              bias_constraint      = None,                   #default
+                                              activity_regularizer = None,                   #default
+                                              name                 = 'deconv1_upX2')
+
+    skip1 = tf.add(deconv1_upX2, vgg_layer4_1x1, name='skip1')
+
+    # Deconv2 & Skip2
+    deconv2_upX2 = tf.layers.conv2d_transpose(inputs      = skip1,
+                                              filters     = num_classes,
+                                              kernel_size = 4,
+                                              strides     = (2, 2), #no longer default
+                                              padding     = 'same',
+                                              activation           = None,
+                                              kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
+                                              kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
+                                              kernel_constraint    = None,                   #default
+                                              use_bias             = True,                   #default
+                                              bias_initializer     = tf.zeros_initializer(), #default
+                                              bias_regularizer     = None,                   #default
+                                              bias_constraint      = None,                   #default
+                                              activity_regularizer = None,                   #default
+                                              name                 = 'deconv2_upX2')
+
+    skip2 = tf.add(deconv2_upX2, vgg_layer3_1x1, name='skip2')
+
+    # Deconv3(The final layer): This makes the output of the deconvolution 8 times as big as  skip2
+    deconv3_upX8 = tf.layers.conv2d_transpose(inputs       = skip2,
+                                              filters     = num_classes,
+                                              kernel_size = 16,
+                                              strides     = (8, 8), #no longer default
+                                              padding     = 'same',
+                                              activation           = None,
+                                              kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
+                                              kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
+                                              kernel_constraint    = None,                   #default
+                                              use_bias             = True,                   #default
+                                              bias_initializer     = tf.zeros_initializer(), #default
+                                              bias_regularizer     = None,                   #default
+                                              bias_constraint      = None,                   #default
+                                              activity_regularizer = None,                   #default
+                                              name                 = 'deconv3_upX8')
+
+    #Note deconv3_upX8 = nn_last_layer
+    return deconv3_upX8
 tests.test_layers(layers)
 
 
