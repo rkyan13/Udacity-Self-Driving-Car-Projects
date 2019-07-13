@@ -12,6 +12,9 @@ Udacity Term3 : Project 2 : Semantic Segmentation: Lessons
    Concept-2-Project Q&A:  Aaron Brown's instruction video
    Video @ https://www.youtube.com/watch?time_continue=576&v=5g9sZIwGubk
 
+ Note: kernel_constraint & bias_constraint seem to be valid arguments on the tensorflow on my laptop, but for some reason the tensorflow in the workspace
+ doesn't seem to like them.Hence I've commented them out
+
 """
 
 
@@ -120,11 +123,11 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
                                       padding     = 'same',
                                       kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
                                       kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
-                                      kernel_constraint    = None,                   #default
+                                      #kernel_constraint    = None,                   #default
                                       use_bias             = True,                   #default
                                       bias_initializer     = tf.zeros_initializer(), #default
                                       bias_regularizer     = None,                   #default
-                                      bias_constraint      = None,                   #default
+                                      #bias_constraint      = None,                   #default
                                       activity_regularizer = None,                   #default
                                       name                 = 'vgg_layer3_1x1')
 
@@ -136,11 +139,11 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
                                       padding     = 'same',
                                       kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
                                       kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
-                                      kernel_constraint    = None,                   #default
+                                      #kernel_constraint    = None,                   #default
                                       use_bias             = True,                   #default
                                       bias_initializer     = tf.zeros_initializer(), #default
                                       bias_regularizer     = None,                   #default
-                                      bias_constraint      = None,                   #default
+                                      #bias_constraint      = None,                   #default
                                       activity_regularizer = None,                   #default
                                       name                 = 'vgg_layer4_1x1')
 
@@ -152,11 +155,11 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
                                       padding     = 'same',
                                       kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
                                       kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
-                                      kernel_constraint    = None,                   #default
+                                      #kernel_constraint    = None,                   #default
                                       use_bias             = True,                   #default
                                       bias_initializer     = tf.zeros_initializer(), #default
                                       bias_regularizer     = None,                   #default
-                                      bias_constraint      = None,                   #default
+                                      #bias_constraint      = None,                   #default
                                       activity_regularizer = None,                   #default
                                       name                 = 'vgg_layer7_1x1')
 
@@ -183,11 +186,11 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
                                               activation           = None,
                                               kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
                                               kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
-                                              kernel_constraint    = None,                   #default
+                                              #kernel_constraint    = None,                   #default
                                               use_bias             = True,                   #default
                                               bias_initializer     = tf.zeros_initializer(), #default
                                               bias_regularizer     = None,                   #default
-                                              bias_constraint      = None,                   #default
+                                              #bias_constraint      = None,                   #default
                                               activity_regularizer = None,                   #default
                                               name                 = 'deconv1_upX2')
 
@@ -202,11 +205,11 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
                                               activation           = None,
                                               kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
                                               kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
-                                              kernel_constraint    = None,                   #default
+                                              #kernel_constraint    = None,                   #default
                                               use_bias             = True,                   #default
                                               bias_initializer     = tf.zeros_initializer(), #default
                                               bias_regularizer     = None,                   #default
-                                              bias_constraint      = None,                   #default
+                                              #bias_constraint      = None,                   #default
                                               activity_regularizer = None,                   #default
                                               name                 = 'deconv2_upX2')
 
@@ -221,11 +224,11 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
                                               activation           = None,
                                               kernel_initializer   = tf.random_normal_initializer(stddev= param_stddev),
                                               kernel_regularizer   = tf.contrib.layers.l2_regularizer(param_l2_regularizer),
-                                              kernel_constraint    = None,                   #default
+                                              #kernel_constraint    = None,                   #default
                                               use_bias             = True,                   #default
                                               bias_initializer     = tf.zeros_initializer(), #default
                                               bias_regularizer     = None,                   #default
-                                              bias_constraint      = None,                   #default
+                                              #bias_constraint      = None,                   #default
                                               activity_regularizer = None,                   #default
                                               name                 = 'deconv3_upX8')
 
