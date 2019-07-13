@@ -1,0 +1,3323 @@
+(carnd-term1) kswamin4 (master *) CarND-Project2-Semantic-Segmentation $ python main.py
+TensorFlow Version: 1.5.1
+2019-07-11 20:53:49.923079: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+main.py:34: UserWarning: No GPU found. Please use a GPU to train your neural network.
+  warnings.warn('No GPU found. Please use a GPU to train your neural network.')
+Tests Passed
+Tests Passed
+WARNING:tensorflow:From main.py:260: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See tf.nn.softmax_cross_entropy_with_logits_v2.
+
+Tests Passed
+Tests Passed
+Tests Passed
+Beginning Training...... Total #Epochs =  50 batch_size = 5
+
+----------------------- EPOCH # :   1 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 1.6591306
+Image-Label-PairSet # =  2  : Loss = 1.697955
+Image-Label-PairSet # =  3  : Loss = 1.531377
+Image-Label-PairSet # =  4  : Loss = 1.3935924
+Image-Label-PairSet # =  5  : Loss = 1.3238715
+Image-Label-PairSet # =  6  : Loss = 1.3622724
+Image-Label-PairSet # =  7  : Loss = 1.3312804
+Image-Label-PairSet # =  8  : Loss = 1.3719466
+Image-Label-PairSet # =  9  : Loss = 1.3268956
+Image-Label-PairSet # =  10  : Loss = 1.2447569
+Image-Label-PairSet # =  11  : Loss = 1.2099886
+Image-Label-PairSet # =  12  : Loss = 1.2799718
+Image-Label-PairSet # =  13  : Loss = 1.1903138
+Image-Label-PairSet # =  14  : Loss = 1.3232675
+Image-Label-PairSet # =  15  : Loss = 1.0959538
+Image-Label-PairSet # =  16  : Loss = 1.1162225
+Image-Label-PairSet # =  17  : Loss = 1.1078302
+Image-Label-PairSet # =  18  : Loss = 1.0649185
+Image-Label-PairSet # =  19  : Loss = 1.1121353
+Image-Label-PairSet # =  20  : Loss = 1.0498271
+Image-Label-PairSet # =  21  : Loss = 1.0899538
+Image-Label-PairSet # =  22  : Loss = 1.0382757
+Image-Label-PairSet # =  23  : Loss = 1.0998528
+Image-Label-PairSet # =  24  : Loss = 1.0609467
+Image-Label-PairSet # =  25  : Loss = 1.0549064
+Image-Label-PairSet # =  26  : Loss = 0.9989569
+Image-Label-PairSet # =  27  : Loss = 1.051564
+Image-Label-PairSet # =  28  : Loss = 1.0501705
+Image-Label-PairSet # =  29  : Loss = 1.0024605
+Image-Label-PairSet # =  30  : Loss = 0.9875224
+Image-Label-PairSet # =  31  : Loss = 1.0182554
+Image-Label-PairSet # =  32  : Loss = 1.0181737
+Image-Label-PairSet # =  33  : Loss = 0.9793534
+Image-Label-PairSet # =  34  : Loss = 0.98262775
+Image-Label-PairSet # =  35  : Loss = 0.93212855
+Image-Label-PairSet # =  36  : Loss = 0.9138163
+Image-Label-PairSet # =  37  : Loss = 0.9428555
+Image-Label-PairSet # =  38  : Loss = 0.93499494
+Image-Label-PairSet # =  39  : Loss = 0.8923041
+Image-Label-PairSet # =  40  : Loss = 0.86370265
+Image-Label-PairSet # =  41  : Loss = 0.9498892
+Image-Label-PairSet # =  42  : Loss = 0.9483162
+Image-Label-PairSet # =  43  : Loss = 0.8934976
+Image-Label-PairSet # =  44  : Loss = 0.89503145
+Image-Label-PairSet # =  45  : Loss = 0.84643525
+Image-Label-PairSet # =  46  : Loss = 0.8730331
+Image-Label-PairSet # =  47  : Loss = 0.9005696
+Image-Label-PairSet # =  48  : Loss = 0.8353972
+Image-Label-PairSet # =  49  : Loss = 0.87783575
+Image-Label-PairSet # =  50  : Loss = 0.8633048
+Image-Label-PairSet # =  51  : Loss = 0.8509119
+Image-Label-PairSet # =  52  : Loss = 0.8362732
+Image-Label-PairSet # =  53  : Loss = 0.852865
+Image-Label-PairSet # =  54  : Loss = 0.84173405
+Image-Label-PairSet # =  55  : Loss = 0.86150146
+Image-Label-PairSet # =  56  : Loss = 0.8713142
+Image-Label-PairSet # =  57  : Loss = 0.8550399
+Image-Label-PairSet # =  58  : Loss = 0.810377
+
+ Epoch # =  1 Average-Loss-Across-Batches(in this epoch) = 1.0580975197512528
+
+ Loss-cumulative = [1.6591306, 1.697955, 1.531377, 1.3935924, 1.3238715, 1.3622724, 1.3312804, 1.3719466, 1.3268956, 1.2447569, 1.2099886, 1.2799718, 1.1903138, 1.3232675, 1.0959538, 1.1162225, 1.1078302, 1.0649185, 1.1121353, 1.0498271, 1.0899538, 1.0382757, 1.0998528, 1.0609467, 1.0549064, 0.9989569, 1.051564, 1.0501705, 1.0024605, 0.9875224, 1.0182554, 1.0181737, 0.9793534, 0.98262775, 0.93212855, 0.9138163, 0.9428555, 0.93499494, 0.8923041, 0.86370265, 0.9498892, 0.9483162, 0.8934976, 0.89503145, 0.84643525, 0.8730331, 0.9005696, 0.8353972, 0.87783575, 0.8633048, 0.8509119, 0.8362732, 0.852865, 0.84173405, 0.86150146, 0.8713142, 0.8550399, 0.810377]
+
+ Time Elapsed(HH:MM:SS)  00:08:42
+
+----------------------- EPOCH # :   2 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.817752
+Image-Label-PairSet # =  2  : Loss = 0.8418869
+Image-Label-PairSet # =  3  : Loss = 0.8213424
+Image-Label-PairSet # =  4  : Loss = 0.82053983
+Image-Label-PairSet # =  5  : Loss = 0.8152685
+Image-Label-PairSet # =  6  : Loss = 0.8361293
+Image-Label-PairSet # =  7  : Loss = 0.82810736
+Image-Label-PairSet # =  8  : Loss = 0.80247205
+Image-Label-PairSet # =  9  : Loss = 0.8072362
+Image-Label-PairSet # =  10  : Loss = 0.7773371
+Image-Label-PairSet # =  11  : Loss = 0.79537755
+Image-Label-PairSet # =  12  : Loss = 0.7858165
+Image-Label-PairSet # =  13  : Loss = 0.8025808
+Image-Label-PairSet # =  14  : Loss = 0.79375714
+Image-Label-PairSet # =  15  : Loss = 0.77111846
+Image-Label-PairSet # =  16  : Loss = 0.7731435
+Image-Label-PairSet # =  17  : Loss = 0.7842476
+Image-Label-PairSet # =  18  : Loss = 0.7802208
+Image-Label-PairSet # =  19  : Loss = 0.7705096
+Image-Label-PairSet # =  20  : Loss = 0.77223116
+Image-Label-PairSet # =  21  : Loss = 0.78281546
+Image-Label-PairSet # =  22  : Loss = 0.77402675
+Image-Label-PairSet # =  23  : Loss = 0.7837951
+Image-Label-PairSet # =  24  : Loss = 0.7655121
+Image-Label-PairSet # =  25  : Loss = 0.78320825
+Image-Label-PairSet # =  26  : Loss = 0.7467696
+Image-Label-PairSet # =  27  : Loss = 0.7666002
+Image-Label-PairSet # =  28  : Loss = 0.75474757
+Image-Label-PairSet # =  29  : Loss = 0.75046605
+Image-Label-PairSet # =  30  : Loss = 0.74277806
+Image-Label-PairSet # =  31  : Loss = 0.7539781
+Image-Label-PairSet # =  32  : Loss = 0.74710554
+Image-Label-PairSet # =  33  : Loss = 0.738737
+Image-Label-PairSet # =  34  : Loss = 0.75975025
+Image-Label-PairSet # =  35  : Loss = 0.7447174
+Image-Label-PairSet # =  36  : Loss = 0.74860674
+Image-Label-PairSet # =  37  : Loss = 0.73421186
+Image-Label-PairSet # =  38  : Loss = 0.7421366
+Image-Label-PairSet # =  39  : Loss = 0.7343028
+Image-Label-PairSet # =  40  : Loss = 0.7163569
+Image-Label-PairSet # =  41  : Loss = 0.73709804
+Image-Label-PairSet # =  42  : Loss = 0.7399301
+Image-Label-PairSet # =  43  : Loss = 0.73339605
+Image-Label-PairSet # =  44  : Loss = 0.7186765
+Image-Label-PairSet # =  45  : Loss = 0.72458094
+Image-Label-PairSet # =  46  : Loss = 0.7159885
+Image-Label-PairSet # =  47  : Loss = 0.732088
+Image-Label-PairSet # =  48  : Loss = 0.70744073
+Image-Label-PairSet # =  49  : Loss = 0.71205145
+Image-Label-PairSet # =  50  : Loss = 0.7195672
+Image-Label-PairSet # =  51  : Loss = 0.7040662
+Image-Label-PairSet # =  52  : Loss = 0.7124418
+Image-Label-PairSet # =  53  : Loss = 0.70952517
+Image-Label-PairSet # =  54  : Loss = 0.70447487
+Image-Label-PairSet # =  55  : Loss = 0.70724434
+Image-Label-PairSet # =  56  : Loss = 0.70813215
+Image-Label-PairSet # =  57  : Loss = 0.70168823
+Image-Label-PairSet # =  58  : Loss = 0.7006475
+
+ Epoch # =  2 Average-Loss-Across-Batches(in this epoch) = 0.7578747375258084
+
+ Loss-cumulative = [0.817752, 0.8418869, 0.8213424, 0.82053983, 0.8152685, 0.8361293, 0.82810736, 0.80247205, 0.8072362, 0.7773371, 0.79537755, 0.7858165, 0.8025808, 0.79375714, 0.77111846, 0.7731435, 0.7842476, 0.7802208, 0.7705096, 0.77223116, 0.78281546, 0.77402675, 0.7837951, 0.7655121, 0.78320825, 0.7467696, 0.7666002, 0.75474757, 0.75046605, 0.74277806, 0.7539781, 0.74710554, 0.738737, 0.75975025, 0.7447174, 0.74860674, 0.73421186, 0.7421366, 0.7343028, 0.7163569, 0.73709804, 0.7399301, 0.73339605, 0.7186765, 0.72458094, 0.7159885, 0.732088, 0.70744073, 0.71205145, 0.7195672, 0.7040662, 0.7124418, 0.70952517, 0.70447487, 0.70724434, 0.70813215, 0.70168823, 0.7006475]
+
+ Time Elapsed(HH:MM:SS)  00:17:24
+
+----------------------- EPOCH # :   3 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.70808095
+Image-Label-PairSet # =  2  : Loss = 0.7010632
+Image-Label-PairSet # =  3  : Loss = 0.7015965
+Image-Label-PairSet # =  4  : Loss = 0.6909615
+Image-Label-PairSet # =  5  : Loss = 0.7039383
+Image-Label-PairSet # =  6  : Loss = 0.69089746
+Image-Label-PairSet # =  7  : Loss = 0.70190835
+Image-Label-PairSet # =  8  : Loss = 0.69356877
+Image-Label-PairSet # =  9  : Loss = 0.6934434
+Image-Label-PairSet # =  10  : Loss = 0.68508804
+Image-Label-PairSet # =  11  : Loss = 0.6818689
+Image-Label-PairSet # =  12  : Loss = 0.6905306
+Image-Label-PairSet # =  13  : Loss = 0.67883927
+Image-Label-PairSet # =  14  : Loss = 0.6941435
+Image-Label-PairSet # =  15  : Loss = 0.67635715
+Image-Label-PairSet # =  16  : Loss = 0.6790325
+Image-Label-PairSet # =  17  : Loss = 0.6724381
+Image-Label-PairSet # =  18  : Loss = 0.6714306
+Image-Label-PairSet # =  19  : Loss = 0.6736987
+Image-Label-PairSet # =  20  : Loss = 0.6721886
+Image-Label-PairSet # =  21  : Loss = 0.6644179
+Image-Label-PairSet # =  22  : Loss = 0.66182286
+Image-Label-PairSet # =  23  : Loss = 0.6632835
+Image-Label-PairSet # =  24  : Loss = 0.6636124
+Image-Label-PairSet # =  25  : Loss = 0.6626333
+Image-Label-PairSet # =  26  : Loss = 0.66056293
+Image-Label-PairSet # =  27  : Loss = 0.6543717
+Image-Label-PairSet # =  28  : Loss = 0.6639229
+Image-Label-PairSet # =  29  : Loss = 0.6547225
+Image-Label-PairSet # =  30  : Loss = 0.6501843
+Image-Label-PairSet # =  31  : Loss = 0.6542458
+Image-Label-PairSet # =  32  : Loss = 0.646453
+Image-Label-PairSet # =  33  : Loss = 0.64732945
+Image-Label-PairSet # =  34  : Loss = 0.64409256
+Image-Label-PairSet # =  35  : Loss = 0.6428972
+Image-Label-PairSet # =  36  : Loss = 0.64296794
+Image-Label-PairSet # =  37  : Loss = 0.63868433
+Image-Label-PairSet # =  38  : Loss = 0.64694744
+Image-Label-PairSet # =  39  : Loss = 0.6390936
+Image-Label-PairSet # =  40  : Loss = 0.6410001
+Image-Label-PairSet # =  41  : Loss = 0.63424605
+Image-Label-PairSet # =  42  : Loss = 0.63082314
+Image-Label-PairSet # =  43  : Loss = 0.6350369
+Image-Label-PairSet # =  44  : Loss = 0.6372433
+Image-Label-PairSet # =  45  : Loss = 0.6223085
+Image-Label-PairSet # =  46  : Loss = 0.61619645
+Image-Label-PairSet # =  47  : Loss = 0.62578136
+Image-Label-PairSet # =  48  : Loss = 0.62469673
+Image-Label-PairSet # =  49  : Loss = 0.6252398
+Image-Label-PairSet # =  50  : Loss = 0.6118652
+Image-Label-PairSet # =  51  : Loss = 0.606403
+Image-Label-PairSet # =  52  : Loss = 0.61458725
+Image-Label-PairSet # =  53  : Loss = 0.60604125
+Image-Label-PairSet # =  54  : Loss = 0.6297314
+Image-Label-PairSet # =  55  : Loss = 0.61407286
+Image-Label-PairSet # =  56  : Loss = 0.60642135
+Image-Label-PairSet # =  57  : Loss = 0.61071426
+Image-Label-PairSet # =  58  : Loss = 0.6209678
+
+ Epoch # =  3 Average-Loss-Across-Batches(in this epoch) = 0.6547706322423343
+
+ Loss-cumulative = [0.70808095, 0.7010632, 0.7015965, 0.6909615, 0.7039383, 0.69089746, 0.70190835, 0.69356877, 0.6934434, 0.68508804, 0.6818689, 0.6905306, 0.67883927, 0.6941435, 0.67635715, 0.6790325, 0.6724381, 0.6714306, 0.6736987, 0.6721886, 0.6644179, 0.66182286, 0.6632835, 0.6636124, 0.6626333, 0.66056293, 0.6543717, 0.6639229, 0.6547225, 0.6501843, 0.6542458, 0.646453, 0.64732945, 0.64409256, 0.6428972, 0.64296794, 0.63868433, 0.64694744, 0.6390936, 0.6410001, 0.63424605, 0.63082314, 0.6350369, 0.6372433, 0.6223085, 0.61619645, 0.62578136, 0.62469673, 0.6252398, 0.6118652, 0.606403, 0.61458725, 0.60604125, 0.6297314, 0.61407286, 0.60642135, 0.61071426, 0.6209678]
+
+ Time Elapsed(HH:MM:SS)  00:26:05
+
+----------------------- EPOCH # :   4 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.5999341
+Image-Label-PairSet # =  2  : Loss = 0.6090773
+Image-Label-PairSet # =  3  : Loss = 0.5828587
+Image-Label-PairSet # =  4  : Loss = 0.58594686
+Image-Label-PairSet # =  5  : Loss = 0.60570025
+Image-Label-PairSet # =  6  : Loss = 0.5997507
+Image-Label-PairSet # =  7  : Loss = 0.595281
+Image-Label-PairSet # =  8  : Loss = 0.5834432
+Image-Label-PairSet # =  9  : Loss = 0.5930531
+Image-Label-PairSet # =  10  : Loss = 0.57960916
+Image-Label-PairSet # =  11  : Loss = 0.593814
+Image-Label-PairSet # =  12  : Loss = 0.57960206
+Image-Label-PairSet # =  13  : Loss = 0.60194784
+Image-Label-PairSet # =  14  : Loss = 0.56946695
+Image-Label-PairSet # =  15  : Loss = 0.5684824
+Image-Label-PairSet # =  16  : Loss = 0.5829589
+Image-Label-PairSet # =  17  : Loss = 0.57699084
+Image-Label-PairSet # =  18  : Loss = 0.56732243
+Image-Label-PairSet # =  19  : Loss = 0.58470696
+Image-Label-PairSet # =  20  : Loss = 0.55905783
+Image-Label-PairSet # =  21  : Loss = 0.5424459
+Image-Label-PairSet # =  22  : Loss = 0.5788838
+Image-Label-PairSet # =  23  : Loss = 0.5609014
+Image-Label-PairSet # =  24  : Loss = 0.5470566
+Image-Label-PairSet # =  25  : Loss = 0.54886216
+Image-Label-PairSet # =  26  : Loss = 0.54414165
+Image-Label-PairSet # =  27  : Loss = 0.5653598
+Image-Label-PairSet # =  28  : Loss = 0.54228455
+Image-Label-PairSet # =  29  : Loss = 0.54039294
+Image-Label-PairSet # =  30  : Loss = 0.5272553
+Image-Label-PairSet # =  31  : Loss = 0.5474995
+Image-Label-PairSet # =  32  : Loss = 0.5377945
+Image-Label-PairSet # =  33  : Loss = 0.5112564
+Image-Label-PairSet # =  34  : Loss = 0.53632915
+Image-Label-PairSet # =  35  : Loss = 0.53730416
+Image-Label-PairSet # =  36  : Loss = 0.5286496
+Image-Label-PairSet # =  37  : Loss = 0.5255367
+Image-Label-PairSet # =  38  : Loss = 0.5386802
+Image-Label-PairSet # =  39  : Loss = 0.51310885
+Image-Label-PairSet # =  40  : Loss = 0.5021936
+Image-Label-PairSet # =  41  : Loss = 0.5128449
+Image-Label-PairSet # =  42  : Loss = 0.5259234
+Image-Label-PairSet # =  43  : Loss = 0.50959456
+Image-Label-PairSet # =  44  : Loss = 0.49742675
+Image-Label-PairSet # =  45  : Loss = 0.499087
+Image-Label-PairSet # =  46  : Loss = 0.5115104
+Image-Label-PairSet # =  47  : Loss = 0.49994656
+Image-Label-PairSet # =  48  : Loss = 0.5054239
+Image-Label-PairSet # =  49  : Loss = 0.48241082
+Image-Label-PairSet # =  50  : Loss = 0.4980869
+Image-Label-PairSet # =  51  : Loss = 0.4801166
+Image-Label-PairSet # =  52  : Loss = 0.49097353
+Image-Label-PairSet # =  53  : Loss = 0.47487536
+Image-Label-PairSet # =  54  : Loss = 0.47385064
+Image-Label-PairSet # =  55  : Loss = 0.4765239
+Image-Label-PairSet # =  56  : Loss = 0.4805457
+Image-Label-PairSet # =  57  : Loss = 0.45976326
+Image-Label-PairSet # =  58  : Loss = 0.44577536
+
+ Epoch # =  4 Average-Loss-Across-Batches(in this epoch) = 0.5399934634052473
+
+ Loss-cumulative = [0.5999341, 0.6090773, 0.5828587, 0.58594686, 0.60570025, 0.5997507, 0.595281, 0.5834432, 0.5930531, 0.57960916, 0.593814, 0.57960206, 0.60194784, 0.56946695, 0.5684824, 0.5829589, 0.57699084, 0.56732243, 0.58470696, 0.55905783, 0.5424459, 0.5788838, 0.5609014, 0.5470566, 0.54886216, 0.54414165, 0.5653598, 0.54228455, 0.54039294, 0.5272553, 0.5474995, 0.5377945, 0.5112564, 0.53632915, 0.53730416, 0.5286496, 0.5255367, 0.5386802, 0.51310885, 0.5021936, 0.5128449, 0.5259234, 0.50959456, 0.49742675, 0.499087, 0.5115104, 0.49994656, 0.5054239, 0.48241082, 0.4980869, 0.4801166, 0.49097353, 0.47487536, 0.47385064, 0.4765239, 0.4805457, 0.45976326, 0.44577536]
+
+ Time Elapsed(HH:MM:SS)  00:34:47
+
+----------------------- EPOCH # :   5 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.48049623
+Image-Label-PairSet # =  2  : Loss = 0.44436494
+Image-Label-PairSet # =  3  : Loss = 0.46783966
+Image-Label-PairSet # =  4  : Loss = 0.45214674
+Image-Label-PairSet # =  5  : Loss = 0.4584714
+Image-Label-PairSet # =  6  : Loss = 0.4420701
+Image-Label-PairSet # =  7  : Loss = 0.43652758
+Image-Label-PairSet # =  8  : Loss = 0.43520606
+Image-Label-PairSet # =  9  : Loss = 0.44774508
+Image-Label-PairSet # =  10  : Loss = 0.44050255
+Image-Label-PairSet # =  11  : Loss = 0.44748706
+Image-Label-PairSet # =  12  : Loss = 0.44028285
+Image-Label-PairSet # =  13  : Loss = 0.4284528
+Image-Label-PairSet # =  14  : Loss = 0.4360506
+Image-Label-PairSet # =  15  : Loss = 0.45406318
+Image-Label-PairSet # =  16  : Loss = 0.3895766
+Image-Label-PairSet # =  17  : Loss = 0.41915575
+Image-Label-PairSet # =  18  : Loss = 0.4087957
+Image-Label-PairSet # =  19  : Loss = 0.40588796
+Image-Label-PairSet # =  20  : Loss = 0.41990525
+Image-Label-PairSet # =  21  : Loss = 0.40623453
+Image-Label-PairSet # =  22  : Loss = 0.4181097
+Image-Label-PairSet # =  23  : Loss = 0.40527427
+Image-Label-PairSet # =  24  : Loss = 0.3848506
+Image-Label-PairSet # =  25  : Loss = 0.39741933
+Image-Label-PairSet # =  26  : Loss = 0.43591964
+Image-Label-PairSet # =  27  : Loss = 0.3759967
+Image-Label-PairSet # =  28  : Loss = 0.38500476
+Image-Label-PairSet # =  29  : Loss = 0.40168074
+Image-Label-PairSet # =  30  : Loss = 0.39505795
+Image-Label-PairSet # =  31  : Loss = 0.41330373
+Image-Label-PairSet # =  32  : Loss = 0.3933351
+Image-Label-PairSet # =  33  : Loss = 0.4081356
+Image-Label-PairSet # =  34  : Loss = 0.3509084
+Image-Label-PairSet # =  35  : Loss = 0.40540552
+Image-Label-PairSet # =  36  : Loss = 0.36108807
+Image-Label-PairSet # =  37  : Loss = 0.37626424
+Image-Label-PairSet # =  38  : Loss = 0.3497628
+Image-Label-PairSet # =  39  : Loss = 0.39803457
+Image-Label-PairSet # =  40  : Loss = 0.3475497
+Image-Label-PairSet # =  41  : Loss = 0.354531
+Image-Label-PairSet # =  42  : Loss = 0.37147352
+Image-Label-PairSet # =  43  : Loss = 0.35231268
+Image-Label-PairSet # =  44  : Loss = 0.36647868
+Image-Label-PairSet # =  45  : Loss = 0.37745494
+Image-Label-PairSet # =  46  : Loss = 0.33137342
+Image-Label-PairSet # =  47  : Loss = 0.35781556
+Image-Label-PairSet # =  48  : Loss = 0.3084508
+Image-Label-PairSet # =  49  : Loss = 0.33775172
+Image-Label-PairSet # =  50  : Loss = 0.32806897
+Image-Label-PairSet # =  51  : Loss = 0.36202115
+Image-Label-PairSet # =  52  : Loss = 0.31632832
+Image-Label-PairSet # =  53  : Loss = 0.3137476
+Image-Label-PairSet # =  54  : Loss = 0.32404345
+Image-Label-PairSet # =  55  : Loss = 0.35511357
+Image-Label-PairSet # =  56  : Loss = 0.3026115
+Image-Label-PairSet # =  57  : Loss = 0.31016228
+Image-Label-PairSet # =  58  : Loss = 0.33966318
+
+ Epoch # =  5 Average-Loss-Across-Batches(in this epoch) = 0.39092700594458085
+
+ Loss-cumulative = [0.48049623, 0.44436494, 0.46783966, 0.45214674, 0.4584714, 0.4420701, 0.43652758, 0.43520606, 0.44774508, 0.44050255, 0.44748706, 0.44028285, 0.4284528, 0.4360506, 0.45406318, 0.3895766, 0.41915575, 0.4087957, 0.40588796, 0.41990525, 0.40623453, 0.4181097, 0.40527427, 0.3848506, 0.39741933, 0.43591964, 0.3759967, 0.38500476, 0.40168074, 0.39505795, 0.41330373, 0.3933351, 0.4081356, 0.3509084, 0.40540552, 0.36108807, 0.37626424, 0.3497628, 0.39803457, 0.3475497, 0.354531, 0.37147352, 0.35231268, 0.36647868, 0.37745494, 0.33137342, 0.35781556, 0.3084508, 0.33775172, 0.32806897, 0.36202115, 0.31632832, 0.3137476, 0.32404345, 0.35511357, 0.3026115, 0.31016228, 0.33966318]
+
+ Time Elapsed(HH:MM:SS)  00:43:29
+
+----------------------- EPOCH # :   6 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.33795106
+Image-Label-PairSet # =  2  : Loss = 0.3197812
+Image-Label-PairSet # =  3  : Loss = 0.34265196
+Image-Label-PairSet # =  4  : Loss = 0.3215918
+Image-Label-PairSet # =  5  : Loss = 0.29390272
+Image-Label-PairSet # =  6  : Loss = 0.32179713
+Image-Label-PairSet # =  7  : Loss = 0.3248757
+Image-Label-PairSet # =  8  : Loss = 0.2993658
+Image-Label-PairSet # =  9  : Loss = 0.3143473
+Image-Label-PairSet # =  10  : Loss = 0.2877035
+Image-Label-PairSet # =  11  : Loss = 0.34187087
+Image-Label-PairSet # =  12  : Loss = 0.30671576
+Image-Label-PairSet # =  13  : Loss = 0.3079365
+Image-Label-PairSet # =  14  : Loss = 0.28675416
+Image-Label-PairSet # =  15  : Loss = 0.27605447
+Image-Label-PairSet # =  16  : Loss = 0.29671332
+Image-Label-PairSet # =  17  : Loss = 0.29104644
+Image-Label-PairSet # =  18  : Loss = 0.29883873
+Image-Label-PairSet # =  19  : Loss = 0.2751232
+Image-Label-PairSet # =  20  : Loss = 0.31677118
+Image-Label-PairSet # =  21  : Loss = 0.24119616
+Image-Label-PairSet # =  22  : Loss = 0.26904422
+Image-Label-PairSet # =  23  : Loss = 0.34672356
+Image-Label-PairSet # =  24  : Loss = 0.29582483
+Image-Label-PairSet # =  25  : Loss = 0.23615648
+Image-Label-PairSet # =  26  : Loss = 0.2645701
+Image-Label-PairSet # =  27  : Loss = 0.2490475
+Image-Label-PairSet # =  28  : Loss = 0.27092367
+Image-Label-PairSet # =  29  : Loss = 0.25321892
+Image-Label-PairSet # =  30  : Loss = 0.3066854
+Image-Label-PairSet # =  31  : Loss = 0.2461146
+Image-Label-PairSet # =  32  : Loss = 0.2160733
+Image-Label-PairSet # =  33  : Loss = 0.30719957
+Image-Label-PairSet # =  34  : Loss = 0.27212358
+Image-Label-PairSet # =  35  : Loss = 0.27357873
+Image-Label-PairSet # =  36  : Loss = 0.22833242
+Image-Label-PairSet # =  37  : Loss = 0.26648152
+Image-Label-PairSet # =  38  : Loss = 0.2442247
+Image-Label-PairSet # =  39  : Loss = 0.27012065
+Image-Label-PairSet # =  40  : Loss = 0.23287125
+Image-Label-PairSet # =  41  : Loss = 0.23435153
+Image-Label-PairSet # =  42  : Loss = 0.24203451
+Image-Label-PairSet # =  43  : Loss = 0.28924033
+Image-Label-PairSet # =  44  : Loss = 0.2650596
+Image-Label-PairSet # =  45  : Loss = 0.22101323
+Image-Label-PairSet # =  46  : Loss = 0.2739753
+Image-Label-PairSet # =  47  : Loss = 0.22652236
+Image-Label-PairSet # =  48  : Loss = 0.25874695
+Image-Label-PairSet # =  49  : Loss = 0.21879703
+Image-Label-PairSet # =  50  : Loss = 0.25295168
+Image-Label-PairSet # =  51  : Loss = 0.25851887
+Image-Label-PairSet # =  52  : Loss = 0.1953775
+Image-Label-PairSet # =  53  : Loss = 0.22131364
+Image-Label-PairSet # =  54  : Loss = 0.23867466
+Image-Label-PairSet # =  55  : Loss = 0.235551
+Image-Label-PairSet # =  56  : Loss = 0.2337089
+Image-Label-PairSet # =  57  : Loss = 0.20999408
+Image-Label-PairSet # =  58  : Loss = 0.20882371
+
+ Epoch # =  6 Average-Loss-Across-Batches(in this epoch) = 0.2713268766629285
+
+ Loss-cumulative = [0.33795106, 0.3197812, 0.34265196, 0.3215918, 0.29390272, 0.32179713, 0.3248757, 0.2993658, 0.3143473, 0.2877035, 0.34187087, 0.30671576, 0.3079365, 0.28675416, 0.27605447, 0.29671332, 0.29104644, 0.29883873, 0.2751232, 0.31677118, 0.24119616, 0.26904422, 0.34672356, 0.29582483, 0.23615648, 0.2645701, 0.2490475, 0.27092367, 0.25321892, 0.3066854, 0.2461146, 0.2160733, 0.30719957, 0.27212358, 0.27357873, 0.22833242, 0.26648152, 0.2442247, 0.27012065, 0.23287125, 0.23435153, 0.24203451, 0.28924033, 0.2650596, 0.22101323, 0.2739753, 0.22652236, 0.25874695, 0.21879703, 0.25295168, 0.25851887, 0.1953775, 0.22131364, 0.23867466, 0.235551, 0.2337089, 0.20999408, 0.20882371]
+
+ Time Elapsed(HH:MM:SS)  00:52:13
+
+----------------------- EPOCH # :   7 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.2643949
+Image-Label-PairSet # =  2  : Loss = 0.22301415
+Image-Label-PairSet # =  3  : Loss = 0.23404069
+Image-Label-PairSet # =  4  : Loss = 0.20145118
+Image-Label-PairSet # =  5  : Loss = 0.26615158
+Image-Label-PairSet # =  6  : Loss = 0.19308296
+Image-Label-PairSet # =  7  : Loss = 0.23685673
+Image-Label-PairSet # =  8  : Loss = 0.19373858
+Image-Label-PairSet # =  9  : Loss = 0.21268176
+Image-Label-PairSet # =  10  : Loss = 0.22813293
+Image-Label-PairSet # =  11  : Loss = 0.23208208
+Image-Label-PairSet # =  12  : Loss = 0.19532648
+Image-Label-PairSet # =  13  : Loss = 0.17931907
+Image-Label-PairSet # =  14  : Loss = 0.1997342
+Image-Label-PairSet # =  15  : Loss = 0.17889723
+Image-Label-PairSet # =  16  : Loss = 0.21327484
+Image-Label-PairSet # =  17  : Loss = 0.22917151
+Image-Label-PairSet # =  18  : Loss = 0.17797333
+Image-Label-PairSet # =  19  : Loss = 0.20545466
+Image-Label-PairSet # =  20  : Loss = 0.2535547
+Image-Label-PairSet # =  21  : Loss = 0.15241598
+Image-Label-PairSet # =  22  : Loss = 0.21391107
+Image-Label-PairSet # =  23  : Loss = 0.21594957
+Image-Label-PairSet # =  24  : Loss = 0.17071581
+Image-Label-PairSet # =  25  : Loss = 0.20003724
+Image-Label-PairSet # =  26  : Loss = 0.20379809
+Image-Label-PairSet # =  27  : Loss = 0.19123504
+Image-Label-PairSet # =  28  : Loss = 0.19025367
+Image-Label-PairSet # =  29  : Loss = 0.18201242
+Image-Label-PairSet # =  30  : Loss = 0.20080756
+Image-Label-PairSet # =  31  : Loss = 0.16865462
+Image-Label-PairSet # =  32  : Loss = 0.17223273
+Image-Label-PairSet # =  33  : Loss = 0.2277965
+Image-Label-PairSet # =  34  : Loss = 0.24100487
+Image-Label-PairSet # =  35  : Loss = 0.2140206
+Image-Label-PairSet # =  36  : Loss = 0.15426992
+Image-Label-PairSet # =  37  : Loss = 0.19687994
+Image-Label-PairSet # =  38  : Loss = 0.23832424
+Image-Label-PairSet # =  39  : Loss = 0.1991646
+Image-Label-PairSet # =  40  : Loss = 0.15786044
+Image-Label-PairSet # =  41  : Loss = 0.18606727
+Image-Label-PairSet # =  42  : Loss = 0.1744606
+Image-Label-PairSet # =  43  : Loss = 0.15032056
+Image-Label-PairSet # =  44  : Loss = 0.19877505
+Image-Label-PairSet # =  45  : Loss = 0.17836142
+Image-Label-PairSet # =  46  : Loss = 0.2076194
+Image-Label-PairSet # =  47  : Loss = 0.16196181
+Image-Label-PairSet # =  48  : Loss = 0.19181488
+Image-Label-PairSet # =  49  : Loss = 0.16153799
+Image-Label-PairSet # =  50  : Loss = 0.15768172
+Image-Label-PairSet # =  51  : Loss = 0.2016106
+Image-Label-PairSet # =  52  : Loss = 0.16724664
+Image-Label-PairSet # =  53  : Loss = 0.19529822
+Image-Label-PairSet # =  54  : Loss = 0.18294936
+Image-Label-PairSet # =  55  : Loss = 0.21378663
+Image-Label-PairSet # =  56  : Loss = 0.19926588
+Image-Label-PairSet # =  57  : Loss = 0.19938846
+Image-Label-PairSet # =  58  : Loss = 0.18424948
+
+ Epoch # =  7 Average-Loss-Across-Batches(in this epoch) = 0.19865645571001644
+
+ Loss-cumulative = [0.2643949, 0.22301415, 0.23404069, 0.20145118, 0.26615158, 0.19308296, 0.23685673, 0.19373858, 0.21268176, 0.22813293, 0.23208208, 0.19532648, 0.17931907, 0.1997342, 0.17889723, 0.21327484, 0.22917151, 0.17797333, 0.20545466, 0.2535547, 0.15241598, 0.21391107, 0.21594957, 0.17071581, 0.20003724, 0.20379809, 0.19123504, 0.19025367, 0.18201242, 0.20080756, 0.16865462, 0.17223273, 0.2277965, 0.24100487, 0.2140206, 0.15426992, 0.19687994, 0.23832424, 0.1991646, 0.15786044, 0.18606727, 0.1744606, 0.15032056, 0.19877505, 0.17836142, 0.2076194, 0.16196181, 0.19181488, 0.16153799, 0.15768172, 0.2016106, 0.16724664, 0.19529822, 0.18294936, 0.21378663, 0.19926588, 0.19938846, 0.18424948]
+
+ Time Elapsed(HH:MM:SS)  01:00:55
+
+----------------------- EPOCH # :   8 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.15009148
+Image-Label-PairSet # =  2  : Loss = 0.16621928
+Image-Label-PairSet # =  3  : Loss = 0.16545625
+Image-Label-PairSet # =  4  : Loss = 0.15088084
+Image-Label-PairSet # =  5  : Loss = 0.1585361
+Image-Label-PairSet # =  6  : Loss = 0.2206784
+Image-Label-PairSet # =  7  : Loss = 0.1956474
+Image-Label-PairSet # =  8  : Loss = 0.112445705
+Image-Label-PairSet # =  9  : Loss = 0.14795291
+Image-Label-PairSet # =  10  : Loss = 0.16199212
+Image-Label-PairSet # =  11  : Loss = 0.1705687
+Image-Label-PairSet # =  12  : Loss = 0.19879611
+Image-Label-PairSet # =  13  : Loss = 0.20151082
+Image-Label-PairSet # =  14  : Loss = 0.19133094
+Image-Label-PairSet # =  15  : Loss = 0.16020219
+Image-Label-PairSet # =  16  : Loss = 0.15256415
+Image-Label-PairSet # =  17  : Loss = 0.14297272
+Image-Label-PairSet # =  18  : Loss = 0.1632506
+Image-Label-PairSet # =  19  : Loss = 0.1517548
+Image-Label-PairSet # =  20  : Loss = 0.14976227
+Image-Label-PairSet # =  21  : Loss = 0.17389548
+Image-Label-PairSet # =  22  : Loss = 0.19743979
+Image-Label-PairSet # =  23  : Loss = 0.17792721
+Image-Label-PairSet # =  24  : Loss = 0.1430969
+img_pair_num Image-Label-PairSet # =  25  : Loss = 0.18272352
+Image-Label-PairSet # =  26  : Loss = 0.18941014
+Image-Label-PairSet # =  27  : Loss = 0.14301077
+Image-Label-PairSet # =  28  : Loss = 0.17154785
+Image-Label-PairSet # =  29  : Loss = 0.19402252
+Image-Label-PairSet # =  30  : Loss = 0.15352185
+Image-Label-PairSet # =  31  : Loss = 0.19609375
+Image-Label-PairSet # =  32  : Loss = 0.15129003
+Image-Label-PairSet # =  33  : Loss = 0.17447364
+Image-Label-PairSet # =  34  : Loss = 0.20792732
+Image-Label-PairSet # =  35  : Loss = 0.20256235
+Image-Label-PairSet # =  36  : Loss = 0.1842336
+Image-Label-PairSet # =  37  : Loss = 0.14090826
+Image-Label-PairSet # =  38  : Loss = 0.18172024
+Image-Label-PairSet # =  39  : Loss = 0.13480131
+Image-Label-PairSet # =  40  : Loss = 0.15730467
+Image-Label-PairSet # =  41  : Loss = 0.14899103
+Image-Label-PairSet # =  42  : Loss = 0.17712274
+Image-Label-PairSet # =  43  : Loss = 0.13802314
+Image-Label-PairSet # =  44  : Loss = 0.1547681
+Image-Label-PairSet # =  45  : Loss = 0.16820452
+Image-Label-PairSet # =  46  : Loss = 0.19605829
+Image-Label-PairSet # =  47  : Loss = 0.13507026
+Image-Label-PairSet # =  48  : Loss = 0.15361774
+Image-Label-PairSet # =  49  : Loss = 0.1253223
+Image-Label-PairSet # =  50  : Loss = 0.1570307
+Image-Label-PairSet # =  51  : Loss = 0.1585377
+Image-Label-PairSet # =  52  : Loss = 0.17214894
+Image-Label-PairSet # =  53  : Loss = 0.15734307
+Image-Label-PairSet # =  54  : Loss = 0.20446597
+Image-Label-PairSet # =  55  : Loss = 0.16915123
+Image-Label-PairSet # =  56  : Loss = 0.15280196
+Image-Label-PairSet # =  57  : Loss = 0.1556975
+Image-Label-PairSet # =  58  : Loss = 0.13129295
+
+ Epoch # =  8 Average-Loss-Across-Batches(in this epoch) = 0.1659685025184319
+
+ Loss-cumulative = [0.15009148, 0.16621928, 0.16545625, 0.15088084, 0.1585361, 0.2206784, 0.1956474, 0.112445705, 0.14795291, 0.16199212, 0.1705687, 0.19879611, 0.20151082, 0.19133094, 0.16020219, 0.15256415, 0.14297272, 0.1632506, 0.1517548, 0.14976227, 0.17389548, 0.19743979, 0.17792721, 0.1430969, 0.18272352, 0.18941014, 0.14301077, 0.17154785, 0.19402252, 0.15352185, 0.19609375, 0.15129003, 0.17447364, 0.20792732, 0.20256235, 0.1842336, 0.14090826, 0.18172024, 0.13480131, 0.15730467, 0.14899103, 0.17712274, 0.13802314, 0.1547681, 0.16820452, 0.19605829, 0.13507026, 0.15361774, 0.1253223, 0.1570307, 0.1585377, 0.17214894, 0.15734307, 0.20446597, 0.16915123, 0.15280196, 0.1556975, 0.13129295]
+
+ Time Elapsed(HH:MM:SS)  02:29:56
+
+----------------------- EPOCH # :   9 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.13372506
+Image-Label-PairSet # =  2  : Loss = 0.16435027
+Image-Label-PairSet # =  3  : Loss = 0.13296247
+Image-Label-PairSet # =  4  : Loss = 0.1599509
+Image-Label-PairSet # =  5  : Loss = 0.14582688
+Image-Label-PairSet # =  6  : Loss = 0.15673292
+Image-Label-PairSet # =  7  : Loss = 0.17045692
+Image-Label-PairSet # =  8  : Loss = 0.18504366
+Image-Label-PairSet # =  9  : Loss = 0.15928604
+Image-Label-PairSet # =  10  : Loss = 0.1549788
+Image-Label-PairSet # =  11  : Loss = 0.16753691
+Image-Label-PairSet # =  12  : Loss = 0.1560284
+Image-Label-PairSet # =  13  : Loss = 0.16239725
+Image-Label-PairSet # =  14  : Loss = 0.1692138
+Image-Label-PairSet # =  15  : Loss = 0.16088428
+Image-Label-PairSet # =  16  : Loss = 0.17045549
+Image-Label-PairSet # =  17  : Loss = 0.19839002
+Image-Label-PairSet # =  18  : Loss = 0.1610637
+Image-Label-PairSet # =  19  : Loss = 0.13517578
+Image-Label-PairSet # =  20  : Loss = 0.13872659
+Image-Label-PairSet # =  21  : Loss = 0.16185601
+Image-Label-PairSet # =  22  : Loss = 0.12850778
+Image-Label-PairSet # =  23  : Loss = 0.1652103
+Image-Label-PairSet # =  24  : Loss = 0.15812746
+Image-Label-PairSet # =  25  : Loss = 0.15131958
+Image-Label-PairSet # =  26  : Loss = 0.15740931
+Image-Label-PairSet # =  27  : Loss = 0.15208846
+Image-Label-PairSet # =  28  : Loss = 0.1377164
+Image-Label-PairSet # =  29  : Loss = 0.1457351
+Image-Label-PairSet # =  30  : Loss = 0.14045691
+Image-Label-PairSet # =  31  : Loss = 0.14615862
+Image-Label-PairSet # =  32  : Loss = 0.16616024
+Image-Label-PairSet # =  33  : Loss = 0.14779742
+Image-Label-PairSet # =  34  : Loss = 0.17380975
+Image-Label-PairSet # =  35  : Loss = 0.13055146
+Image-Label-PairSet # =  36  : Loss = 0.21946844
+Image-Label-PairSet # =  37  : Loss = 0.14533928
+Image-Label-PairSet # =  38  : Loss = 0.16830482
+Image-Label-PairSet # =  39  : Loss = 0.11433175
+Image-Label-PairSet # =  40  : Loss = 0.18831791
+Image-Label-PairSet # =  41  : Loss = 0.09688504
+Image-Label-PairSet # =  42  : Loss = 0.11606343
+Image-Label-PairSet # =  43  : Loss = 0.16932689
+Image-Label-PairSet # =  44  : Loss = 0.1260598
+Image-Label-PairSet # =  45  : Loss = 0.13241176
+Image-Label-PairSet # =  46  : Loss = 0.110895485
+Image-Label-PairSet # =  47  : Loss = 0.11021203
+Image-Label-PairSet # =  48  : Loss = 0.12383576
+Image-Label-PairSet # =  49  : Loss = 0.13163248
+Image-Label-PairSet # =  50  : Loss = 0.111081876
+Image-Label-PairSet # =  51  : Loss = 0.15201694
+Image-Label-PairSet # =  52  : Loss = 0.15628687
+Image-Label-PairSet # =  53  : Loss = 0.14209989
+Image-Label-PairSet # =  54  : Loss = 0.13494237
+Image-Label-PairSet # =  55  : Loss = 0.16191214
+Image-Label-PairSet # =  56  : Loss = 0.13351087
+Image-Label-PairSet # =  57  : Loss = 0.12787065
+Image-Label-PairSet # =  58  : Loss = 0.13355772
+
+ Epoch # =  9 Average-Loss-Across-Batches(in this epoch) = 0.1491802608401611
+
+ Loss-cumulative = [0.13372506, 0.16435027, 0.13296247, 0.1599509, 0.14582688, 0.15673292, 0.17045692, 0.18504366, 0.15928604, 0.1549788, 0.16753691, 0.1560284, 0.16239725, 0.1692138, 0.16088428, 0.17045549, 0.19839002, 0.1610637, 0.13517578, 0.13872659, 0.16185601, 0.12850778, 0.1652103, 0.15812746, 0.15131958, 0.15740931, 0.15208846, 0.1377164, 0.1457351, 0.14045691, 0.14615862, 0.16616024, 0.14779742, 0.17380975, 0.13055146, 0.21946844, 0.14533928, 0.16830482, 0.11433175, 0.18831791, 0.09688504, 0.11606343, 0.16932689, 0.1260598, 0.13241176, 0.110895485, 0.11021203, 0.12383576, 0.13163248, 0.111081876, 0.15201694, 0.15628687, 0.14209989, 0.13494237, 0.16191214, 0.13351087, 0.12787065, 0.13355772]
+
+ Time Elapsed(HH:MM:SS)  02:38:39
+
+----------------------- EPOCH # :   10 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.15972884
+Image-Label-PairSet # =  2  : Loss = 0.13341972
+Image-Label-PairSet # =  3  : Loss = 0.18222937
+Image-Label-PairSet # =  4  : Loss = 0.14458728
+Image-Label-PairSet # =  5  : Loss = 0.13279498
+Image-Label-PairSet # =  6  : Loss = 0.11235454
+Image-Label-PairSet # =  7  : Loss = 0.15902194
+Image-Label-PairSet # =  8  : Loss = 0.16820401
+Image-Label-PairSet # =  9  : Loss = 0.1606961
+Image-Label-PairSet # =  10  : Loss = 0.116081536
+Image-Label-PairSet # =  11  : Loss = 0.13784793
+Image-Label-PairSet # =  12  : Loss = 0.12990278
+Image-Label-PairSet # =  13  : Loss = 0.13366249
+Image-Label-PairSet # =  14  : Loss = 0.10932042
+Image-Label-PairSet # =  15  : Loss = 0.17331204
+Image-Label-PairSet # =  16  : Loss = 0.13543558
+Image-Label-PairSet # =  17  : Loss = 0.12620859
+Image-Label-PairSet # =  18  : Loss = 0.13402416
+Image-Label-PairSet # =  19  : Loss = 0.11953171
+Image-Label-PairSet # =  20  : Loss = 0.113003574
+Image-Label-PairSet # =  21  : Loss = 0.13787702
+Image-Label-PairSet # =  22  : Loss = 0.11164725
+Image-Label-PairSet # =  23  : Loss = 0.18088646
+Image-Label-PairSet # =  24  : Loss = 0.114263155
+Image-Label-PairSet # =  25  : Loss = 0.17170301
+Image-Label-PairSet # =  26  : Loss = 0.14854176
+Image-Label-PairSet # =  27  : Loss = 0.145847
+Image-Label-PairSet # =  28  : Loss = 0.1674298
+Image-Label-PairSet # =  29  : Loss = 0.16556828
+Image-Label-PairSet # =  30  : Loss = 0.13080156
+Image-Label-PairSet # =  31  : Loss = 0.15208443
+Image-Label-PairSet # =  32  : Loss = 0.122826196
+Image-Label-PairSet # =  33  : Loss = 0.1353376
+Image-Label-PairSet # =  34  : Loss = 0.10526281
+Image-Label-PairSet # =  35  : Loss = 0.12470159
+Image-Label-PairSet # =  36  : Loss = 0.14001799
+Image-Label-PairSet # =  37  : Loss = 0.11053367
+Image-Label-PairSet # =  38  : Loss = 0.15387577
+Image-Label-PairSet # =  39  : Loss = 0.10881748
+Image-Label-PairSet # =  40  : Loss = 0.19023964
+Image-Label-PairSet # =  41  : Loss = 0.14514783
+Image-Label-PairSet # =  42  : Loss = 0.1311003
+Image-Label-PairSet # =  43  : Loss = 0.117575325
+Image-Label-PairSet # =  44  : Loss = 0.15451919
+Image-Label-PairSet # =  45  : Loss = 0.09319723
+Image-Label-PairSet # =  46  : Loss = 0.1337381
+Image-Label-PairSet # =  47  : Loss = 0.12369089
+Image-Label-PairSet # =  48  : Loss = 0.1413447
+Image-Label-PairSet # =  49  : Loss = 0.13339385
+Image-Label-PairSet # =  50  : Loss = 0.15021925
+Image-Label-PairSet # =  51  : Loss = 0.10762859
+Image-Label-PairSet # =  52  : Loss = 0.14362471
+Image-Label-PairSet # =  53  : Loss = 0.1260061
+Image-Label-PairSet # =  54  : Loss = 0.15827698
+Image-Label-PairSet # =  55  : Loss = 0.12527955
+Image-Label-PairSet # =  56  : Loss = 0.15913883
+Image-Label-PairSet # =  57  : Loss = 0.16969535
+Image-Label-PairSet # =  58  : Loss = 0.14336173
+
+ Epoch # =  10 Average-Loss-Across-Batches(in this epoch) = 0.13890635389192352
+
+ Loss-cumulative = [0.15972884, 0.13341972, 0.18222937, 0.14458728, 0.13279498, 0.11235454, 0.15902194, 0.16820401, 0.1606961, 0.116081536, 0.13784793, 0.12990278, 0.13366249, 0.10932042, 0.17331204, 0.13543558, 0.12620859, 0.13402416, 0.11953171, 0.113003574, 0.13787702, 0.11164725, 0.18088646, 0.114263155, 0.17170301, 0.14854176, 0.145847, 0.1674298, 0.16556828, 0.13080156, 0.15208443, 0.122826196, 0.1353376, 0.10526281, 0.12470159, 0.14001799, 0.11053367, 0.15387577, 0.10881748, 0.19023964, 0.14514783, 0.1311003, 0.117575325, 0.15451919, 0.09319723, 0.1337381, 0.12369089, 0.1413447, 0.13339385, 0.15021925, 0.10762859, 0.14362471, 0.1260061, 0.15827698, 0.12527955, 0.15913883, 0.16969535, 0.14336173]
+
+ Time Elapsed(HH:MM:SS)  02:47:23
+
+----------------------- EPOCH # :   11 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.15300858
+Image-Label-PairSet # =  2  : Loss = 0.17594656
+Image-Label-PairSet # =  3  : Loss = 0.17931189
+Image-Label-PairSet # =  4  : Loss = 0.16080774
+Image-Label-PairSet # =  5  : Loss = 0.112857014
+Image-Label-PairSet # =  6  : Loss = 0.14295329
+Image-Label-PairSet # =  7  : Loss = 0.12160107
+Image-Label-PairSet # =  8  : Loss = 0.11646804
+Image-Label-PairSet # =  9  : Loss = 0.11720121
+Image-Label-PairSet # =  10  : Loss = 0.12656006
+Image-Label-PairSet # =  11  : Loss = 0.12164658
+Image-Label-PairSet # =  12  : Loss = 0.1799305
+Image-Label-PairSet # =  13  : Loss = 0.1069184
+Image-Label-PairSet # =  14  : Loss = 0.13188788
+Image-Label-PairSet # =  15  : Loss = 0.14361164
+Image-Label-PairSet # =  16  : Loss = 0.09747651
+Image-Label-PairSet # =  17  : Loss = 0.11499566
+Image-Label-PairSet # =  18  : Loss = 0.10980496
+Image-Label-PairSet # =  19  : Loss = 0.12522466
+Image-Label-PairSet # =  20  : Loss = 0.14375208
+Image-Label-PairSet # =  21  : Loss = 0.11874339
+Image-Label-PairSet # =  22  : Loss = 0.12988162
+Image-Label-PairSet # =  23  : Loss = 0.14129217
+Image-Label-PairSet # =  24  : Loss = 0.12784351
+Image-Label-PairSet # =  25  : Loss = 0.11275503
+Image-Label-PairSet # =  26  : Loss = 0.14812866
+Image-Label-PairSet # =  27  : Loss = 0.10252822
+Image-Label-PairSet # =  28  : Loss = 0.166893
+Image-Label-PairSet # =  29  : Loss = 0.11680864
+Image-Label-PairSet # =  30  : Loss = 0.12984434
+Image-Label-PairSet # =  31  : Loss = 0.08926575
+Image-Label-PairSet # =  32  : Loss = 0.12045951
+Image-Label-PairSet # =  33  : Loss = 0.10134153
+Image-Label-PairSet # =  34  : Loss = 0.12735468
+Image-Label-PairSet # =  35  : Loss = 0.17525364
+Image-Label-PairSet # =  36  : Loss = 0.12416345
+Image-Label-PairSet # =  37  : Loss = 0.10395149
+Image-Label-PairSet # =  38  : Loss = 0.121870235
+Image-Label-PairSet # =  39  : Loss = 0.109518334
+Image-Label-PairSet # =  40  : Loss = 0.16866894
+Image-Label-PairSet # =  41  : Loss = 0.11495386
+Image-Label-PairSet # =  42  : Loss = 0.1314181
+Image-Label-PairSet # =  43  : Loss = 0.093529016
+Image-Label-PairSet # =  44  : Loss = 0.1019235
+Image-Label-PairSet # =  45  : Loss = 0.10026334
+Image-Label-PairSet # =  46  : Loss = 0.14744028
+Image-Label-PairSet # =  47  : Loss = 0.1475645
+Image-Label-PairSet # =  48  : Loss = 0.113299005
+Image-Label-PairSet # =  49  : Loss = 0.15277809
+Image-Label-PairSet # =  50  : Loss = 0.11830317
+Image-Label-PairSet # =  51  : Loss = 0.15445897
+Image-Label-PairSet # =  52  : Loss = 0.09085334
+Image-Label-PairSet # =  53  : Loss = 0.120266795
+Image-Label-PairSet # =  54  : Loss = 0.10330128
+Image-Label-PairSet # =  55  : Loss = 0.118164964
+Image-Label-PairSet # =  56  : Loss = 0.09783056
+Image-Label-PairSet # =  57  : Loss = 0.14123635
+Image-Label-PairSet # =  58  : Loss = 0.09107577
+
+ Epoch # =  11 Average-Loss-Across-Batches(in this epoch) = 0.12684812730756298
+
+ Loss-cumulative = [0.15300858, 0.17594656, 0.17931189, 0.16080774, 0.112857014, 0.14295329, 0.12160107, 0.11646804, 0.11720121, 0.12656006, 0.12164658, 0.1799305, 0.1069184, 0.13188788, 0.14361164, 0.09747651, 0.11499566, 0.10980496, 0.12522466, 0.14375208, 0.11874339, 0.12988162, 0.14129217, 0.12784351, 0.11275503, 0.14812866, 0.10252822, 0.166893, 0.11680864, 0.12984434, 0.08926575, 0.12045951, 0.10134153, 0.12735468, 0.17525364, 0.12416345, 0.10395149, 0.121870235, 0.109518334, 0.16866894, 0.11495386, 0.1314181, 0.093529016, 0.1019235, 0.10026334, 0.14744028, 0.1475645, 0.113299005, 0.15277809, 0.11830317, 0.15445897, 0.09085334, 0.120266795, 0.10330128, 0.118164964, 0.09783056, 0.14123635, 0.09107577]
+
+ Time Elapsed(HH:MM:SS)  02:56:05
+
+----------------------- EPOCH # :   12 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.114407115
+Image-Label-PairSet # =  2  : Loss = 0.122147165
+Image-Label-PairSet # =  3  : Loss = 0.10548195
+Image-Label-PairSet # =  4  : Loss = 0.14802061
+Image-Label-PairSet # =  5  : Loss = 0.122857764
+Image-Label-PairSet # =  6  : Loss = 0.09109756
+Image-Label-PairSet # =  7  : Loss = 0.12049624
+Image-Label-PairSet # =  8  : Loss = 0.116658226
+Image-Label-PairSet # =  9  : Loss = 0.09325314
+Image-Label-PairSet # =  10  : Loss = 0.15628037
+Image-Label-PairSet # =  11  : Loss = 0.13051343
+Image-Label-PairSet # =  12  : Loss = 0.10860475
+Image-Label-PairSet # =  13  : Loss = 0.12305569
+Image-Label-PairSet # =  14  : Loss = 0.12802614
+Image-Label-PairSet # =  15  : Loss = 0.12309698
+Image-Label-PairSet # =  16  : Loss = 0.13192956
+Image-Label-PairSet # =  17  : Loss = 0.11915117
+Image-Label-PairSet # =  18  : Loss = 0.112991124
+Image-Label-PairSet # =  19  : Loss = 0.11909917
+Image-Label-PairSet # =  20  : Loss = 0.13086846
+Image-Label-PairSet # =  21  : Loss = 0.09355894
+Image-Label-PairSet # =  22  : Loss = 0.11428094
+Image-Label-PairSet # =  23  : Loss = 0.14843816
+Image-Label-PairSet # =  24  : Loss = 0.10731259
+Image-Label-PairSet # =  25  : Loss = 0.127638
+Image-Label-PairSet # =  26  : Loss = 0.124312505
+Image-Label-PairSet # =  27  : Loss = 0.12742668
+Image-Label-PairSet # =  28  : Loss = 0.12042153
+Image-Label-PairSet # =  29  : Loss = 0.10245672
+Image-Label-PairSet # =  30  : Loss = 0.11748252
+Image-Label-PairSet # =  31  : Loss = 0.11289162
+Image-Label-PairSet # =  32  : Loss = 0.122093014
+Image-Label-PairSet # =  33  : Loss = 0.09555545
+Image-Label-PairSet # =  34  : Loss = 0.12300087
+Image-Label-PairSet # =  35  : Loss = 0.114139795
+Image-Label-PairSet # =  36  : Loss = 0.0843033
+Image-Label-PairSet # =  37  : Loss = 0.16701142
+Image-Label-PairSet # =  38  : Loss = 0.15065582
+Image-Label-PairSet # =  39  : Loss = 0.17452754
+Image-Label-PairSet # =  40  : Loss = 0.123743095
+Image-Label-PairSet # =  41  : Loss = 0.14568739
+Image-Label-PairSet # =  42  : Loss = 0.140075
+Image-Label-PairSet # =  43  : Loss = 0.095646024
+Image-Label-PairSet # =  44  : Loss = 0.11423374
+Image-Label-PairSet # =  45  : Loss = 0.13052996
+Image-Label-PairSet # =  46  : Loss = 0.11463237
+Image-Label-PairSet # =  47  : Loss = 0.11077522
+Image-Label-PairSet # =  48  : Loss = 0.109613106
+Image-Label-PairSet # =  49  : Loss = 0.11437599
+Image-Label-PairSet # =  50  : Loss = 0.15596713
+Image-Label-PairSet # =  51  : Loss = 0.11830086
+Image-Label-PairSet # =  52  : Loss = 0.117562205
+Image-Label-PairSet # =  53  : Loss = 0.101132914
+Image-Label-PairSet # =  54  : Loss = 0.11576979
+Image-Label-PairSet # =  55  : Loss = 0.15192257
+Image-Label-PairSet # =  56  : Loss = 0.110329315
+Image-Label-PairSet # =  57  : Loss = 0.0981494
+Image-Label-PairSet # =  58  : Loss = 0.08888372
+
+ Epoch # =  12 Average-Loss-Across-Batches(in this epoch) = 0.12073920384563248
+
+ Loss-cumulative = [0.114407115, 0.122147165, 0.10548195, 0.14802061, 0.122857764, 0.09109756, 0.12049624, 0.116658226, 0.09325314, 0.15628037, 0.13051343, 0.10860475, 0.12305569, 0.12802614, 0.12309698, 0.13192956, 0.11915117, 0.112991124, 0.11909917, 0.13086846, 0.09355894, 0.11428094, 0.14843816, 0.10731259, 0.127638, 0.124312505, 0.12742668, 0.12042153, 0.10245672, 0.11748252, 0.11289162, 0.122093014, 0.09555545, 0.12300087, 0.114139795, 0.0843033, 0.16701142, 0.15065582, 0.17452754, 0.123743095, 0.14568739, 0.140075, 0.095646024, 0.11423374, 0.13052996, 0.11463237, 0.11077522, 0.109613106, 0.11437599, 0.15596713, 0.11830086, 0.117562205, 0.101132914, 0.11576979, 0.15192257, 0.110329315, 0.0981494, 0.08888372]
+
+ Time Elapsed(HH:MM:SS)  03:04:44
+
+----------------------- EPOCH # :   13 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.112488896
+Image-Label-PairSet # =  2  : Loss = 0.13241972
+Image-Label-PairSet # =  3  : Loss = 0.1075106
+Image-Label-PairSet # =  4  : Loss = 0.10234376
+Image-Label-PairSet # =  5  : Loss = 0.10742364
+Image-Label-PairSet # =  6  : Loss = 0.09885628
+Image-Label-PairSet # =  7  : Loss = 0.09092828
+Image-Label-PairSet # =  8  : Loss = 0.11272252
+Image-Label-PairSet # =  9  : Loss = 0.12155307
+Image-Label-PairSet # =  10  : Loss = 0.13073549
+Image-Label-PairSet # =  11  : Loss = 0.09334099
+Image-Label-PairSet # =  12  : Loss = 0.11893511
+Image-Label-PairSet # =  13  : Loss = 0.111839786
+Image-Label-PairSet # =  14  : Loss = 0.11718597
+Image-Label-PairSet # =  15  : Loss = 0.09385811
+Image-Label-PairSet # =  16  : Loss = 0.10137753
+Image-Label-PairSet # =  17  : Loss = 0.13033333
+Image-Label-PairSet # =  18  : Loss = 0.09794885
+Image-Label-PairSet # =  19  : Loss = 0.09539933
+Image-Label-PairSet # =  20  : Loss = 0.1210518
+Image-Label-PairSet # =  21  : Loss = 0.11092223
+Image-Label-PairSet # =  22  : Loss = 0.14800926
+Image-Label-PairSet # =  23  : Loss = 0.13259676
+Image-Label-PairSet # =  24  : Loss = 0.105205245
+Image-Label-PairSet # =  25  : Loss = 0.08982958
+Image-Label-PairSet # =  26  : Loss = 0.13307147
+Image-Label-PairSet # =  27  : Loss = 0.1385485
+Image-Label-PairSet # =  28  : Loss = 0.13897127
+Image-Label-PairSet # =  29  : Loss = 0.09690574
+Image-Label-PairSet # =  30  : Loss = 0.082588606
+Image-Label-PairSet # =  31  : Loss = 0.117522076
+Image-Label-PairSet # =  32  : Loss = 0.10732839
+Image-Label-PairSet # =  33  : Loss = 0.1157801
+Image-Label-PairSet # =  34  : Loss = 0.1246237
+Image-Label-PairSet # =  35  : Loss = 0.11599515
+Image-Label-PairSet # =  36  : Loss = 0.1451321
+Image-Label-PairSet # =  37  : Loss = 0.12132267
+Image-Label-PairSet # =  38  : Loss = 0.0940682
+Image-Label-PairSet # =  39  : Loss = 0.11332842
+Image-Label-PairSet # =  40  : Loss = 0.12193245
+Image-Label-PairSet # =  41  : Loss = 0.088632286
+Image-Label-PairSet # =  42  : Loss = 0.08905274
+Image-Label-PairSet # =  43  : Loss = 0.14265178
+Image-Label-PairSet # =  44  : Loss = 0.13023095
+Image-Label-PairSet # =  45  : Loss = 0.108608074
+Image-Label-PairSet # =  46  : Loss = 0.10993135
+Image-Label-PairSet # =  47  : Loss = 0.08793836
+Image-Label-PairSet # =  48  : Loss = 0.112735294
+Image-Label-PairSet # =  49  : Loss = 0.1272532
+Image-Label-PairSet # =  50  : Loss = 0.12530814
+Image-Label-PairSet # =  51  : Loss = 0.1106499
+Image-Label-PairSet # =  52  : Loss = 0.10165322
+Image-Label-PairSet # =  53  : Loss = 0.093452655
+Image-Label-PairSet # =  54  : Loss = 0.13943952
+Image-Label-PairSet # =  55  : Loss = 0.1224365
+Image-Label-PairSet # =  56  : Loss = 0.1444241
+Image-Label-PairSet # =  57  : Loss = 0.14076242
+Image-Label-PairSet # =  58  : Loss = 0.11643981
+
+ Epoch # =  13 Average-Loss-Across-Batches(in this epoch) = 0.1145437113169966
+
+ Loss-cumulative = [0.112488896, 0.13241972, 0.1075106, 0.10234376, 0.10742364, 0.09885628, 0.09092828, 0.11272252, 0.12155307, 0.13073549, 0.09334099, 0.11893511, 0.111839786, 0.11718597, 0.09385811, 0.10137753, 0.13033333, 0.09794885, 0.09539933, 0.1210518, 0.11092223, 0.14800926, 0.13259676, 0.105205245, 0.08982958, 0.13307147, 0.1385485, 0.13897127, 0.09690574, 0.082588606, 0.117522076, 0.10732839, 0.1157801, 0.1246237, 0.11599515, 0.1451321, 0.12132267, 0.0940682, 0.11332842, 0.12193245, 0.088632286, 0.08905274, 0.14265178, 0.13023095, 0.108608074, 0.10993135, 0.08793836, 0.112735294, 0.1272532, 0.12530814, 0.1106499, 0.10165322, 0.093452655, 0.13943952, 0.1224365, 0.1444241, 0.14076242, 0.11643981]
+
+ Time Elapsed(HH:MM:SS)  03:13:27
+
+----------------------- EPOCH # :   14 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.13295545
+Image-Label-PairSet # =  2  : Loss = 0.12070555
+Image-Label-PairSet # =  3  : Loss = 0.07387179
+Image-Label-PairSet # =  4  : Loss = 0.08847424
+Image-Label-PairSet # =  5  : Loss = 0.11655261
+Image-Label-PairSet # =  6  : Loss = 0.11115504
+Image-Label-PairSet # =  7  : Loss = 0.091269135
+Image-Label-PairSet # =  8  : Loss = 0.13827983
+Image-Label-PairSet # =  9  : Loss = 0.09204386
+Image-Label-PairSet # =  10  : Loss = 0.108702205
+Image-Label-PairSet # =  11  : Loss = 0.10146429
+Image-Label-PairSet # =  12  : Loss = 0.11779636
+Image-Label-PairSet # =  13  : Loss = 0.10148049
+Image-Label-PairSet # =  14  : Loss = 0.10019816
+Image-Label-PairSet # =  15  : Loss = 0.11723399
+Image-Label-PairSet # =  16  : Loss = 0.11133777
+Image-Label-PairSet # =  17  : Loss = 0.08667588
+Image-Label-PairSet # =  18  : Loss = 0.10408057
+Image-Label-PairSet # =  19  : Loss = 0.091483995
+Image-Label-PairSet # =  20  : Loss = 0.102815665
+Image-Label-PairSet # =  21  : Loss = 0.13441543
+Image-Label-PairSet # =  22  : Loss = 0.09387195
+Image-Label-PairSet # =  23  : Loss = 0.097604856
+Image-Label-PairSet # =  24  : Loss = 0.09742476
+Image-Label-PairSet # =  25  : Loss = 0.09328786
+Image-Label-PairSet # =  26  : Loss = 0.08694066
+Image-Label-PairSet # =  27  : Loss = 0.072031245
+Image-Label-PairSet # =  28  : Loss = 0.11361508
+Image-Label-PairSet # =  29  : Loss = 0.08230962
+Image-Label-PairSet # =  30  : Loss = 0.09018438
+Image-Label-PairSet # =  31  : Loss = 0.13290174
+Image-Label-PairSet # =  32  : Loss = 0.092882894
+Image-Label-PairSet # =  33  : Loss = 0.09660298
+Image-Label-PairSet # =  34  : Loss = 0.09957942
+Image-Label-PairSet # =  35  : Loss = 0.08309019
+Image-Label-PairSet # =  36  : Loss = 0.12803714
+Image-Label-PairSet # =  37  : Loss = 0.16837077
+Image-Label-PairSet # =  38  : Loss = 0.109903336
+Image-Label-PairSet # =  39  : Loss = 0.110042796
+Image-Label-PairSet # =  40  : Loss = 0.10630481
+Image-Label-PairSet # =  41  : Loss = 0.10885251
+Image-Label-PairSet # =  42  : Loss = 0.1097094
+Image-Label-PairSet # =  43  : Loss = 0.11938083
+Image-Label-PairSet # =  44  : Loss = 0.09580248
+Image-Label-PairSet # =  45  : Loss = 0.10904894
+Image-Label-PairSet # =  46  : Loss = 0.12023378
+Image-Label-PairSet # =  47  : Loss = 0.12245525
+Image-Label-PairSet # =  48  : Loss = 0.10932169
+Image-Label-PairSet # =  49  : Loss = 0.13620073
+Image-Label-PairSet # =  50  : Loss = 0.06719738
+Image-Label-PairSet # =  51  : Loss = 0.15646785
+Image-Label-PairSet # =  52  : Loss = 0.09018455
+Image-Label-PairSet # =  53  : Loss = 0.073935226
+Image-Label-PairSet # =  54  : Loss = 0.12059312
+Image-Label-PairSet # =  55  : Loss = 0.10635405
+Image-Label-PairSet # =  56  : Loss = 0.102935
+Image-Label-PairSet # =  57  : Loss = 0.12928614
+Image-Label-PairSet # =  58  : Loss = 0.09182603
+
+ Epoch # =  14 Average-Loss-Across-Batches(in this epoch) = 0.10634075477719307
+
+ Loss-cumulative = [0.13295545, 0.12070555, 0.07387179, 0.08847424, 0.11655261, 0.11115504, 0.091269135, 0.13827983, 0.09204386, 0.108702205, 0.10146429, 0.11779636, 0.10148049, 0.10019816, 0.11723399, 0.11133777, 0.08667588, 0.10408057, 0.091483995, 0.102815665, 0.13441543, 0.09387195, 0.097604856, 0.09742476, 0.09328786, 0.08694066, 0.072031245, 0.11361508, 0.08230962, 0.09018438, 0.13290174, 0.092882894, 0.09660298, 0.09957942, 0.08309019, 0.12803714, 0.16837077, 0.109903336, 0.110042796, 0.10630481, 0.10885251, 0.1097094, 0.11938083, 0.09580248, 0.10904894, 0.12023378, 0.12245525, 0.10932169, 0.13620073, 0.06719738, 0.15646785, 0.09018455, 0.073935226, 0.12059312, 0.10635405, 0.102935, 0.12928614, 0.09182603]
+
+ Time Elapsed(HH:MM:SS)  03:22:11
+
+----------------------- EPOCH # :   15 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.0934161
+Image-Label-PairSet # =  2  : Loss = 0.07935777
+Image-Label-PairSet # =  3  : Loss = 0.11587088
+Image-Label-PairSet # =  4  : Loss = 0.15274025
+Image-Label-PairSet # =  5  : Loss = 0.10082416
+Image-Label-PairSet # =  6  : Loss = 0.09205258
+Image-Label-PairSet # =  7  : Loss = 0.10676269
+Image-Label-PairSet # =  8  : Loss = 0.08276621
+Image-Label-PairSet # =  9  : Loss = 0.07783047
+Image-Label-PairSet # =  10  : Loss = 0.0790062
+Image-Label-PairSet # =  11  : Loss = 0.12106292
+Image-Label-PairSet # =  12  : Loss = 0.12743977
+Image-Label-PairSet # =  13  : Loss = 0.10894645
+Image-Label-PairSet # =  14  : Loss = 0.09529143
+Image-Label-PairSet # =  15  : Loss = 0.10364405
+Image-Label-PairSet # =  16  : Loss = 0.10181481
+Image-Label-PairSet # =  17  : Loss = 0.1239286
+Image-Label-PairSet # =  18  : Loss = 0.110387385
+Image-Label-PairSet # =  19  : Loss = 0.11071498
+Image-Label-PairSet # =  20  : Loss = 0.09200531
+Image-Label-PairSet # =  21  : Loss = 0.12172138
+Image-Label-PairSet # =  22  : Loss = 0.08705127
+Image-Label-PairSet # =  23  : Loss = 0.115620784
+Image-Label-PairSet # =  24  : Loss = 0.08557933
+Image-Label-PairSet # =  25  : Loss = 0.07930366
+Image-Label-PairSet # =  26  : Loss = 0.09254408
+Image-Label-PairSet # =  27  : Loss = 0.115782574
+Image-Label-PairSet # =  28  : Loss = 0.08255613
+Image-Label-PairSet # =  29  : Loss = 0.08966106
+Image-Label-PairSet # =  30  : Loss = 0.09061211
+Image-Label-PairSet # =  31  : Loss = 0.08815075
+Image-Label-PairSet # =  32  : Loss = 0.09580743
+Image-Label-PairSet # =  33  : Loss = 0.10496931
+Image-Label-PairSet # =  34  : Loss = 0.076959245
+Image-Label-PairSet # =  35  : Loss = 0.0973908
+Image-Label-PairSet # =  36  : Loss = 0.088806316
+Image-Label-PairSet # =  37  : Loss = 0.09175996
+Image-Label-PairSet # =  38  : Loss = 0.09106247
+Image-Label-PairSet # =  39  : Loss = 0.082695976
+Image-Label-PairSet # =  40  : Loss = 0.10349226
+Image-Label-PairSet # =  41  : Loss = 0.10441986
+Image-Label-PairSet # =  42  : Loss = 0.07609353
+Image-Label-PairSet # =  43  : Loss = 0.12900116
+Image-Label-PairSet # =  44  : Loss = 0.06876348
+Image-Label-PairSet # =  45  : Loss = 0.1177135
+Image-Label-PairSet # =  46  : Loss = 0.11155886
+Image-Label-PairSet # =  47  : Loss = 0.11710356
+Image-Label-PairSet # =  48  : Loss = 0.08799381
+Image-Label-PairSet # =  49  : Loss = 0.09209298
+Image-Label-PairSet # =  50  : Loss = 0.086224146
+Image-Label-PairSet # =  51  : Loss = 0.105875485
+Image-Label-PairSet # =  52  : Loss = 0.095806085
+Image-Label-PairSet # =  53  : Loss = 0.09104885
+Image-Label-PairSet # =  54  : Loss = 0.0858864
+Image-Label-PairSet # =  55  : Loss = 0.08201906
+Image-Label-PairSet # =  56  : Loss = 0.12903604
+Image-Label-PairSet # =  57  : Loss = 0.11438355
+Image-Label-PairSet # =  58  : Loss = 0.1582761
+
+ Epoch # =  15 Average-Loss-Across-Batches(in this epoch) = 0.10018424779690545
+
+ Loss-cumulative = [0.0934161, 0.07935777, 0.11587088, 0.15274025, 0.10082416, 0.09205258, 0.10676269, 0.08276621, 0.07783047, 0.0790062, 0.12106292, 0.12743977, 0.10894645, 0.09529143, 0.10364405, 0.10181481, 0.1239286, 0.110387385, 0.11071498, 0.09200531, 0.12172138, 0.08705127, 0.115620784, 0.08557933, 0.07930366, 0.09254408, 0.115782574, 0.08255613, 0.08966106, 0.09061211, 0.08815075, 0.09580743, 0.10496931, 0.076959245, 0.0973908, 0.088806316, 0.09175996, 0.09106247, 0.082695976, 0.10349226, 0.10441986, 0.07609353, 0.12900116, 0.06876348, 0.1177135, 0.11155886, 0.11710356, 0.08799381, 0.09209298, 0.086224146, 0.105875485, 0.095806085, 0.09104885, 0.0858864, 0.08201906, 0.12903604, 0.11438355, 0.1582761]
+
+ Time Elapsed(HH:MM:SS)  03:30:54
+
+----------------------- EPOCH # :   16 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.097174555
+Image-Label-PairSet # =  2  : Loss = 0.10442046
+Image-Label-PairSet # =  3  : Loss = 0.104937635
+Image-Label-PairSet # =  4  : Loss = 0.092348404
+Image-Label-PairSet # =  5  : Loss = 0.08696493
+Image-Label-PairSet # =  6  : Loss = 0.08870304
+Image-Label-PairSet # =  7  : Loss = 0.08803455
+Image-Label-PairSet # =  8  : Loss = 0.11841958
+Image-Label-PairSet # =  9  : Loss = 0.09017507
+Image-Label-PairSet # =  10  : Loss = 0.08872789
+Image-Label-PairSet # =  11  : Loss = 0.106831074
+Image-Label-PairSet # =  12  : Loss = 0.0813725
+Image-Label-PairSet # =  13  : Loss = 0.083904386
+Image-Label-PairSet # =  14  : Loss = 0.08676416
+Image-Label-PairSet # =  15  : Loss = 0.109322846
+Image-Label-PairSet # =  16  : Loss = 0.0924399
+Image-Label-PairSet # =  17  : Loss = 0.08871166
+Image-Label-PairSet # =  18  : Loss = 0.095246725
+Image-Label-PairSet # =  19  : Loss = 0.121441476
+Image-Label-PairSet # =  20  : Loss = 0.08983017
+Image-Label-PairSet # =  21  : Loss = 0.080082394
+Image-Label-PairSet # =  22  : Loss = 0.097234085
+Image-Label-PairSet # =  23  : Loss = 0.08427624
+Image-Label-PairSet # =  24  : Loss = 0.09042031
+Image-Label-PairSet # =  25  : Loss = 0.074572735
+Image-Label-PairSet # =  26  : Loss = 0.07450204
+Image-Label-PairSet # =  27  : Loss = 0.12580906
+Image-Label-PairSet # =  28  : Loss = 0.08892927
+Image-Label-PairSet # =  29  : Loss = 0.083695866
+Image-Label-PairSet # =  30  : Loss = 0.14229289
+Image-Label-PairSet # =  31  : Loss = 0.075665645
+Image-Label-PairSet # =  32  : Loss = 0.115247615
+Image-Label-PairSet # =  33  : Loss = 0.087505646
+Image-Label-PairSet # =  34  : Loss = 0.11532945
+Image-Label-PairSet # =  35  : Loss = 0.08464738
+Image-Label-PairSet # =  36  : Loss = 0.084260285
+Image-Label-PairSet # =  37  : Loss = 0.083536446
+Image-Label-PairSet # =  38  : Loss = 0.08312971
+Image-Label-PairSet # =  39  : Loss = 0.093810424
+Image-Label-PairSet # =  40  : Loss = 0.11126658
+Image-Label-PairSet # =  41  : Loss = 0.067595944
+Image-Label-PairSet # =  42  : Loss = 0.08813446
+Image-Label-PairSet # =  43  : Loss = 0.11068018
+Image-Label-PairSet # =  44  : Loss = 0.084075935
+Image-Label-PairSet # =  45  : Loss = 0.078545965
+Image-Label-PairSet # =  46  : Loss = 0.112422906
+Image-Label-PairSet # =  47  : Loss = 0.12820211
+Image-Label-PairSet # =  48  : Loss = 0.09533831
+Image-Label-PairSet # =  49  : Loss = 0.13784485
+Image-Label-PairSet # =  50  : Loss = 0.08377906
+Image-Label-PairSet # =  51  : Loss = 0.099038355
+Image-Label-PairSet # =  52  : Loss = 0.11031896
+Image-Label-PairSet # =  53  : Loss = 0.09323145
+Image-Label-PairSet # =  54  : Loss = 0.10889342
+Image-Label-PairSet # =  55  : Loss = 0.09144899
+Image-Label-PairSet # =  56  : Loss = 0.091830865
+Image-Label-PairSet # =  57  : Loss = 0.10174247
+Image-Label-PairSet # =  58  : Loss = 0.07625887
+
+ Epoch # =  16 Average-Loss-Across-Batches(in this epoch) = 0.0957132440445752
+
+ Loss-cumulative = [0.097174555, 0.10442046, 0.104937635, 0.092348404, 0.08696493, 0.08870304, 0.08803455, 0.11841958, 0.09017507, 0.08872789, 0.106831074, 0.0813725, 0.083904386, 0.08676416, 0.109322846, 0.0924399, 0.08871166, 0.095246725, 0.121441476, 0.08983017, 0.080082394, 0.097234085, 0.08427624, 0.09042031, 0.074572735, 0.07450204, 0.12580906, 0.08892927, 0.083695866, 0.14229289, 0.075665645, 0.115247615, 0.087505646, 0.11532945, 0.08464738, 0.084260285, 0.083536446, 0.08312971, 0.093810424, 0.11126658, 0.067595944, 0.08813446, 0.11068018, 0.084075935, 0.078545965, 0.112422906, 0.12820211, 0.09533831, 0.13784485, 0.08377906, 0.099038355, 0.11031896, 0.09323145, 0.10889342, 0.09144899, 0.091830865, 0.10174247, 0.07625887]
+
+ Time Elapsed(HH:MM:SS)  03:39:37
+
+----------------------- EPOCH # :   17 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.08474792
+Image-Label-PairSet # =  2  : Loss = 0.09883344
+Image-Label-PairSet # =  3  : Loss = 0.10333041
+Image-Label-PairSet # =  4  : Loss = 0.069491975
+Image-Label-PairSet # =  5  : Loss = 0.0901909
+Image-Label-PairSet # =  6  : Loss = 0.07346086
+Image-Label-PairSet # =  7  : Loss = 0.084772915
+Image-Label-PairSet # =  8  : Loss = 0.08821487
+Image-Label-PairSet # =  9  : Loss = 0.100424305
+Image-Label-PairSet # =  10  : Loss = 0.10367754
+Image-Label-PairSet # =  11  : Loss = 0.068193935
+Image-Label-PairSet # =  12  : Loss = 0.08809537
+Image-Label-PairSet # =  13  : Loss = 0.08627089
+Image-Label-PairSet # =  14  : Loss = 0.09201839
+Image-Label-PairSet # =  15  : Loss = 0.09940936
+Image-Label-PairSet # =  16  : Loss = 0.11192152
+Image-Label-PairSet # =  17  : Loss = 0.09385268
+Image-Label-PairSet # =  18  : Loss = 0.0811093
+Image-Label-PairSet # =  19  : Loss = 0.0737675
+Image-Label-PairSet # =  20  : Loss = 0.06688205
+Image-Label-PairSet # =  21  : Loss = 0.07742761
+Image-Label-PairSet # =  22  : Loss = 0.09362816
+Image-Label-PairSet # =  23  : Loss = 0.0851611
+Image-Label-PairSet # =  24  : Loss = 0.08293972
+Image-Label-PairSet # =  25  : Loss = 0.10236345
+Image-Label-PairSet # =  26  : Loss = 0.0967112
+Image-Label-PairSet # =  27  : Loss = 0.13794129
+Image-Label-PairSet # =  28  : Loss = 0.07947781
+Image-Label-PairSet # =  29  : Loss = 0.10128931
+Image-Label-PairSet # =  30  : Loss = 0.08905933
+Image-Label-PairSet # =  31  : Loss = 0.08047818
+Image-Label-PairSet # =  32  : Loss = 0.13958123
+Image-Label-PairSet # =  33  : Loss = 0.092500426
+Image-Label-PairSet # =  34  : Loss = 0.09320506
+Image-Label-PairSet # =  35  : Loss = 0.07878037
+Image-Label-PairSet # =  36  : Loss = 0.11780408
+Image-Label-PairSet # =  37  : Loss = 0.07938446
+Image-Label-PairSet # =  38  : Loss = 0.08074294
+Image-Label-PairSet # =  39  : Loss = 0.084768675
+Image-Label-PairSet # =  40  : Loss = 0.08991916
+Image-Label-PairSet # =  41  : Loss = 0.10023378
+Image-Label-PairSet # =  42  : Loss = 0.09716906
+Image-Label-PairSet # =  43  : Loss = 0.09313854
+Image-Label-PairSet # =  44  : Loss = 0.081111036
+Image-Label-PairSet # =  45  : Loss = 0.07458887
+Image-Label-PairSet # =  46  : Loss = 0.10369801
+Image-Label-PairSet # =  47  : Loss = 0.10319833
+Image-Label-PairSet # =  48  : Loss = 0.104532324
+Image-Label-PairSet # =  49  : Loss = 0.06924894
+Image-Label-PairSet # =  50  : Loss = 0.089572735
+Image-Label-PairSet # =  51  : Loss = 0.09468224
+Image-Label-PairSet # =  52  : Loss = 0.11430499
+Image-Label-PairSet # =  53  : Loss = 0.09379087
+Image-Label-PairSet # =  54  : Loss = 0.075415835
+Image-Label-PairSet # =  55  : Loss = 0.09244927
+Image-Label-PairSet # =  56  : Loss = 0.10369798
+Image-Label-PairSet # =  57  : Loss = 0.08788099
+Image-Label-PairSet # =  58  : Loss = 0.09210371
+
+ Epoch # =  17 Average-Loss-Across-Batches(in this epoch) = 0.09159736502273329
+
+ Loss-cumulative = [0.08474792, 0.09883344, 0.10333041, 0.069491975, 0.0901909, 0.07346086, 0.084772915, 0.08821487, 0.100424305, 0.10367754, 0.068193935, 0.08809537, 0.08627089, 0.09201839, 0.09940936, 0.11192152, 0.09385268, 0.0811093, 0.0737675, 0.06688205, 0.07742761, 0.09362816, 0.0851611, 0.08293972, 0.10236345, 0.0967112, 0.13794129, 0.07947781, 0.10128931, 0.08905933, 0.08047818, 0.13958123, 0.092500426, 0.09320506, 0.07878037, 0.11780408, 0.07938446, 0.08074294, 0.084768675, 0.08991916, 0.10023378, 0.09716906, 0.09313854, 0.081111036, 0.07458887, 0.10369801, 0.10319833, 0.104532324, 0.06924894, 0.089572735, 0.09468224, 0.11430499, 0.09379087, 0.075415835, 0.09244927, 0.10369798, 0.08788099, 0.09210371]
+
+ Time Elapsed(HH:MM:SS)  03:48:20
+
+----------------------- EPOCH # :   18 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.08376104
+Image-Label-PairSet # =  2  : Loss = 0.0687505
+Image-Label-PairSet # =  3  : Loss = 0.08638292
+Image-Label-PairSet # =  4  : Loss = 0.06102973
+Image-Label-PairSet # =  5  : Loss = 0.09111166
+Image-Label-PairSet # =  6  : Loss = 0.10327081
+Image-Label-PairSet # =  7  : Loss = 0.08988061
+Image-Label-PairSet # =  8  : Loss = 0.0715911
+Image-Label-PairSet # =  9  : Loss = 0.09770334
+Image-Label-PairSet # =  10  : Loss = 0.108186394
+Image-Label-PairSet # =  11  : Loss = 0.084928945
+Image-Label-PairSet # =  12  : Loss = 0.08870455
+Image-Label-PairSet # =  13  : Loss = 0.08074582
+Image-Label-PairSet # =  14  : Loss = 0.09177401
+Image-Label-PairSet # =  15  : Loss = 0.09349669
+Image-Label-PairSet # =  16  : Loss = 0.088498846
+Image-Label-PairSet # =  17  : Loss = 0.073932946
+Image-Label-PairSet # =  18  : Loss = 0.10413274
+Image-Label-PairSet # =  19  : Loss = 0.08980931
+Image-Label-PairSet # =  20  : Loss = 0.077956274
+Image-Label-PairSet # =  21  : Loss = 0.060856376
+Image-Label-PairSet # =  22  : Loss = 0.11779902
+Image-Label-PairSet # =  23  : Loss = 0.09872309
+Image-Label-PairSet # =  24  : Loss = 0.101235814
+Image-Label-PairSet # =  25  : Loss = 0.07847909
+Image-Label-PairSet # =  26  : Loss = 0.07931811
+Image-Label-PairSet # =  27  : Loss = 0.06627864
+Image-Label-PairSet # =  28  : Loss = 0.09042409
+Image-Label-PairSet # =  29  : Loss = 0.11840847
+Image-Label-PairSet # =  30  : Loss = 0.083170205
+Image-Label-PairSet # =  31  : Loss = 0.13944751
+Image-Label-PairSet # =  32  : Loss = 0.07472961
+Image-Label-PairSet # =  33  : Loss = 0.06614385
+Image-Label-PairSet # =  34  : Loss = 0.06903635
+Image-Label-PairSet # =  35  : Loss = 0.09388166
+Image-Label-PairSet # =  36  : Loss = 0.08278553
+Image-Label-PairSet # =  37  : Loss = 0.08822108
+Image-Label-PairSet # =  38  : Loss = 0.09245108
+Image-Label-PairSet # =  39  : Loss = 0.07992525
+Image-Label-PairSet # =  40  : Loss = 0.08198596
+Image-Label-PairSet # =  41  : Loss = 0.082625985
+Image-Label-PairSet # =  42  : Loss = 0.10932034
+Image-Label-PairSet # =  43  : Loss = 0.122629784
+Image-Label-PairSet # =  44  : Loss = 0.10393289
+Image-Label-PairSet # =  45  : Loss = 0.061304837
+Image-Label-PairSet # =  46  : Loss = 0.0677253
+Image-Label-PairSet # =  47  : Loss = 0.07814465
+Image-Label-PairSet # =  48  : Loss = 0.09610812
+Image-Label-PairSet # =  49  : Loss = 0.064882636
+Image-Label-PairSet # =  50  : Loss = 0.0655932
+Image-Label-PairSet # =  51  : Loss = 0.07682829
+Image-Label-PairSet # =  52  : Loss = 0.08714038
+Image-Label-PairSet # =  53  : Loss = 0.123609744
+Image-Label-PairSet # =  54  : Loss = 0.10285597
+Image-Label-PairSet # =  55  : Loss = 0.0710392
+Image-Label-PairSet # =  56  : Loss = 0.10297561
+Image-Label-PairSet # =  57  : Loss = 0.066573456
+Image-Label-PairSet # =  58  : Loss = 0.09853912
+
+ Epoch # =  18 Average-Loss-Across-Batches(in this epoch) = 0.08759962972895853
+
+ Loss-cumulative = [0.08376104, 0.0687505, 0.08638292, 0.06102973, 0.09111166, 0.10327081, 0.08988061, 0.0715911, 0.09770334, 0.108186394, 0.084928945, 0.08870455, 0.08074582, 0.09177401, 0.09349669, 0.088498846, 0.073932946, 0.10413274, 0.08980931, 0.077956274, 0.060856376, 0.11779902, 0.09872309, 0.101235814, 0.07847909, 0.07931811, 0.06627864, 0.09042409, 0.11840847, 0.083170205, 0.13944751, 0.07472961, 0.06614385, 0.06903635, 0.09388166, 0.08278553, 0.08822108, 0.09245108, 0.07992525, 0.08198596, 0.082625985, 0.10932034, 0.122629784, 0.10393289, 0.061304837, 0.0677253, 0.07814465, 0.09610812, 0.064882636, 0.0655932, 0.07682829, 0.08714038, 0.123609744, 0.10285597, 0.0710392, 0.10297561, 0.066573456, 0.09853912]
+
+ Time Elapsed(HH:MM:SS)  03:57:03
+
+----------------------- EPOCH # :   19 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.08670602
+Image-Label-PairSet # =  2  : Loss = 0.105342045
+Image-Label-PairSet # =  3  : Loss = 0.082286194
+Image-Label-PairSet # =  4  : Loss = 0.08879988
+Image-Label-PairSet # =  5  : Loss = 0.096250914
+Image-Label-PairSet # =  6  : Loss = 0.089368366
+Image-Label-PairSet # =  7  : Loss = 0.09478324
+Image-Label-PairSet # =  8  : Loss = 0.06616237
+Image-Label-PairSet # =  9  : Loss = 0.062365223
+Image-Label-PairSet # =  10  : Loss = 0.098618485
+Image-Label-PairSet # =  11  : Loss = 0.08722195
+Image-Label-PairSet # =  12  : Loss = 0.06325257
+Image-Label-PairSet # =  13  : Loss = 0.08643017
+Image-Label-PairSet # =  14  : Loss = 0.08673703
+Image-Label-PairSet # =  15  : Loss = 0.07103979
+Image-Label-PairSet # =  16  : Loss = 0.078620784
+Image-Label-PairSet # =  17  : Loss = 0.07531381
+Image-Label-PairSet # =  18  : Loss = 0.073803335
+Image-Label-PairSet # =  19  : Loss = 0.08664856
+Image-Label-PairSet # =  20  : Loss = 0.08879631
+Image-Label-PairSet # =  21  : Loss = 0.098743826
+Image-Label-PairSet # =  22  : Loss = 0.08520378
+Image-Label-PairSet # =  23  : Loss = 0.06980692
+Image-Label-PairSet # =  24  : Loss = 0.10225038
+Image-Label-PairSet # =  25  : Loss = 0.06689938
+Image-Label-PairSet # =  26  : Loss = 0.0927242
+Image-Label-PairSet # =  27  : Loss = 0.075812675
+Image-Label-PairSet # =  28  : Loss = 0.077467434
+Image-Label-PairSet # =  29  : Loss = 0.06849536
+Image-Label-PairSet # =  30  : Loss = 0.07157484
+Image-Label-PairSet # =  31  : Loss = 0.07621158
+Image-Label-PairSet # =  32  : Loss = 0.07266242
+Image-Label-PairSet # =  33  : Loss = 0.05926451
+Image-Label-PairSet # =  34  : Loss = 0.06407822
+Image-Label-PairSet # =  35  : Loss = 0.06731875
+Image-Label-PairSet # =  36  : Loss = 0.0810199
+Image-Label-PairSet # =  37  : Loss = 0.1049381
+Image-Label-PairSet # =  38  : Loss = 0.07860087
+Image-Label-PairSet # =  39  : Loss = 0.112085946
+Image-Label-PairSet # =  40  : Loss = 0.08714547
+Image-Label-PairSet # =  41  : Loss = 0.090095095
+Image-Label-PairSet # =  42  : Loss = 0.08704673
+Image-Label-PairSet # =  43  : Loss = 0.083916165
+Image-Label-PairSet # =  44  : Loss = 0.10780087
+Image-Label-PairSet # =  45  : Loss = 0.06146125
+Image-Label-PairSet # =  46  : Loss = 0.0768952
+Image-Label-PairSet # =  47  : Loss = 0.067047834
+Image-Label-PairSet # =  48  : Loss = 0.106520265
+Image-Label-PairSet # =  49  : Loss = 0.14137354
+Image-Label-PairSet # =  50  : Loss = 0.112448715
+Image-Label-PairSet # =  51  : Loss = 0.08969579
+Image-Label-PairSet # =  52  : Loss = 0.08131707
+Image-Label-PairSet # =  53  : Loss = 0.062495653
+Image-Label-PairSet # =  54  : Loss = 0.08133223
+Image-Label-PairSet # =  55  : Loss = 0.087797984
+Image-Label-PairSet # =  56  : Loss = 0.08995027
+Image-Label-PairSet # =  57  : Loss = 0.069158524
+Image-Label-PairSet # =  58  : Loss = 0.09018717
+
+ Epoch # =  19 Average-Loss-Across-Batches(in this epoch) = 0.08392055095012846
+
+ Loss-cumulative = [0.08670602, 0.105342045, 0.082286194, 0.08879988, 0.096250914, 0.089368366, 0.09478324, 0.06616237, 0.062365223, 0.098618485, 0.08722195, 0.06325257, 0.08643017, 0.08673703, 0.07103979, 0.078620784, 0.07531381, 0.073803335, 0.08664856, 0.08879631, 0.098743826, 0.08520378, 0.06980692, 0.10225038, 0.06689938, 0.0927242, 0.075812675, 0.077467434, 0.06849536, 0.07157484, 0.07621158, 0.07266242, 0.05926451, 0.06407822, 0.06731875, 0.0810199, 0.1049381, 0.07860087, 0.112085946, 0.08714547, 0.090095095, 0.08704673, 0.083916165, 0.10780087, 0.06146125, 0.0768952, 0.067047834, 0.106520265, 0.14137354, 0.112448715, 0.08969579, 0.08131707, 0.062495653, 0.08133223, 0.087797984, 0.08995027, 0.069158524, 0.09018717]
+
+ Time Elapsed(HH:MM:SS)  04:05:46
+
+----------------------- EPOCH # :   20 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.07874041
+Image-Label-PairSet # =  2  : Loss = 0.095706865
+Image-Label-PairSet # =  3  : Loss = 0.059860814
+Image-Label-PairSet # =  4  : Loss = 0.08442505
+Image-Label-PairSet # =  5  : Loss = 0.06663361
+Image-Label-PairSet # =  6  : Loss = 0.07732576
+Image-Label-PairSet # =  7  : Loss = 0.07596433
+Image-Label-PairSet # =  8  : Loss = 0.058214486
+Image-Label-PairSet # =  9  : Loss = 0.11435589
+Image-Label-PairSet # =  10  : Loss = 0.11522374
+Image-Label-PairSet # =  11  : Loss = 0.07832778
+Image-Label-PairSet # =  12  : Loss = 0.07581621
+Image-Label-PairSet # =  13  : Loss = 0.09893093
+Image-Label-PairSet # =  14  : Loss = 0.09512207
+Image-Label-PairSet # =  15  : Loss = 0.059326876
+Image-Label-PairSet # =  16  : Loss = 0.0845253
+Image-Label-PairSet # =  17  : Loss = 0.071366265
+Image-Label-PairSet # =  18  : Loss = 0.08238569
+Image-Label-PairSet # =  19  : Loss = 0.08384205
+Image-Label-PairSet # =  20  : Loss = 0.086745545
+Image-Label-PairSet # =  21  : Loss = 0.060797326
+Image-Label-PairSet # =  22  : Loss = 0.06066269
+Image-Label-PairSet # =  23  : Loss = 0.06966272
+Image-Label-PairSet # =  24  : Loss = 0.059988894
+Image-Label-PairSet # =  25  : Loss = 0.08062885
+Image-Label-PairSet # =  26  : Loss = 0.10149604
+Image-Label-PairSet # =  27  : Loss = 0.0827665
+Image-Label-PairSet # =  28  : Loss = 0.0815946
+Image-Label-PairSet # =  29  : Loss = 0.08795921
+Image-Label-PairSet # =  30  : Loss = 0.07600167
+Image-Label-PairSet # =  31  : Loss = 0.06666142
+Image-Label-PairSet # =  32  : Loss = 0.078988925
+Image-Label-PairSet # =  33  : Loss = 0.05754098
+Image-Label-PairSet # =  34  : Loss = 0.07067388
+Image-Label-PairSet # =  35  : Loss = 0.05664918
+Image-Label-PairSet # =  36  : Loss = 0.080913715
+Image-Label-PairSet # =  37  : Loss = 0.06915649
+Image-Label-PairSet # =  38  : Loss = 0.062609
+Image-Label-PairSet # =  39  : Loss = 0.057297222
+Image-Label-PairSet # =  40  : Loss = 0.08284019
+Image-Label-PairSet # =  41  : Loss = 0.11125927
+Image-Label-PairSet # =  42  : Loss = 0.08667876
+Image-Label-PairSet # =  43  : Loss = 0.076941155
+Image-Label-PairSet # =  44  : Loss = 0.07324065
+Image-Label-PairSet # =  45  : Loss = 0.105134085
+Image-Label-PairSet # =  46  : Loss = 0.07401013
+Image-Label-PairSet # =  47  : Loss = 0.07053905
+Image-Label-PairSet # =  48  : Loss = 0.07466575
+Image-Label-PairSet # =  49  : Loss = 0.08939921
+Image-Label-PairSet # =  50  : Loss = 0.11197334
+Image-Label-PairSet # =  51  : Loss = 0.08327826
+Image-Label-PairSet # =  52  : Loss = 0.09598272
+Image-Label-PairSet # =  53  : Loss = 0.08009636
+Image-Label-PairSet # =  54  : Loss = 0.10065921
+Image-Label-PairSet # =  55  : Loss = 0.053227235
+Image-Label-PairSet # =  56  : Loss = 0.09499095
+Image-Label-PairSet # =  57  : Loss = 0.06582232
+Image-Label-PairSet # =  58  : Loss = 0.08977473
+
+ Epoch # =  20 Average-Loss-Across-Batches(in this epoch) = 0.07974831625048456
+
+ Loss-cumulative = [0.07874041, 0.095706865, 0.059860814, 0.08442505, 0.06663361, 0.07732576, 0.07596433, 0.058214486, 0.11435589, 0.11522374, 0.07832778, 0.07581621, 0.09893093, 0.09512207, 0.059326876, 0.0845253, 0.071366265, 0.08238569, 0.08384205, 0.086745545, 0.060797326, 0.06066269, 0.06966272, 0.059988894, 0.08062885, 0.10149604, 0.0827665, 0.0815946, 0.08795921, 0.07600167, 0.06666142, 0.078988925, 0.05754098, 0.07067388, 0.05664918, 0.080913715, 0.06915649, 0.062609, 0.057297222, 0.08284019, 0.11125927, 0.08667876, 0.076941155, 0.07324065, 0.105134085, 0.07401013, 0.07053905, 0.07466575, 0.08939921, 0.11197334, 0.08327826, 0.09598272, 0.08009636, 0.10065921, 0.053227235, 0.09499095, 0.06582232, 0.08977473]
+
+ Time Elapsed(HH:MM:SS)  04:14:29
+
+----------------------- EPOCH # :   21 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.054566454
+Image-Label-PairSet # =  2  : Loss = 0.080634624
+Image-Label-PairSet # =  3  : Loss = 0.062033623
+Image-Label-PairSet # =  4  : Loss = 0.06325545
+Image-Label-PairSet # =  5  : Loss = 0.07288908
+Image-Label-PairSet # =  6  : Loss = 0.07371896
+Image-Label-PairSet # =  7  : Loss = 0.06698333
+Image-Label-PairSet # =  8  : Loss = 0.0934526
+Image-Label-PairSet # =  9  : Loss = 0.06213011
+Image-Label-PairSet # =  10  : Loss = 0.07237364
+Image-Label-PairSet # =  11  : Loss = 0.07272483
+Image-Label-PairSet # =  12  : Loss = 0.08049172
+Image-Label-PairSet # =  13  : Loss = 0.08848669
+Image-Label-PairSet # =  14  : Loss = 0.08196693
+Image-Label-PairSet # =  15  : Loss = 0.08329069
+Image-Label-PairSet # =  16  : Loss = 0.057730418
+Image-Label-PairSet # =  17  : Loss = 0.06823202
+Image-Label-PairSet # =  18  : Loss = 0.082107
+Image-Label-PairSet # =  19  : Loss = 0.06705037
+Image-Label-PairSet # =  20  : Loss = 0.0804718
+Image-Label-PairSet # =  21  : Loss = 0.07910606
+Image-Label-PairSet # =  22  : Loss = 0.09747535
+Image-Label-PairSet # =  23  : Loss = 0.06049987
+Image-Label-PairSet # =  24  : Loss = 0.07612959
+Image-Label-PairSet # =  25  : Loss = 0.07533647
+Image-Label-PairSet # =  26  : Loss = 0.054410227
+Image-Label-PairSet # =  27  : Loss = 0.07229875
+Image-Label-PairSet # =  28  : Loss = 0.07596624
+Image-Label-PairSet # =  29  : Loss = 0.062179983
+Image-Label-PairSet # =  30  : Loss = 0.0774407
+Image-Label-PairSet # =  31  : Loss = 0.08647641
+Image-Label-PairSet # =  32  : Loss = 0.0821236
+Image-Label-PairSet # =  33  : Loss = 0.09240648
+Image-Label-PairSet # =  34  : Loss = 0.06460258
+Image-Label-PairSet # =  35  : Loss = 0.0740707
+Image-Label-PairSet # =  36  : Loss = 0.08220613
+Image-Label-PairSet # =  37  : Loss = 0.057790197
+Image-Label-PairSet # =  38  : Loss = 0.069747366
+Image-Label-PairSet # =  39  : Loss = 0.07582374
+Image-Label-PairSet # =  40  : Loss = 0.09870416
+Image-Label-PairSet # =  41  : Loss = 0.084373206
+Image-Label-PairSet # =  42  : Loss = 0.12743491
+Image-Label-PairSet # =  43  : Loss = 0.07171463
+Image-Label-PairSet # =  44  : Loss = 0.07807946
+Image-Label-PairSet # =  45  : Loss = 0.10412806
+Image-Label-PairSet # =  46  : Loss = 0.09474794
+Image-Label-PairSet # =  47  : Loss = 0.055593792
+Image-Label-PairSet # =  48  : Loss = 0.09988054
+Image-Label-PairSet # =  49  : Loss = 0.111296795
+Image-Label-PairSet # =  50  : Loss = 0.082743004
+Image-Label-PairSet # =  51  : Loss = 0.06638667
+Image-Label-PairSet # =  52  : Loss = 0.04476494
+Image-Label-PairSet # =  53  : Loss = 0.09095415
+Image-Label-PairSet # =  54  : Loss = 0.06628867
+Image-Label-PairSet # =  55  : Loss = 0.08510694
+Image-Label-PairSet # =  56  : Loss = 0.076569155
+Image-Label-PairSet # =  57  : Loss = 0.098451875
+Image-Label-PairSet # =  58  : Loss = 0.062758744
+
+ Epoch # =  21 Average-Loss-Across-Batches(in this epoch) = 0.07725273149794545
+
+ Loss-cumulative = [0.054566454, 0.080634624, 0.062033623, 0.06325545, 0.07288908, 0.07371896, 0.06698333, 0.0934526, 0.06213011, 0.07237364, 0.07272483, 0.08049172, 0.08848669, 0.08196693, 0.08329069, 0.057730418, 0.06823202, 0.082107, 0.06705037, 0.0804718, 0.07910606, 0.09747535, 0.06049987, 0.07612959, 0.07533647, 0.054410227, 0.07229875, 0.07596624, 0.062179983, 0.0774407, 0.08647641, 0.0821236, 0.09240648, 0.06460258, 0.0740707, 0.08220613, 0.057790197, 0.069747366, 0.07582374, 0.09870416, 0.084373206, 0.12743491, 0.07171463, 0.07807946, 0.10412806, 0.09474794, 0.055593792, 0.09988054, 0.111296795, 0.082743004, 0.06638667, 0.04476494, 0.09095415, 0.06628867, 0.08510694, 0.076569155, 0.098451875, 0.062758744]
+
+ Time Elapsed(HH:MM:SS)  04:23:12
+
+----------------------- EPOCH # :   22 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.06948442
+Image-Label-PairSet # =  2  : Loss = 0.06391087
+Image-Label-PairSet # =  3  : Loss = 0.08051595
+Image-Label-PairSet # =  4  : Loss = 0.0514184
+Image-Label-PairSet # =  5  : Loss = 0.05795445
+Image-Label-PairSet # =  6  : Loss = 0.059423793
+Image-Label-PairSet # =  7  : Loss = 0.071041234
+Image-Label-PairSet # =  8  : Loss = 0.05828686
+Image-Label-PairSet # =  9  : Loss = 0.063013084
+Image-Label-PairSet # =  10  : Loss = 0.09299612
+Image-Label-PairSet # =  11  : Loss = 0.06815759
+Image-Label-PairSet # =  12  : Loss = 0.057034913
+Image-Label-PairSet # =  13  : Loss = 0.060978763
+Image-Label-PairSet # =  14  : Loss = 0.07941927
+Image-Label-PairSet # =  15  : Loss = 0.08901911
+Image-Label-PairSet # =  16  : Loss = 0.07757167
+Image-Label-PairSet # =  17  : Loss = 0.09184217
+Image-Label-PairSet # =  18  : Loss = 0.0661003
+Image-Label-PairSet # =  19  : Loss = 0.06330494
+Image-Label-PairSet # =  20  : Loss = 0.105429746
+Image-Label-PairSet # =  21  : Loss = 0.06504196
+Image-Label-PairSet # =  22  : Loss = 0.056824736
+Image-Label-PairSet # =  23  : Loss = 0.08075725
+Image-Label-PairSet # =  24  : Loss = 0.12763472
+Image-Label-PairSet # =  25  : Loss = 0.08268909
+Image-Label-PairSet # =  26  : Loss = 0.10098877
+Image-Label-PairSet # =  27  : Loss = 0.059080105
+Image-Label-PairSet # =  28  : Loss = 0.054711845
+Image-Label-PairSet # =  29  : Loss = 0.09525478
+Image-Label-PairSet # =  30  : Loss = 0.078754716
+Image-Label-PairSet # =  31  : Loss = 0.072610594
+Image-Label-PairSet # =  32  : Loss = 0.06654864
+Image-Label-PairSet # =  33  : Loss = 0.08753481
+Image-Label-PairSet # =  34  : Loss = 0.060533803
+Image-Label-PairSet # =  35  : Loss = 0.11549579
+Image-Label-PairSet # =  36  : Loss = 0.05417077
+Image-Label-PairSet # =  37  : Loss = 0.07601333
+Image-Label-PairSet # =  38  : Loss = 0.06614711
+Image-Label-PairSet # =  39  : Loss = 0.07740711
+Image-Label-PairSet # =  40  : Loss = 0.061424036
+Image-Label-PairSet # =  41  : Loss = 0.07916882
+Image-Label-PairSet # =  42  : Loss = 0.07426724
+Image-Label-PairSet # =  43  : Loss = 0.10105395
+Image-Label-PairSet # =  44  : Loss = 0.041318238
+Image-Label-PairSet # =  45  : Loss = 0.07533352
+Image-Label-PairSet # =  46  : Loss = 0.06714631
+Image-Label-PairSet # =  47  : Loss = 0.053098917
+Image-Label-PairSet # =  48  : Loss = 0.08236036
+Image-Label-PairSet # =  49  : Loss = 0.0768378
+Image-Label-PairSet # =  50  : Loss = 0.08418481
+Image-Label-PairSet # =  51  : Loss = 0.0653261
+Image-Label-PairSet # =  52  : Loss = 0.090571396
+Image-Label-PairSet # =  53  : Loss = 0.05289498
+Image-Label-PairSet # =  54  : Loss = 0.094677664
+Image-Label-PairSet # =  55  : Loss = 0.06812777
+Image-Label-PairSet # =  56  : Loss = 0.070070125
+Image-Label-PairSet # =  57  : Loss = 0.07847465
+Image-Label-PairSet # =  58  : Loss = 0.089872785
+
+ Epoch # =  22 Average-Loss-Across-Batches(in this epoch) = 0.07433298358629489
+
+ Loss-cumulative = [0.06948442, 0.06391087, 0.08051595, 0.0514184, 0.05795445, 0.059423793, 0.071041234, 0.05828686, 0.063013084, 0.09299612, 0.06815759, 0.057034913, 0.060978763, 0.07941927, 0.08901911, 0.07757167, 0.09184217, 0.0661003, 0.06330494, 0.105429746, 0.06504196, 0.056824736, 0.08075725, 0.12763472, 0.08268909, 0.10098877, 0.059080105, 0.054711845, 0.09525478, 0.078754716, 0.072610594, 0.06654864, 0.08753481, 0.060533803, 0.11549579, 0.05417077, 0.07601333, 0.06614711, 0.07740711, 0.061424036, 0.07916882, 0.07426724, 0.10105395, 0.041318238, 0.07533352, 0.06714631, 0.053098917, 0.08236036, 0.0768378, 0.08418481, 0.0653261, 0.090571396, 0.05289498, 0.094677664, 0.06812777, 0.070070125, 0.07847465, 0.089872785]
+
+ Time Elapsed(HH:MM:SS)  04:31:54
+
+----------------------- EPOCH # :   23 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.07043253
+Image-Label-PairSet # =  2  : Loss = 0.06743391
+Image-Label-PairSet # =  3  : Loss = 0.079334304
+Image-Label-PairSet # =  4  : Loss = 0.06379672
+Image-Label-PairSet # =  5  : Loss = 0.038367834
+Image-Label-PairSet # =  6  : Loss = 0.11077184
+Image-Label-PairSet # =  7  : Loss = 0.08006114
+Image-Label-PairSet # =  8  : Loss = 0.06649855
+Image-Label-PairSet # =  9  : Loss = 0.07451231
+Image-Label-PairSet # =  10  : Loss = 0.06681005
+Image-Label-PairSet # =  11  : Loss = 0.08117224
+Image-Label-PairSet # =  12  : Loss = 0.057003073
+Image-Label-PairSet # =  13  : Loss = 0.06909323
+Image-Label-PairSet # =  14  : Loss = 0.07405925
+Image-Label-PairSet # =  15  : Loss = 0.07230555
+Image-Label-PairSet # =  16  : Loss = 0.047795903
+Image-Label-PairSet # =  17  : Loss = 0.048756387
+Image-Label-PairSet # =  18  : Loss = 0.060830086
+Image-Label-PairSet # =  19  : Loss = 0.08154631
+Image-Label-PairSet # =  20  : Loss = 0.07293215
+Image-Label-PairSet # =  21  : Loss = 0.062199876
+Image-Label-PairSet # =  22  : Loss = 0.08297469
+Image-Label-PairSet # =  23  : Loss = 0.07279299
+Image-Label-PairSet # =  24  : Loss = 0.06959076
+Image-Label-PairSet # =  25  : Loss = 0.07781959
+Image-Label-PairSet # =  26  : Loss = 0.077232815
+Image-Label-PairSet # =  27  : Loss = 0.08300444
+Image-Label-PairSet # =  28  : Loss = 0.06577165
+Image-Label-PairSet # =  29  : Loss = 0.054770753
+Image-Label-PairSet # =  30  : Loss = 0.09974047
+Image-Label-PairSet # =  31  : Loss = 0.06592476
+Image-Label-PairSet # =  32  : Loss = 0.073637314
+Image-Label-PairSet # =  33  : Loss = 0.059958205
+Image-Label-PairSet # =  34  : Loss = 0.06029046
+Image-Label-PairSet # =  35  : Loss = 0.07542594
+Image-Label-PairSet # =  36  : Loss = 0.08480268
+Image-Label-PairSet # =  37  : Loss = 0.061017737
+Image-Label-PairSet # =  38  : Loss = 0.083568096
+Image-Label-PairSet # =  39  : Loss = 0.07557895
+Image-Label-PairSet # =  40  : Loss = 0.07747061
+Image-Label-PairSet # =  41  : Loss = 0.057786025
+Image-Label-PairSet # =  42  : Loss = 0.06137693
+Image-Label-PairSet # =  43  : Loss = 0.04718937
+Image-Label-PairSet # =  44  : Loss = 0.068513505
+Image-Label-PairSet # =  45  : Loss = 0.07206116
+Image-Label-PairSet # =  46  : Loss = 0.06944937
+Image-Label-PairSet # =  47  : Loss = 0.074038304
+Image-Label-PairSet # =  48  : Loss = 0.06668281
+Image-Label-PairSet # =  49  : Loss = 0.087280825
+Image-Label-PairSet # =  50  : Loss = 0.07950526
+Image-Label-PairSet # =  51  : Loss = 0.076176725
+Image-Label-PairSet # =  52  : Loss = 0.058523662
+Image-Label-PairSet # =  53  : Loss = 0.087723136
+Image-Label-PairSet # =  54  : Loss = 0.11389223
+Image-Label-PairSet # =  55  : Loss = 0.080151595
+Image-Label-PairSet # =  56  : Loss = 0.07404454
+Image-Label-PairSet # =  57  : Loss = 0.07413132
+Image-Label-PairSet # =  58  : Loss = 0.057112183
+
+ Epoch # =  23 Average-Loss-Across-Batches(in this epoch) = 0.07159870830846243
+
+ Loss-cumulative = [0.07043253, 0.06743391, 0.079334304, 0.06379672, 0.038367834, 0.11077184, 0.08006114, 0.06649855, 0.07451231, 0.06681005, 0.08117224, 0.057003073, 0.06909323, 0.07405925, 0.07230555, 0.047795903, 0.048756387, 0.060830086, 0.08154631, 0.07293215, 0.062199876, 0.08297469, 0.07279299, 0.06959076, 0.07781959, 0.077232815, 0.08300444, 0.06577165, 0.054770753, 0.09974047, 0.06592476, 0.073637314, 0.059958205, 0.06029046, 0.07542594, 0.08480268, 0.061017737, 0.083568096, 0.07557895, 0.07747061, 0.057786025, 0.06137693, 0.04718937, 0.068513505, 0.07206116, 0.06944937, 0.074038304, 0.06668281, 0.087280825, 0.07950526, 0.076176725, 0.058523662, 0.087723136, 0.11389223, 0.080151595, 0.07404454, 0.07413132, 0.057112183]
+
+ Time Elapsed(HH:MM:SS)  04:40:37
+
+----------------------- EPOCH # :   24 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.05896133
+Image-Label-PairSet # =  2  : Loss = 0.10292687
+Image-Label-PairSet # =  3  : Loss = 0.096774206
+Image-Label-PairSet # =  4  : Loss = 0.06555124
+Image-Label-PairSet # =  5  : Loss = 0.070240214
+Image-Label-PairSet # =  6  : Loss = 0.073751085
+Image-Label-PairSet # =  7  : Loss = 0.06776715
+Image-Label-PairSet # =  8  : Loss = 0.06454354
+Image-Label-PairSet # =  9  : Loss = 0.07625202
+Image-Label-PairSet # =  10  : Loss = 0.06310744
+Image-Label-PairSet # =  11  : Loss = 0.051713087
+Image-Label-PairSet # =  12  : Loss = 0.0729584
+Image-Label-PairSet # =  13  : Loss = 0.103499696
+Image-Label-PairSet # =  14  : Loss = 0.08339253
+Image-Label-PairSet # =  15  : Loss = 0.06703874
+Image-Label-PairSet # =  16  : Loss = 0.079685524
+Image-Label-PairSet # =  17  : Loss = 0.06936388
+Image-Label-PairSet # =  18  : Loss = 0.06378339
+Image-Label-PairSet # =  19  : Loss = 0.08354887
+Image-Label-PairSet # =  20  : Loss = 0.069131784
+Image-Label-PairSet # =  21  : Loss = 0.0742126
+Image-Label-PairSet # =  22  : Loss = 0.062300988
+Image-Label-PairSet # =  23  : Loss = 0.064613916
+Image-Label-PairSet # =  24  : Loss = 0.07784166
+Image-Label-PairSet # =  25  : Loss = 0.0848172
+Image-Label-PairSet # =  26  : Loss = 0.048663475
+Image-Label-PairSet # =  27  : Loss = 0.064289145
+Image-Label-PairSet # =  28  : Loss = 0.06766329
+Image-Label-PairSet # =  29  : Loss = 0.05246537
+Image-Label-PairSet # =  30  : Loss = 0.07489828
+Image-Label-PairSet # =  31  : Loss = 0.074513346
+Image-Label-PairSet # =  32  : Loss = 0.09636055
+Image-Label-PairSet # =  33  : Loss = 0.060333233
+Image-Label-PairSet # =  34  : Loss = 0.058295134
+Image-Label-PairSet # =  35  : Loss = 0.06442223
+Image-Label-PairSet # =  36  : Loss = 0.07430814
+Image-Label-PairSet # =  37  : Loss = 0.07406776
+Image-Label-PairSet # =  38  : Loss = 0.059283882
+Image-Label-PairSet # =  39  : Loss = 0.082270324
+Image-Label-PairSet # =  40  : Loss = 0.06945643
+Image-Label-PairSet # =  41  : Loss = 0.05373376
+Image-Label-PairSet # =  42  : Loss = 0.0648719
+Image-Label-PairSet # =  43  : Loss = 0.067508005
+Image-Label-PairSet # =  44  : Loss = 0.06889525
+Image-Label-PairSet # =  45  : Loss = 0.07080022
+Image-Label-PairSet # =  46  : Loss = 0.062174715
+Image-Label-PairSet # =  47  : Loss = 0.117611535
+Image-Label-PairSet # =  48  : Loss = 0.049133036
+Image-Label-PairSet # =  49  : Loss = 0.041215904
+Image-Label-PairSet # =  50  : Loss = 0.065440714
+Image-Label-PairSet # =  51  : Loss = 0.07436798
+Image-Label-PairSet # =  52  : Loss = 0.049395565
+Image-Label-PairSet # =  53  : Loss = 0.05285475
+Image-Label-PairSet # =  54  : Loss = 0.06830345
+Image-Label-PairSet # =  55  : Loss = 0.068108976
+Image-Label-PairSet # =  56  : Loss = 0.07336566
+Image-Label-PairSet # =  57  : Loss = 0.05948092
+Image-Label-PairSet # =  58  : Loss = 0.05823856
+
+ Epoch # =  24 Average-Loss-Across-Batches(in this epoch) = 0.06956153202416568
+
+ Loss-cumulative = [0.05896133, 0.10292687, 0.096774206, 0.06555124, 0.070240214, 0.073751085, 0.06776715, 0.06454354, 0.07625202, 0.06310744, 0.051713087, 0.0729584, 0.103499696, 0.08339253, 0.06703874, 0.079685524, 0.06936388, 0.06378339, 0.08354887, 0.069131784, 0.0742126, 0.062300988, 0.064613916, 0.07784166, 0.0848172, 0.048663475, 0.064289145, 0.06766329, 0.05246537, 0.07489828, 0.074513346, 0.09636055, 0.060333233, 0.058295134, 0.06442223, 0.07430814, 0.07406776, 0.059283882, 0.082270324, 0.06945643, 0.05373376, 0.0648719, 0.067508005, 0.06889525, 0.07080022, 0.062174715, 0.117611535, 0.049133036, 0.041215904, 0.065440714, 0.07436798, 0.049395565, 0.05285475, 0.06830345, 0.068108976, 0.07336566, 0.05948092, 0.05823856]
+
+ Time Elapsed(HH:MM:SS)  04:49:20
+
+----------------------- EPOCH # :   25 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.057253376
+Image-Label-PairSet # =  2  : Loss = 0.077098735
+Image-Label-PairSet # =  3  : Loss = 0.05008194
+Image-Label-PairSet # =  4  : Loss = 0.051444337
+Image-Label-PairSet # =  5  : Loss = 0.044548918
+Image-Label-PairSet # =  6  : Loss = 0.060301173
+Image-Label-PairSet # =  7  : Loss = 0.08514015
+Image-Label-PairSet # =  8  : Loss = 0.07128936
+Image-Label-PairSet # =  9  : Loss = 0.05515496
+Image-Label-PairSet # =  10  : Loss = 0.08706899
+Image-Label-PairSet # =  11  : Loss = 0.08901542
+Image-Label-PairSet # =  12  : Loss = 0.07779794
+Image-Label-PairSet # =  13  : Loss = 0.055620145
+Image-Label-PairSet # =  14  : Loss = 0.05055163
+Image-Label-PairSet # =  15  : Loss = 0.07061154
+Image-Label-PairSet # =  16  : Loss = 0.07721622
+Image-Label-PairSet # =  17  : Loss = 0.04700349
+Image-Label-PairSet # =  18  : Loss = 0.06308619
+Image-Label-PairSet # =  19  : Loss = 0.048340417
+Image-Label-PairSet # =  20  : Loss = 0.06001275
+Image-Label-PairSet # =  21  : Loss = 0.05242882
+Image-Label-PairSet # =  22  : Loss = 0.063334495
+Image-Label-PairSet # =  23  : Loss = 0.054448344
+Image-Label-PairSet # =  24  : Loss = 0.084572345
+Image-Label-PairSet # =  25  : Loss = 0.08737042
+Image-Label-PairSet # =  26  : Loss = 0.048367698
+Image-Label-PairSet # =  27  : Loss = 0.06404298
+Image-Label-PairSet # =  28  : Loss = 0.06439821
+Image-Label-PairSet # =  29  : Loss = 0.07100352
+Image-Label-PairSet # =  30  : Loss = 0.05732283
+Image-Label-PairSet # =  31  : Loss = 0.07273909
+Image-Label-PairSet # =  32  : Loss = 0.0819505
+Image-Label-PairSet # =  33  : Loss = 0.08286194
+Image-Label-PairSet # =  34  : Loss = 0.055539493
+Image-Label-PairSet # =  35  : Loss = 0.09575814
+Image-Label-PairSet # =  36  : Loss = 0.08236767
+Image-Label-PairSet # =  37  : Loss = 0.07955042
+Image-Label-PairSet # =  38  : Loss = 0.056518137
+Image-Label-PairSet # =  39  : Loss = 0.099162996
+Image-Label-PairSet # =  40  : Loss = 0.05812249
+Image-Label-PairSet # =  41  : Loss = 0.07626283
+Image-Label-PairSet # =  42  : Loss = 0.0677686
+Image-Label-PairSet # =  43  : Loss = 0.060118824
+Image-Label-PairSet # =  44  : Loss = 0.087048635
+Image-Label-PairSet # =  45  : Loss = 0.08370061
+Image-Label-PairSet # =  46  : Loss = 0.07330144
+Image-Label-PairSet # =  47  : Loss = 0.06742964
+Image-Label-PairSet # =  48  : Loss = 0.07082089
+Image-Label-PairSet # =  49  : Loss = 0.056777697
+Image-Label-PairSet # =  50  : Loss = 0.05381654
+Image-Label-PairSet # =  51  : Loss = 0.07073663
+Image-Label-PairSet # =  52  : Loss = 0.0651896
+Image-Label-PairSet # =  53  : Loss = 0.06713123
+Image-Label-PairSet # =  54  : Loss = 0.05381274
+Image-Label-PairSet # =  55  : Loss = 0.05901789
+Image-Label-PairSet # =  56  : Loss = 0.05205011
+Image-Label-PairSet # =  57  : Loss = 0.09508569
+Image-Label-PairSet # =  58  : Loss = 0.06844514
+
+ Epoch # =  25 Average-Loss-Across-Batches(in this epoch) = 0.06756918864517376
+
+ Loss-cumulative = [0.057253376, 0.077098735, 0.05008194, 0.051444337, 0.044548918, 0.060301173, 0.08514015, 0.07128936, 0.05515496, 0.08706899, 0.08901542, 0.07779794, 0.055620145, 0.05055163, 0.07061154, 0.07721622, 0.04700349, 0.06308619, 0.048340417, 0.06001275, 0.05242882, 0.063334495, 0.054448344, 0.084572345, 0.08737042, 0.048367698, 0.06404298, 0.06439821, 0.07100352, 0.05732283, 0.07273909, 0.0819505, 0.08286194, 0.055539493, 0.09575814, 0.08236767, 0.07955042, 0.056518137, 0.099162996, 0.05812249, 0.07626283, 0.0677686, 0.060118824, 0.087048635, 0.08370061, 0.07330144, 0.06742964, 0.07082089, 0.056777697, 0.05381654, 0.07073663, 0.0651896, 0.06713123, 0.05381274, 0.05901789, 0.05205011, 0.09508569, 0.06844514]
+
+ Time Elapsed(HH:MM:SS)  04:58:03
+
+----------------------- EPOCH # :   26 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.07983156
+Image-Label-PairSet # =  2  : Loss = 0.06584074
+Image-Label-PairSet # =  3  : Loss = 0.06835651
+Image-Label-PairSet # =  4  : Loss = 0.08340485
+Image-Label-PairSet # =  5  : Loss = 0.06714768
+Image-Label-PairSet # =  6  : Loss = 0.05691229
+Image-Label-PairSet # =  7  : Loss = 0.052816704
+Image-Label-PairSet # =  8  : Loss = 0.04341689
+Image-Label-PairSet # =  9  : Loss = 0.05148829
+Image-Label-PairSet # =  10  : Loss = 0.064486116
+Image-Label-PairSet # =  11  : Loss = 0.063552685
+Image-Label-PairSet # =  12  : Loss = 0.07563716
+Image-Label-PairSet # =  13  : Loss = 0.08301885
+Image-Label-PairSet # =  14  : Loss = 0.06489979
+Image-Label-PairSet # =  15  : Loss = 0.05957404
+Image-Label-PairSet # =  16  : Loss = 0.056878824
+Image-Label-PairSet # =  17  : Loss = 0.0632356
+Image-Label-PairSet # =  18  : Loss = 0.07026851
+Image-Label-PairSet # =  19  : Loss = 0.07548048
+Image-Label-PairSet # =  20  : Loss = 0.05754999
+Image-Label-PairSet # =  21  : Loss = 0.057418823
+Image-Label-PairSet # =  22  : Loss = 0.045422643
+Image-Label-PairSet # =  23  : Loss = 0.048260085
+Image-Label-PairSet # =  24  : Loss = 0.08766852
+Image-Label-PairSet # =  25  : Loss = 0.08105752
+Image-Label-PairSet # =  26  : Loss = 0.048006833
+Image-Label-PairSet # =  27  : Loss = 0.05733331
+Image-Label-PairSet # =  28  : Loss = 0.06366063
+Image-Label-PairSet # =  29  : Loss = 0.0670792
+Image-Label-PairSet # =  30  : Loss = 0.07149814
+Image-Label-PairSet # =  31  : Loss = 0.050297264
+Image-Label-PairSet # =  32  : Loss = 0.052057646
+Image-Label-PairSet # =  33  : Loss = 0.055122595
+Image-Label-PairSet # =  34  : Loss = 0.060469754
+Image-Label-PairSet # =  35  : Loss = 0.08711427
+Image-Label-PairSet # =  36  : Loss = 0.067820296
+Image-Label-PairSet # =  37  : Loss = 0.056372188
+Image-Label-PairSet # =  38  : Loss = 0.056717202
+Image-Label-PairSet # =  39  : Loss = 0.06414695
+Image-Label-PairSet # =  40  : Loss = 0.059007317
+Image-Label-PairSet # =  41  : Loss = 0.06338273
+Image-Label-PairSet # =  42  : Loss = 0.06432809
+Image-Label-PairSet # =  43  : Loss = 0.07139255
+Image-Label-PairSet # =  44  : Loss = 0.077419385
+Image-Label-PairSet # =  45  : Loss = 0.056530334
+Image-Label-PairSet # =  46  : Loss = 0.06660396
+Image-Label-PairSet # =  47  : Loss = 0.058523055
+Image-Label-PairSet # =  48  : Loss = 0.055711407
+Image-Label-PairSet # =  49  : Loss = 0.059226964
+Image-Label-PairSet # =  50  : Loss = 0.055087715
+Image-Label-PairSet # =  51  : Loss = 0.1081623
+Image-Label-PairSet # =  52  : Loss = 0.10214524
+Image-Label-PairSet # =  53  : Loss = 0.059122823
+Image-Label-PairSet # =  54  : Loss = 0.07307929
+Image-Label-PairSet # =  55  : Loss = 0.07173674
+Image-Label-PairSet # =  56  : Loss = 0.07163776
+Image-Label-PairSet # =  57  : Loss = 0.07218379
+Image-Label-PairSet # =  58  : Loss = 0.07107422
+
+ Epoch # =  26 Average-Loss-Across-Batches(in this epoch) = 0.06547719130999055
+
+ Loss-cumulative = [0.07983156, 0.06584074, 0.06835651, 0.08340485, 0.06714768, 0.05691229, 0.052816704, 0.04341689, 0.05148829, 0.064486116, 0.063552685, 0.07563716, 0.08301885, 0.06489979, 0.05957404, 0.056878824, 0.0632356, 0.07026851, 0.07548048, 0.05754999, 0.057418823, 0.045422643, 0.048260085, 0.08766852, 0.08105752, 0.048006833, 0.05733331, 0.06366063, 0.0670792, 0.07149814, 0.050297264, 0.052057646, 0.055122595, 0.060469754, 0.08711427, 0.067820296, 0.056372188, 0.056717202, 0.06414695, 0.059007317, 0.06338273, 0.06432809, 0.07139255, 0.077419385, 0.056530334, 0.06660396, 0.058523055, 0.055711407, 0.059226964, 0.055087715, 0.1081623, 0.10214524, 0.059122823, 0.07307929, 0.07173674, 0.07163776, 0.07218379, 0.07107422]
+
+ Time Elapsed(HH:MM:SS)  05:06:46
+
+----------------------- EPOCH # :   27 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.05818597
+Image-Label-PairSet # =  2  : Loss = 0.07796606
+Image-Label-PairSet # =  3  : Loss = 0.06095068
+Image-Label-PairSet # =  4  : Loss = 0.053958137
+Image-Label-PairSet # =  5  : Loss = 0.053014193
+Image-Label-PairSet # =  6  : Loss = 0.06083793
+Image-Label-PairSet # =  7  : Loss = 0.0495817
+Image-Label-PairSet # =  8  : Loss = 0.07067837
+Image-Label-PairSet # =  9  : Loss = 0.07411531
+Image-Label-PairSet # =  10  : Loss = 0.068182275
+Image-Label-PairSet # =  11  : Loss = 0.05311919
+Image-Label-PairSet # =  12  : Loss = 0.060343493
+Image-Label-PairSet # =  13  : Loss = 0.08308078
+Image-Label-PairSet # =  14  : Loss = 0.05075582
+Image-Label-PairSet # =  15  : Loss = 0.048688047
+Image-Label-PairSet # =  16  : Loss = 0.0525899
+Image-Label-PairSet # =  17  : Loss = 0.05922768
+Image-Label-PairSet # =  18  : Loss = 0.056361232
+Image-Label-PairSet # =  19  : Loss = 0.08978497
+Image-Label-PairSet # =  20  : Loss = 0.05989458
+Image-Label-PairSet # =  21  : Loss = 0.10979777
+Image-Label-PairSet # =  22  : Loss = 0.05324596
+Image-Label-PairSet # =  23  : Loss = 0.05538992
+Image-Label-PairSet # =  24  : Loss = 0.068757206
+Image-Label-PairSet # =  25  : Loss = 0.06260906
+Image-Label-PairSet # =  26  : Loss = 0.072143614
+Image-Label-PairSet # =  27  : Loss = 0.04095552
+Image-Label-PairSet # =  28  : Loss = 0.0502236
+Image-Label-PairSet # =  29  : Loss = 0.052829716
+Image-Label-PairSet # =  30  : Loss = 0.06340683
+Image-Label-PairSet # =  31  : Loss = 0.054091558
+Image-Label-PairSet # =  32  : Loss = 0.071249016
+Image-Label-PairSet # =  33  : Loss = 0.06527784
+Image-Label-PairSet # =  34  : Loss = 0.071087025
+Image-Label-PairSet # =  35  : Loss = 0.07399957
+Image-Label-PairSet # =  36  : Loss = 0.066584386
+Image-Label-PairSet # =  37  : Loss = 0.066375054
+Image-Label-PairSet # =  38  : Loss = 0.08912058
+Image-Label-PairSet # =  39  : Loss = 0.051362988
+Image-Label-PairSet # =  40  : Loss = 0.064275526
+Image-Label-PairSet # =  41  : Loss = 0.053196512
+Image-Label-PairSet # =  42  : Loss = 0.073565185
+Image-Label-PairSet # =  43  : Loss = 0.056967247
+Image-Label-PairSet # =  44  : Loss = 0.06523879
+Image-Label-PairSet # =  45  : Loss = 0.06195889
+Image-Label-PairSet # =  46  : Loss = 0.07053636
+Image-Label-PairSet # =  47  : Loss = 0.06314537
+Image-Label-PairSet # =  48  : Loss = 0.053750385
+Image-Label-PairSet # =  49  : Loss = 0.06416346
+Image-Label-PairSet # =  50  : Loss = 0.05491925
+Image-Label-PairSet # =  51  : Loss = 0.0597108
+Image-Label-PairSet # =  52  : Loss = 0.088826716
+Image-Label-PairSet # =  53  : Loss = 0.068445824
+Image-Label-PairSet # =  54  : Loss = 0.04980312
+Image-Label-PairSet # =  55  : Loss = 0.05849413
+Image-Label-PairSet # =  56  : Loss = 0.059299625
+Image-Label-PairSet # =  57  : Loss = 0.07515096
+Image-Label-PairSet # =  58  : Loss = 0.084402844
+
+ Epoch # =  27 Average-Loss-Across-Batches(in this epoch) = 0.0638909400922471
+
+ Loss-cumulative = [0.05818597, 0.07796606, 0.06095068, 0.053958137, 0.053014193, 0.06083793, 0.0495817, 0.07067837, 0.07411531, 0.068182275, 0.05311919, 0.060343493, 0.08308078, 0.05075582, 0.048688047, 0.0525899, 0.05922768, 0.056361232, 0.08978497, 0.05989458, 0.10979777, 0.05324596, 0.05538992, 0.068757206, 0.06260906, 0.072143614, 0.04095552, 0.0502236, 0.052829716, 0.06340683, 0.054091558, 0.071249016, 0.06527784, 0.071087025, 0.07399957, 0.066584386, 0.066375054, 0.08912058, 0.051362988, 0.064275526, 0.053196512, 0.073565185, 0.056967247, 0.06523879, 0.06195889, 0.07053636, 0.06314537, 0.053750385, 0.06416346, 0.05491925, 0.0597108, 0.088826716, 0.068445824, 0.04980312, 0.05849413, 0.059299625, 0.07515096, 0.084402844]
+
+ Time Elapsed(HH:MM:SS)  05:15:29
+
+----------------------- EPOCH # :   28 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.04420955
+Image-Label-PairSet # =  2  : Loss = 0.058584593
+Image-Label-PairSet # =  3  : Loss = 0.07001646
+Image-Label-PairSet # =  4  : Loss = 0.04835099
+Image-Label-PairSet # =  5  : Loss = 0.068598285
+Image-Label-PairSet # =  6  : Loss = 0.051752508
+Image-Label-PairSet # =  7  : Loss = 0.092735656
+Image-Label-PairSet # =  8  : Loss = 0.05017612
+Image-Label-PairSet # =  9  : Loss = 0.061026383
+Image-Label-PairSet # =  10  : Loss = 0.06553483
+Image-Label-PairSet # =  11  : Loss = 0.047611795
+Image-Label-PairSet # =  12  : Loss = 0.071537524
+Image-Label-PairSet # =  13  : Loss = 0.05618963
+Image-Label-PairSet # =  14  : Loss = 0.049986597
+Image-Label-PairSet # =  15  : Loss = 0.05047217
+Image-Label-PairSet # =  16  : Loss = 0.09735001
+Image-Label-PairSet # =  17  : Loss = 0.06557682
+Image-Label-PairSet # =  18  : Loss = 0.054525055
+Image-Label-PairSet # =  19  : Loss = 0.056313895
+Image-Label-PairSet # =  20  : Loss = 0.08840145
+Image-Label-PairSet # =  21  : Loss = 0.046168923
+Image-Label-PairSet # =  22  : Loss = 0.06795645
+Image-Label-PairSet # =  23  : Loss = 0.04254954
+Image-Label-PairSet # =  24  : Loss = 0.0672744
+Image-Label-PairSet # =  25  : Loss = 0.07839191
+Image-Label-PairSet # =  26  : Loss = 0.053593438
+Image-Label-PairSet # =  27  : Loss = 0.04354149
+Image-Label-PairSet # =  28  : Loss = 0.060362794
+Image-Label-PairSet # =  29  : Loss = 0.087042466
+Image-Label-PairSet # =  30  : Loss = 0.051364474
+Image-Label-PairSet # =  31  : Loss = 0.072958246
+Image-Label-PairSet # =  32  : Loss = 0.06511549
+Image-Label-PairSet # =  33  : Loss = 0.07517875
+Image-Label-PairSet # =  34  : Loss = 0.0688973
+Image-Label-PairSet # =  35  : Loss = 0.06301688
+Image-Label-PairSet # =  36  : Loss = 0.07330171
+Image-Label-PairSet # =  37  : Loss = 0.045986522
+Image-Label-PairSet # =  38  : Loss = 0.062205285
+Image-Label-PairSet # =  39  : Loss = 0.0722632
+Image-Label-PairSet # =  40  : Loss = 0.057332773
+Image-Label-PairSet # =  41  : Loss = 0.060440842
+Image-Label-PairSet # =  42  : Loss = 0.056422736
+Image-Label-PairSet # =  43  : Loss = 0.05366082
+Image-Label-PairSet # =  44  : Loss = 0.06850836
+Image-Label-PairSet # =  45  : Loss = 0.052950542
+Image-Label-PairSet # =  46  : Loss = 0.04742351
+Image-Label-PairSet # =  47  : Loss = 0.070766814
+Image-Label-PairSet # =  48  : Loss = 0.06883739
+Image-Label-PairSet # =  49  : Loss = 0.07474525
+Image-Label-PairSet # =  50  : Loss = 0.05950093
+Image-Label-PairSet # =  51  : Loss = 0.066216424
+Image-Label-PairSet # =  52  : Loss = 0.05720908
+Image-Label-PairSet # =  53  : Loss = 0.06471573
+Image-Label-PairSet # =  54  : Loss = 0.074217185
+Image-Label-PairSet # =  55  : Loss = 0.06437753
+Image-Label-PairSet # =  56  : Loss = 0.06670361
+Image-Label-PairSet # =  57  : Loss = 0.04472025
+Image-Label-PairSet # =  58  : Loss = 0.060928747
+
+ Epoch # =  28 Average-Loss-Across-Batches(in this epoch) = 0.06234134675870682
+
+ Loss-cumulative = [0.04420955, 0.058584593, 0.07001646, 0.04835099, 0.068598285, 0.051752508, 0.092735656, 0.05017612, 0.061026383, 0.06553483, 0.047611795, 0.071537524, 0.05618963, 0.049986597, 0.05047217, 0.09735001, 0.06557682, 0.054525055, 0.056313895, 0.08840145, 0.046168923, 0.06795645, 0.04254954, 0.0672744, 0.07839191, 0.053593438, 0.04354149, 0.060362794, 0.087042466, 0.051364474, 0.072958246, 0.06511549, 0.07517875, 0.0688973, 0.06301688, 0.07330171, 0.045986522, 0.062205285, 0.0722632, 0.057332773, 0.060440842, 0.056422736, 0.05366082, 0.06850836, 0.052950542, 0.04742351, 0.070766814, 0.06883739, 0.07474525, 0.05950093, 0.066216424, 0.05720908, 0.06471573, 0.074217185, 0.06437753, 0.06670361, 0.04472025, 0.060928747]
+
+ Time Elapsed(HH:MM:SS)  05:24:12
+
+----------------------- EPOCH # :   29 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.055946954
+Image-Label-PairSet # =  2  : Loss = 0.07214467
+Image-Label-PairSet # =  3  : Loss = 0.07126167
+Image-Label-PairSet # =  4  : Loss = 0.034597438
+Image-Label-PairSet # =  5  : Loss = 0.05990318
+Image-Label-PairSet # =  6  : Loss = 0.057272185
+Image-Label-PairSet # =  7  : Loss = 0.058838032
+Image-Label-PairSet # =  8  : Loss = 0.052937582
+Image-Label-PairSet # =  9  : Loss = 0.06606278
+Image-Label-PairSet # =  10  : Loss = 0.06511973
+Image-Label-PairSet # =  11  : Loss = 0.0575942
+Image-Label-PairSet # =  12  : Loss = 0.09253918
+Image-Label-PairSet # =  13  : Loss = 0.04108595
+Image-Label-PairSet # =  14  : Loss = 0.053023055
+Image-Label-PairSet # =  15  : Loss = 0.069165535
+Image-Label-PairSet # =  16  : Loss = 0.050314568
+Image-Label-PairSet # =  17  : Loss = 0.052279167
+Image-Label-PairSet # =  18  : Loss = 0.08760913
+Image-Label-PairSet # =  19  : Loss = 0.03382824
+Image-Label-PairSet # =  20  : Loss = 0.0510283
+Image-Label-PairSet # =  21  : Loss = 0.070610024
+Image-Label-PairSet # =  22  : Loss = 0.06327133
+Image-Label-PairSet # =  23  : Loss = 0.03878611
+Image-Label-PairSet # =  24  : Loss = 0.062027052
+Image-Label-PairSet # =  25  : Loss = 0.09146625
+Image-Label-PairSet # =  26  : Loss = 0.046225417
+Image-Label-PairSet # =  27  : Loss = 0.06960861
+Image-Label-PairSet # =  28  : Loss = 0.05661977
+Image-Label-PairSet # =  29  : Loss = 0.041559037
+Image-Label-PairSet # =  30  : Loss = 0.079933695
+Image-Label-PairSet # =  31  : Loss = 0.09615918
+Image-Label-PairSet # =  32  : Loss = 0.043484695
+Image-Label-PairSet # =  33  : Loss = 0.05473069
+Image-Label-PairSet # =  34  : Loss = 0.04531773
+Image-Label-PairSet # =  35  : Loss = 0.05835762
+Image-Label-PairSet # =  36  : Loss = 0.058172077
+Image-Label-PairSet # =  37  : Loss = 0.061507914
+Image-Label-PairSet # =  38  : Loss = 0.06577071
+Image-Label-PairSet # =  39  : Loss = 0.06290766
+Image-Label-PairSet # =  40  : Loss = 0.0576389
+Image-Label-PairSet # =  41  : Loss = 0.051835574
+Image-Label-PairSet # =  42  : Loss = 0.06413778
+Image-Label-PairSet # =  43  : Loss = 0.050350875
+Image-Label-PairSet # =  44  : Loss = 0.04497194
+Image-Label-PairSet # =  45  : Loss = 0.061778218
+Image-Label-PairSet # =  46  : Loss = 0.060665403
+Image-Label-PairSet # =  47  : Loss = 0.07299608
+Image-Label-PairSet # =  48  : Loss = 0.07239987
+Image-Label-PairSet # =  49  : Loss = 0.051018123
+Image-Label-PairSet # =  50  : Loss = 0.064016595
+Image-Label-PairSet # =  51  : Loss = 0.06737952
+Image-Label-PairSet # =  52  : Loss = 0.06060313
+Image-Label-PairSet # =  53  : Loss = 0.04140123
+Image-Label-PairSet # =  54  : Loss = 0.066962525
+Image-Label-PairSet # =  55  : Loss = 0.06359783
+Image-Label-PairSet # =  56  : Loss = 0.07859474
+Image-Label-PairSet # =  57  : Loss = 0.0432927
+Image-Label-PairSet # =  58  : Loss = 0.06345236
+
+ Epoch # =  29 Average-Loss-Across-Batches(in this epoch) = 0.06010621529200982
+
+ Loss-cumulative = [0.055946954, 0.07214467, 0.07126167, 0.034597438, 0.05990318, 0.057272185, 0.058838032, 0.052937582, 0.06606278, 0.06511973, 0.0575942, 0.09253918, 0.04108595, 0.053023055, 0.069165535, 0.050314568, 0.052279167, 0.08760913, 0.03382824, 0.0510283, 0.070610024, 0.06327133, 0.03878611, 0.062027052, 0.09146625, 0.046225417, 0.06960861, 0.05661977, 0.041559037, 0.079933695, 0.09615918, 0.043484695, 0.05473069, 0.04531773, 0.05835762, 0.058172077, 0.061507914, 0.06577071, 0.06290766, 0.0576389, 0.051835574, 0.06413778, 0.050350875, 0.04497194, 0.061778218, 0.060665403, 0.07299608, 0.07239987, 0.051018123, 0.064016595, 0.06737952, 0.06060313, 0.04140123, 0.066962525, 0.06359783, 0.07859474, 0.0432927, 0.06345236]
+
+ Time Elapsed(HH:MM:SS)  05:32:56
+
+----------------------- EPOCH # :   30 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.04967721
+Image-Label-PairSet # =  2  : Loss = 0.06578577
+Image-Label-PairSet # =  3  : Loss = 0.06225639
+Image-Label-PairSet # =  4  : Loss = 0.06116289
+Image-Label-PairSet # =  5  : Loss = 0.056486413
+Image-Label-PairSet # =  6  : Loss = 0.046461977
+Image-Label-PairSet # =  7  : Loss = 0.041546293
+Image-Label-PairSet # =  8  : Loss = 0.060682144
+Image-Label-PairSet # =  9  : Loss = 0.06649746
+Image-Label-PairSet # =  10  : Loss = 0.050608538
+Image-Label-PairSet # =  11  : Loss = 0.06348442
+Image-Label-PairSet # =  12  : Loss = 0.05515461
+Image-Label-PairSet # =  13  : Loss = 0.06289951
+Image-Label-PairSet # =  14  : Loss = 0.04552158
+Image-Label-PairSet # =  15  : Loss = 0.07654247
+Image-Label-PairSet # =  16  : Loss = 0.081033334
+Image-Label-PairSet # =  17  : Loss = 0.059775412
+Image-Label-PairSet # =  18  : Loss = 0.052344143
+Image-Label-PairSet # =  19  : Loss = 0.059050687
+Image-Label-PairSet # =  20  : Loss = 0.062811285
+Image-Label-PairSet # =  21  : Loss = 0.059681863
+Image-Label-PairSet # =  22  : Loss = 0.0596171
+Image-Label-PairSet # =  23  : Loss = 0.040353604
+Image-Label-PairSet # =  24  : Loss = 0.05872872
+Image-Label-PairSet # =  25  : Loss = 0.088091105
+Image-Label-PairSet # =  26  : Loss = 0.05617413
+Image-Label-PairSet # =  27  : Loss = 0.052781023
+Image-Label-PairSet # =  28  : Loss = 0.047274925
+Image-Label-PairSet # =  29  : Loss = 0.05017713
+Image-Label-PairSet # =  30  : Loss = 0.05858476
+Image-Label-PairSet # =  31  : Loss = 0.058139406
+Image-Label-PairSet # =  32  : Loss = 0.062460344
+Image-Label-PairSet # =  33  : Loss = 0.070938945
+Image-Label-PairSet # =  34  : Loss = 0.065582484
+Image-Label-PairSet # =  35  : Loss = 0.059922267
+Image-Label-PairSet # =  36  : Loss = 0.048629165
+Image-Label-PairSet # =  37  : Loss = 0.06436685
+Image-Label-PairSet # =  38  : Loss = 0.05188395
+Image-Label-PairSet # =  39  : Loss = 0.07723663
+Image-Label-PairSet # =  40  : Loss = 0.0552258
+Image-Label-PairSet # =  41  : Loss = 0.06440677
+Image-Label-PairSet # =  42  : Loss = 0.057997573
+Image-Label-PairSet # =  43  : Loss = 0.059358604
+Image-Label-PairSet # =  44  : Loss = 0.07732218
+Image-Label-PairSet # =  45  : Loss = 0.05204271
+Image-Label-PairSet # =  46  : Loss = 0.06290542
+Image-Label-PairSet # =  47  : Loss = 0.062139183
+Image-Label-PairSet # =  48  : Loss = 0.048424378
+Image-Label-PairSet # =  49  : Loss = 0.055342153
+Image-Label-PairSet # =  50  : Loss = 0.058691457
+Image-Label-PairSet # =  51  : Loss = 0.04875896
+Image-Label-PairSet # =  52  : Loss = 0.08134584
+Image-Label-PairSet # =  53  : Loss = 0.07524595
+Image-Label-PairSet # =  54  : Loss = 0.058641545
+Image-Label-PairSet # =  55  : Loss = 0.05163584
+Image-Label-PairSet # =  56  : Loss = 0.046043616
+Image-Label-PairSet # =  57  : Loss = 0.07849777
+Image-Label-PairSet # =  58  : Loss = 0.042851932
+
+ Epoch # =  30 Average-Loss-Across-Batches(in this epoch) = 0.05943594160008019
+
+ Loss-cumulative = [0.04967721, 0.06578577, 0.06225639, 0.06116289, 0.056486413, 0.046461977, 0.041546293, 0.060682144, 0.06649746, 0.050608538, 0.06348442, 0.05515461, 0.06289951, 0.04552158, 0.07654247, 0.081033334, 0.059775412, 0.052344143, 0.059050687, 0.062811285, 0.059681863, 0.0596171, 0.040353604, 0.05872872, 0.088091105, 0.05617413, 0.052781023, 0.047274925, 0.05017713, 0.05858476, 0.058139406, 0.062460344, 0.070938945, 0.065582484, 0.059922267, 0.048629165, 0.06436685, 0.05188395, 0.07723663, 0.0552258, 0.06440677, 0.057997573, 0.059358604, 0.07732218, 0.05204271, 0.06290542, 0.062139183, 0.048424378, 0.055342153, 0.058691457, 0.04875896, 0.08134584, 0.07524595, 0.058641545, 0.05163584, 0.046043616, 0.07849777, 0.042851932]
+
+ Time Elapsed(HH:MM:SS)  05:41:39
+
+----------------------- EPOCH # :   31 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.04092995
+Image-Label-PairSet # =  2  : Loss = 0.08063294
+Image-Label-PairSet # =  3  : Loss = 0.047764953
+Image-Label-PairSet # =  4  : Loss = 0.062339198
+Image-Label-PairSet # =  5  : Loss = 0.053364776
+Image-Label-PairSet # =  6  : Loss = 0.056148384
+Image-Label-PairSet # =  7  : Loss = 0.055263173
+Image-Label-PairSet # =  8  : Loss = 0.04036227
+Image-Label-PairSet # =  9  : Loss = 0.048258174
+Image-Label-PairSet # =  10  : Loss = 0.05398852
+Image-Label-PairSet # =  11  : Loss = 0.06875685
+Image-Label-PairSet # =  12  : Loss = 0.069646426
+Image-Label-PairSet # =  13  : Loss = 0.05672142
+Image-Label-PairSet # =  14  : Loss = 0.05143285
+Image-Label-PairSet # =  15  : Loss = 0.054962836
+Image-Label-PairSet # =  16  : Loss = 0.05231052
+Image-Label-PairSet # =  17  : Loss = 0.053154472
+Image-Label-PairSet # =  18  : Loss = 0.055839613
+Image-Label-PairSet # =  19  : Loss = 0.06381478
+Image-Label-PairSet # =  20  : Loss = 0.04922117
+Image-Label-PairSet # =  21  : Loss = 0.056867447
+Image-Label-PairSet # =  22  : Loss = 0.041519474
+Image-Label-PairSet # =  23  : Loss = 0.046132207
+Image-Label-PairSet # =  24  : Loss = 0.068536624
+Image-Label-PairSet # =  25  : Loss = 0.102362804
+Image-Label-PairSet # =  26  : Loss = 0.05845898
+Image-Label-PairSet # =  27  : Loss = 0.04833515
+Image-Label-PairSet # =  28  : Loss = 0.054979183
+Image-Label-PairSet # =  29  : Loss = 0.046234895
+Image-Label-PairSet # =  30  : Loss = 0.06895638
+Image-Label-PairSet # =  31  : Loss = 0.0743333
+Image-Label-PairSet # =  32  : Loss = 0.07848782
+Image-Label-PairSet # =  33  : Loss = 0.06599893
+Image-Label-PairSet # =  34  : Loss = 0.072687835
+Image-Label-PairSet # =  35  : Loss = 0.033974998
+Image-Label-PairSet # =  36  : Loss = 0.053118896
+Image-Label-PairSet # =  37  : Loss = 0.05512502
+Image-Label-PairSet # =  38  : Loss = 0.07949539
+Image-Label-PairSet # =  39  : Loss = 0.07150174
+Image-Label-PairSet # =  40  : Loss = 0.08704669
+Image-Label-PairSet # =  41  : Loss = 0.048322916
+Image-Label-PairSet # =  42  : Loss = 0.04762577
+Image-Label-PairSet # =  43  : Loss = 0.03990489
+Image-Label-PairSet # =  44  : Loss = 0.043801177
+Image-Label-PairSet # =  45  : Loss = 0.049016677
+Image-Label-PairSet # =  46  : Loss = 0.04561598
+Image-Label-PairSet # =  47  : Loss = 0.03706065
+Image-Label-PairSet # =  48  : Loss = 0.06071005
+Image-Label-PairSet # =  49  : Loss = 0.064373545
+Image-Label-PairSet # =  50  : Loss = 0.06555166
+Image-Label-PairSet # =  51  : Loss = 0.0748409
+Image-Label-PairSet # =  52  : Loss = 0.07065946
+Image-Label-PairSet # =  53  : Loss = 0.036958583
+Image-Label-PairSet # =  54  : Loss = 0.05575648
+Image-Label-PairSet # =  55  : Loss = 0.06480652
+Image-Label-PairSet # =  56  : Loss = 0.06446621
+Image-Label-PairSet # =  57  : Loss = 0.042195857
+Image-Label-PairSet # =  58  : Loss = 0.075644344
+
+ Epoch # =  31 Average-Loss-Across-Batches(in this epoch) = 0.058041012171527434
+
+ Loss-cumulative = [0.04092995, 0.08063294, 0.047764953, 0.062339198, 0.053364776, 0.056148384, 0.055263173, 0.04036227, 0.048258174, 0.05398852, 0.06875685, 0.069646426, 0.05672142, 0.05143285, 0.054962836, 0.05231052, 0.053154472, 0.055839613, 0.06381478, 0.04922117, 0.056867447, 0.041519474, 0.046132207, 0.068536624, 0.102362804, 0.05845898, 0.04833515, 0.054979183, 0.046234895, 0.06895638, 0.0743333, 0.07848782, 0.06599893, 0.072687835, 0.033974998, 0.053118896, 0.05512502, 0.07949539, 0.07150174, 0.08704669, 0.048322916, 0.04762577, 0.03990489, 0.043801177, 0.049016677, 0.04561598, 0.03706065, 0.06071005, 0.064373545, 0.06555166, 0.0748409, 0.07065946, 0.036958583, 0.05575648, 0.06480652, 0.06446621, 0.042195857, 0.075644344]
+
+ Time Elapsed(HH:MM:SS)  05:50:22
+
+----------------------- EPOCH # :   32 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.05796172
+Image-Label-PairSet # =  2  : Loss = 0.03609199
+Image-Label-PairSet # =  3  : Loss = 0.06436159
+Image-Label-PairSet # =  4  : Loss = 0.06092531
+Image-Label-PairSet # =  5  : Loss = 0.058002897
+Image-Label-PairSet # =  6  : Loss = 0.08218218
+Image-Label-PairSet # =  7  : Loss = 0.057856046
+Image-Label-PairSet # =  8  : Loss = 0.05533305
+Image-Label-PairSet # =  9  : Loss = 0.053382587
+Image-Label-PairSet # =  10  : Loss = 0.04508131
+Image-Label-PairSet # =  11  : Loss = 0.04890573
+Image-Label-PairSet # =  12  : Loss = 0.06551368
+Image-Label-PairSet # =  13  : Loss = 0.06261815
+Image-Label-PairSet # =  14  : Loss = 0.05290462
+Image-Label-PairSet # =  15  : Loss = 0.07752777
+Image-Label-PairSet # =  16  : Loss = 0.04982849
+Image-Label-PairSet # =  17  : Loss = 0.03833224
+Image-Label-PairSet # =  18  : Loss = 0.046863813
+Image-Label-PairSet # =  19  : Loss = 0.068468384
+Image-Label-PairSet # =  20  : Loss = 0.059074037
+Image-Label-PairSet # =  21  : Loss = 0.053042833
+Image-Label-PairSet # =  22  : Loss = 0.062335704
+Image-Label-PairSet # =  23  : Loss = 0.05900263
+Image-Label-PairSet # =  24  : Loss = 0.09889822
+Image-Label-PairSet # =  25  : Loss = 0.06253729
+Image-Label-PairSet # =  26  : Loss = 0.041399553
+Image-Label-PairSet # =  27  : Loss = 0.07960595
+Image-Label-PairSet # =  28  : Loss = 0.04735698
+Image-Label-PairSet # =  29  : Loss = 0.05501015
+Image-Label-PairSet # =  30  : Loss = 0.03403835
+Image-Label-PairSet # =  31  : Loss = 0.05247148
+Image-Label-PairSet # =  32  : Loss = 0.03129042
+Image-Label-PairSet # =  33  : Loss = 0.053586
+Image-Label-PairSet # =  34  : Loss = 0.052456845
+Image-Label-PairSet # =  35  : Loss = 0.07069513
+Image-Label-PairSet # =  36  : Loss = 0.051997002
+Image-Label-PairSet # =  37  : Loss = 0.084414
+Image-Label-PairSet # =  38  : Loss = 0.03852484
+Image-Label-PairSet # =  39  : Loss = 0.053775296
+Image-Label-PairSet # =  40  : Loss = 0.06335944
+Image-Label-PairSet # =  41  : Loss = 0.057950042
+Image-Label-PairSet # =  42  : Loss = 0.045789413
+Image-Label-PairSet # =  43  : Loss = 0.05992419
+Image-Label-PairSet # =  44  : Loss = 0.062141955
+Image-Label-PairSet # =  45  : Loss = 0.042627122
+Image-Label-PairSet # =  46  : Loss = 0.052967064
+Image-Label-PairSet # =  47  : Loss = 0.037730575
+Image-Label-PairSet # =  48  : Loss = 0.052883275
+Image-Label-PairSet # =  49  : Loss = 0.056515425
+Image-Label-PairSet # =  50  : Loss = 0.049305107
+Image-Label-PairSet # =  51  : Loss = 0.044912037
+Image-Label-PairSet # =  52  : Loss = 0.04074091
+Image-Label-PairSet # =  53  : Loss = 0.05208945
+Image-Label-PairSet # =  54  : Loss = 0.057431072
+Image-Label-PairSet # =  55  : Loss = 0.058576465
+Image-Label-PairSet # =  56  : Loss = 0.05004499
+Image-Label-PairSet # =  57  : Loss = 0.08507097
+Image-Label-PairSet # =  58  : Loss = 0.08463431
+
+ Epoch # =  32 Average-Loss-Across-Batches(in this epoch) = 0.05652324257996576
+
+ Loss-cumulative = [0.05796172, 0.03609199, 0.06436159, 0.06092531, 0.058002897, 0.08218218, 0.057856046, 0.05533305, 0.053382587, 0.04508131, 0.04890573, 0.06551368, 0.06261815, 0.05290462, 0.07752777, 0.04982849, 0.03833224, 0.046863813, 0.068468384, 0.059074037, 0.053042833, 0.062335704, 0.05900263, 0.09889822, 0.06253729, 0.041399553, 0.07960595, 0.04735698, 0.05501015, 0.03403835, 0.05247148, 0.03129042, 0.053586, 0.052456845, 0.07069513, 0.051997002, 0.084414, 0.03852484, 0.053775296, 0.06335944, 0.057950042, 0.045789413, 0.05992419, 0.062141955, 0.042627122, 0.052967064, 0.037730575, 0.052883275, 0.056515425, 0.049305107, 0.044912037, 0.04074091, 0.05208945, 0.057431072, 0.058576465, 0.05004499, 0.08507097, 0.08463431]
+
+ Time Elapsed(HH:MM:SS)  05:59:05
+
+----------------------- EPOCH # :   33 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.051007222
+Image-Label-PairSet # =  2  : Loss = 0.05138637
+Image-Label-PairSet # =  3  : Loss = 0.060479008
+Image-Label-PairSet # =  4  : Loss = 0.037013397
+Image-Label-PairSet # =  5  : Loss = 0.06883737
+Image-Label-PairSet # =  6  : Loss = 0.08361184
+Image-Label-PairSet # =  7  : Loss = 0.06723
+Image-Label-PairSet # =  8  : Loss = 0.045316845
+Image-Label-PairSet # =  9  : Loss = 0.034331027
+Image-Label-PairSet # =  10  : Loss = 0.056908354
+Image-Label-PairSet # =  11  : Loss = 0.061201733
+Image-Label-PairSet # =  12  : Loss = 0.050963297
+Image-Label-PairSet # =  13  : Loss = 0.05647281
+Image-Label-PairSet # =  14  : Loss = 0.05771016
+Image-Label-PairSet # =  15  : Loss = 0.04253548
+Image-Label-PairSet # =  16  : Loss = 0.07239078
+Image-Label-PairSet # =  17  : Loss = 0.0467261
+Image-Label-PairSet # =  18  : Loss = 0.06660327
+Image-Label-PairSet # =  19  : Loss = 0.064132094
+Image-Label-PairSet # =  20  : Loss = 0.045442633
+Image-Label-PairSet # =  21  : Loss = 0.0398382
+Image-Label-PairSet # =  22  : Loss = 0.044822637
+Image-Label-PairSet # =  23  : Loss = 0.052780192
+Image-Label-PairSet # =  24  : Loss = 0.052624777
+Image-Label-PairSet # =  25  : Loss = 0.05575145
+Image-Label-PairSet # =  26  : Loss = 0.065326944
+Image-Label-PairSet # =  27  : Loss = 0.039224796
+Image-Label-PairSet # =  28  : Loss = 0.047175355
+Image-Label-PairSet # =  29  : Loss = 0.044742133
+Image-Label-PairSet # =  30  : Loss = 0.07326131
+Image-Label-PairSet # =  31  : Loss = 0.054093923
+Image-Label-PairSet # =  32  : Loss = 0.089816965
+Image-Label-PairSet # =  33  : Loss = 0.051887672
+Image-Label-PairSet # =  34  : Loss = 0.06400826
+Image-Label-PairSet # =  35  : Loss = 0.0592625
+Image-Label-PairSet # =  36  : Loss = 0.06579729
+Image-Label-PairSet # =  37  : Loss = 0.040285308
+Image-Label-PairSet # =  38  : Loss = 0.061929554
+Image-Label-PairSet # =  39  : Loss = 0.05216558
+Image-Label-PairSet # =  40  : Loss = 0.0482554
+Image-Label-PairSet # =  41  : Loss = 0.06316885
+Image-Label-PairSet # =  42  : Loss = 0.061296422
+Image-Label-PairSet # =  43  : Loss = 0.044725996
+Image-Label-PairSet # =  44  : Loss = 0.04941185
+Image-Label-PairSet # =  45  : Loss = 0.06693036
+Image-Label-PairSet # =  46  : Loss = 0.05170653
+Image-Label-PairSet # =  47  : Loss = 0.073733725
+Image-Label-PairSet # =  48  : Loss = 0.074759625
+Image-Label-PairSet # =  49  : Loss = 0.062784396
+Image-Label-PairSet # =  50  : Loss = 0.050140787
+Image-Label-PairSet # =  51  : Loss = 0.056734238
+Image-Label-PairSet # =  52  : Loss = 0.05374188
+Image-Label-PairSet # =  53  : Loss = 0.05314476
+Image-Label-PairSet # =  54  : Loss = 0.051158708
+Image-Label-PairSet # =  55  : Loss = 0.04211154
+Image-Label-PairSet # =  56  : Loss = 0.048920352
+Image-Label-PairSet # =  57  : Loss = 0.09582934
+Image-Label-PairSet # =  58  : Loss = 0.058511984
+
+ Epoch # =  33 Average-Loss-Across-Batches(in this epoch) = 0.056588989329235305
+
+ Loss-cumulative = [0.051007222, 0.05138637, 0.060479008, 0.037013397, 0.06883737, 0.08361184, 0.06723, 0.045316845, 0.034331027, 0.056908354, 0.061201733, 0.050963297, 0.05647281, 0.05771016, 0.04253548, 0.07239078, 0.0467261, 0.06660327, 0.064132094, 0.045442633, 0.0398382, 0.044822637, 0.052780192, 0.052624777, 0.05575145, 0.065326944, 0.039224796, 0.047175355, 0.044742133, 0.07326131, 0.054093923, 0.089816965, 0.051887672, 0.06400826, 0.0592625, 0.06579729, 0.040285308, 0.061929554, 0.05216558, 0.0482554, 0.06316885, 0.061296422, 0.044725996, 0.04941185, 0.06693036, 0.05170653, 0.073733725, 0.074759625, 0.062784396, 0.050140787, 0.056734238, 0.05374188, 0.05314476, 0.051158708, 0.04211154, 0.048920352, 0.09582934, 0.058511984]
+
+ Time Elapsed(HH:MM:SS)  06:07:48
+
+----------------------- EPOCH # :   34 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.049102027
+Image-Label-PairSet # =  2  : Loss = 0.09287754
+Image-Label-PairSet # =  3  : Loss = 0.053272698
+Image-Label-PairSet # =  4  : Loss = 0.055723105
+Image-Label-PairSet # =  5  : Loss = 0.0612559
+Image-Label-PairSet # =  6  : Loss = 0.06170964
+Image-Label-PairSet # =  7  : Loss = 0.048184976
+Image-Label-PairSet # =  8  : Loss = 0.043914583
+Image-Label-PairSet # =  9  : Loss = 0.05873642
+Image-Label-PairSet # =  10  : Loss = 0.054157615
+Image-Label-PairSet # =  11  : Loss = 0.0657047
+Image-Label-PairSet # =  12  : Loss = 0.047871426
+Image-Label-PairSet # =  13  : Loss = 0.06611246
+Image-Label-PairSet # =  14  : Loss = 0.05891046
+Image-Label-PairSet # =  15  : Loss = 0.058261782
+Image-Label-PairSet # =  16  : Loss = 0.072432116
+Image-Label-PairSet # =  17  : Loss = 0.05908649
+Image-Label-PairSet # =  18  : Loss = 0.071616866
+Image-Label-PairSet # =  19  : Loss = 0.04016459
+Image-Label-PairSet # =  20  : Loss = 0.06438478
+Image-Label-PairSet # =  21  : Loss = 0.057824638
+Image-Label-PairSet # =  22  : Loss = 0.028383764
+Image-Label-PairSet # =  23  : Loss = 0.044915143
+Image-Label-PairSet # =  24  : Loss = 0.05644353
+Image-Label-PairSet # =  25  : Loss = 0.040905777
+Image-Label-PairSet # =  26  : Loss = 0.04918357
+Image-Label-PairSet # =  27  : Loss = 0.057922907
+Image-Label-PairSet # =  28  : Loss = 0.04142234
+Image-Label-PairSet # =  29  : Loss = 0.050005674
+Image-Label-PairSet # =  30  : Loss = 0.04982869
+Image-Label-PairSet # =  31  : Loss = 0.06750975
+Image-Label-PairSet # =  32  : Loss = 0.04151364
+Image-Label-PairSet # =  33  : Loss = 0.044824407
+Image-Label-PairSet # =  34  : Loss = 0.05755487
+Image-Label-PairSet # =  35  : Loss = 0.059431393
+Image-Label-PairSet # =  36  : Loss = 0.036670744
+Image-Label-PairSet # =  37  : Loss = 0.045391932
+Image-Label-PairSet # =  38  : Loss = 0.052826893
+Image-Label-PairSet # =  39  : Loss = 0.06300895
+Image-Label-PairSet # =  40  : Loss = 0.071807876
+Image-Label-PairSet # =  41  : Loss = 0.037604023
+Image-Label-PairSet # =  42  : Loss = 0.042140756
+Image-Label-PairSet # =  43  : Loss = 0.051029693
+Image-Label-PairSet # =  44  : Loss = 0.04539779
+Image-Label-PairSet # =  45  : Loss = 0.042001836
+Image-Label-PairSet # =  46  : Loss = 0.045650166
+Image-Label-PairSet # =  47  : Loss = 0.0621787
+Image-Label-PairSet # =  48  : Loss = 0.066800065
+Image-Label-PairSet # =  49  : Loss = 0.052312206
+Image-Label-PairSet # =  50  : Loss = 0.05684424
+Image-Label-PairSet # =  51  : Loss = 0.06926849
+Image-Label-PairSet # =  52  : Loss = 0.06467992
+Image-Label-PairSet # =  53  : Loss = 0.04585507
+Image-Label-PairSet # =  54  : Loss = 0.045023337
+Image-Label-PairSet # =  55  : Loss = 0.058473118
+Image-Label-PairSet # =  56  : Loss = 0.06311285
+Image-Label-PairSet # =  57  : Loss = 0.042567693
+Image-Label-PairSet # =  58  : Loss = 0.04180874
+
+ Epoch # =  34 Average-Loss-Across-Batches(in this epoch) = 0.05402767834863786
+
+ Loss-cumulative = [0.049102027, 0.09287754, 0.053272698, 0.055723105, 0.0612559, 0.06170964, 0.048184976, 0.043914583, 0.05873642, 0.054157615, 0.0657047, 0.047871426, 0.06611246, 0.05891046, 0.058261782, 0.072432116, 0.05908649, 0.071616866, 0.04016459, 0.06438478, 0.057824638, 0.028383764, 0.044915143, 0.05644353, 0.040905777, 0.04918357, 0.057922907, 0.04142234, 0.050005674, 0.04982869, 0.06750975, 0.04151364, 0.044824407, 0.05755487, 0.059431393, 0.036670744, 0.045391932, 0.052826893, 0.06300895, 0.071807876, 0.037604023, 0.042140756, 0.051029693, 0.04539779, 0.042001836, 0.045650166, 0.0621787, 0.066800065, 0.052312206, 0.05684424, 0.06926849, 0.06467992, 0.04585507, 0.045023337, 0.058473118, 0.06311285, 0.042567693, 0.04180874]
+
+ Time Elapsed(HH:MM:SS)  06:16:32
+
+----------------------- EPOCH # :   35 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.05368774
+Image-Label-PairSet # =  2  : Loss = 0.051118318
+Image-Label-PairSet # =  3  : Loss = 0.03639731
+Image-Label-PairSet # =  4  : Loss = 0.043435644
+Image-Label-PairSet # =  5  : Loss = 0.04216086
+Image-Label-PairSet # =  6  : Loss = 0.057149593
+Image-Label-PairSet # =  7  : Loss = 0.060034156
+Image-Label-PairSet # =  8  : Loss = 0.060102116
+Image-Label-PairSet # =  9  : Loss = 0.03667672
+Image-Label-PairSet # =  10  : Loss = 0.07456501
+Image-Label-PairSet # =  11  : Loss = 0.060327157
+Image-Label-PairSet # =  12  : Loss = 0.04736452
+Image-Label-PairSet # =  13  : Loss = 0.050238207
+Image-Label-PairSet # =  14  : Loss = 0.057247035
+Image-Label-PairSet # =  15  : Loss = 0.045807827
+Image-Label-PairSet # =  16  : Loss = 0.050442662
+Image-Label-PairSet # =  17  : Loss = 0.07809015
+Image-Label-PairSet # =  18  : Loss = 0.05567456
+Image-Label-PairSet # =  19  : Loss = 0.043571986
+Image-Label-PairSet # =  20  : Loss = 0.048429236
+Image-Label-PairSet # =  21  : Loss = 0.06276637
+Image-Label-PairSet # =  22  : Loss = 0.07421225
+Image-Label-PairSet # =  23  : Loss = 0.06739415
+Image-Label-PairSet # =  24  : Loss = 0.047807608
+Image-Label-PairSet # =  25  : Loss = 0.0448526
+Image-Label-PairSet # =  26  : Loss = 0.04500423
+Image-Label-PairSet # =  27  : Loss = 0.046644334
+Image-Label-PairSet # =  28  : Loss = 0.041919347
+Image-Label-PairSet # =  29  : Loss = 0.06300133
+Image-Label-PairSet # =  30  : Loss = 0.05480019
+Image-Label-PairSet # =  31  : Loss = 0.049659118
+Image-Label-PairSet # =  32  : Loss = 0.043069698
+Image-Label-PairSet # =  33  : Loss = 0.04497978
+Image-Label-PairSet # =  34  : Loss = 0.055006918
+Image-Label-PairSet # =  35  : Loss = 0.062453277
+Image-Label-PairSet # =  36  : Loss = 0.06212038
+Image-Label-PairSet # =  37  : Loss = 0.04383757
+Image-Label-PairSet # =  38  : Loss = 0.055194907
+Image-Label-PairSet # =  39  : Loss = 0.052918345
+Image-Label-PairSet # =  40  : Loss = 0.052590273
+Image-Label-PairSet # =  41  : Loss = 0.047521334
+Image-Label-PairSet # =  42  : Loss = 0.042612627
+Image-Label-PairSet # =  43  : Loss = 0.06682377
+Image-Label-PairSet # =  44  : Loss = 0.044199515
+Image-Label-PairSet # =  45  : Loss = 0.05734129
+Image-Label-PairSet # =  46  : Loss = 0.059583317
+Image-Label-PairSet # =  47  : Loss = 0.057035007
+Image-Label-PairSet # =  48  : Loss = 0.041202035
+Image-Label-PairSet # =  49  : Loss = 0.05224742
+Image-Label-PairSet # =  50  : Loss = 0.0577369
+Image-Label-PairSet # =  51  : Loss = 0.050896358
+Image-Label-PairSet # =  52  : Loss = 0.050220344
+Image-Label-PairSet # =  53  : Loss = 0.053831585
+Image-Label-PairSet # =  54  : Loss = 0.05237226
+Image-Label-PairSet # =  55  : Loss = 0.039443504
+Image-Label-PairSet # =  56  : Loss = 0.06369225
+Image-Label-PairSet # =  57  : Loss = 0.04671467
+Image-Label-PairSet # =  58  : Loss = 0.048184343
+
+ Epoch # =  35 Average-Loss-Across-Batches(in this epoch) = 0.052662276309625854
+
+ Loss-cumulative = [0.05368774, 0.051118318, 0.03639731, 0.043435644, 0.04216086, 0.057149593, 0.060034156, 0.060102116, 0.03667672, 0.07456501, 0.060327157, 0.04736452, 0.050238207, 0.057247035, 0.045807827, 0.050442662, 0.07809015, 0.05567456, 0.043571986, 0.048429236, 0.06276637, 0.07421225, 0.06739415, 0.047807608, 0.0448526, 0.04500423, 0.046644334, 0.041919347, 0.06300133, 0.05480019, 0.049659118, 0.043069698, 0.04497978, 0.055006918, 0.062453277, 0.06212038, 0.04383757, 0.055194907, 0.052918345, 0.052590273, 0.047521334, 0.042612627, 0.06682377, 0.044199515, 0.05734129, 0.059583317, 0.057035007, 0.041202035, 0.05224742, 0.0577369, 0.050896358, 0.050220344, 0.053831585, 0.05237226, 0.039443504, 0.06369225, 0.04671467, 0.048184343]
+
+ Time Elapsed(HH:MM:SS)  06:25:14
+
+----------------------- EPOCH # :   36 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.05392562
+Image-Label-PairSet # =  2  : Loss = 0.044435315
+Image-Label-PairSet # =  3  : Loss = 0.0455725
+Image-Label-PairSet # =  4  : Loss = 0.053814746
+Image-Label-PairSet # =  5  : Loss = 0.03486775
+Image-Label-PairSet # =  6  : Loss = 0.053147305
+Image-Label-PairSet # =  7  : Loss = 0.06396184
+Image-Label-PairSet # =  8  : Loss = 0.04495436
+Image-Label-PairSet # =  9  : Loss = 0.032030415
+Image-Label-PairSet # =  10  : Loss = 0.048690192
+Image-Label-PairSet # =  11  : Loss = 0.06544575
+Image-Label-PairSet # =  12  : Loss = 0.05118317
+Image-Label-PairSet # =  13  : Loss = 0.054707576
+Image-Label-PairSet # =  14  : Loss = 0.062680006
+Image-Label-PairSet # =  15  : Loss = 0.055133104
+Image-Label-PairSet # =  16  : Loss = 0.046303008
+Image-Label-PairSet # =  17  : Loss = 0.03865195
+Image-Label-PairSet # =  18  : Loss = 0.045604248
+Image-Label-PairSet # =  19  : Loss = 0.03661112
+Image-Label-PairSet # =  20  : Loss = 0.055553935
+Image-Label-PairSet # =  21  : Loss = 0.06689466
+Image-Label-PairSet # =  22  : Loss = 0.045743376
+Image-Label-PairSet # =  23  : Loss = 0.05318583
+Image-Label-PairSet # =  24  : Loss = 0.07373427
+Image-Label-PairSet # =  25  : Loss = 0.053527087
+Image-Label-PairSet # =  26  : Loss = 0.04698394
+Image-Label-PairSet # =  27  : Loss = 0.03896741
+Image-Label-PairSet # =  28  : Loss = 0.03908188
+Image-Label-PairSet # =  29  : Loss = 0.059531495
+Image-Label-PairSet # =  30  : Loss = 0.034015317
+Image-Label-PairSet # =  31  : Loss = 0.058626957
+Image-Label-PairSet # =  32  : Loss = 0.03736535
+Image-Label-PairSet # =  33  : Loss = 0.051049877
+Image-Label-PairSet # =  34  : Loss = 0.062443953
+Image-Label-PairSet # =  35  : Loss = 0.024993803
+Image-Label-PairSet # =  36  : Loss = 0.042926695
+Image-Label-PairSet # =  37  : Loss = 0.055429734
+Image-Label-PairSet # =  38  : Loss = 0.078475915
+Image-Label-PairSet # =  39  : Loss = 0.042109672
+Image-Label-PairSet # =  40  : Loss = 0.0653776
+Image-Label-PairSet # =  41  : Loss = 0.064845994
+Image-Label-PairSet # =  42  : Loss = 0.053723145
+Image-Label-PairSet # =  43  : Loss = 0.04130622
+Image-Label-PairSet # =  44  : Loss = 0.05969029
+Image-Label-PairSet # =  45  : Loss = 0.048486024
+Image-Label-PairSet # =  46  : Loss = 0.04798059
+Image-Label-PairSet # =  47  : Loss = 0.07852315
+Image-Label-PairSet # =  48  : Loss = 0.06109677
+Image-Label-PairSet # =  49  : Loss = 0.03685514
+Image-Label-PairSet # =  50  : Loss = 0.037456363
+Image-Label-PairSet # =  51  : Loss = 0.03179532
+Image-Label-PairSet # =  52  : Loss = 0.04329142
+Image-Label-PairSet # =  53  : Loss = 0.057401467
+Image-Label-PairSet # =  54  : Loss = 0.058086645
+Image-Label-PairSet # =  55  : Loss = 0.053240187
+Image-Label-PairSet # =  56  : Loss = 0.05828541
+Image-Label-PairSet # =  57  : Loss = 0.046801638
+Image-Label-PairSet # =  58  : Loss = 0.055899642
+
+ Epoch # =  36 Average-Loss-Across-Batches(in this epoch) = 0.05090524391110601
+
+ Loss-cumulative = [0.05392562, 0.044435315, 0.0455725, 0.053814746, 0.03486775, 0.053147305, 0.06396184, 0.04495436, 0.032030415, 0.048690192, 0.06544575, 0.05118317, 0.054707576, 0.062680006, 0.055133104, 0.046303008, 0.03865195, 0.045604248, 0.03661112, 0.055553935, 0.06689466, 0.045743376, 0.05318583, 0.07373427, 0.053527087, 0.04698394, 0.03896741, 0.03908188, 0.059531495, 0.034015317, 0.058626957, 0.03736535, 0.051049877, 0.062443953, 0.024993803, 0.042926695, 0.055429734, 0.078475915, 0.042109672, 0.0653776, 0.064845994, 0.053723145, 0.04130622, 0.05969029, 0.048486024, 0.04798059, 0.07852315, 0.06109677, 0.03685514, 0.037456363, 0.03179532, 0.04329142, 0.057401467, 0.058086645, 0.053240187, 0.05828541, 0.046801638, 0.055899642]
+
+ Time Elapsed(HH:MM:SS)  06:33:56
+
+----------------------- EPOCH # :   37 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.05382331
+Image-Label-PairSet # =  2  : Loss = 0.051509347
+Image-Label-PairSet # =  3  : Loss = 0.050623175
+Image-Label-PairSet # =  4  : Loss = 0.05587917
+Image-Label-PairSet # =  5  : Loss = 0.036357705
+Image-Label-PairSet # =  6  : Loss = 0.048865873
+Image-Label-PairSet # =  7  : Loss = 0.059844393
+Image-Label-PairSet # =  8  : Loss = 0.057238135
+Image-Label-PairSet # =  9  : Loss = 0.062466517
+Image-Label-PairSet # =  10  : Loss = 0.0258351
+Image-Label-PairSet # =  11  : Loss = 0.0745068
+Image-Label-PairSet # =  12  : Loss = 0.041170854
+Image-Label-PairSet # =  13  : Loss = 0.038149983
+Image-Label-PairSet # =  14  : Loss = 0.046757575
+Image-Label-PairSet # =  15  : Loss = 0.049406707
+Image-Label-PairSet # =  16  : Loss = 0.07086605
+Image-Label-PairSet # =  17  : Loss = 0.06309889
+Image-Label-PairSet # =  18  : Loss = 0.050171275
+Image-Label-PairSet # =  19  : Loss = 0.046961095
+Image-Label-PairSet # =  20  : Loss = 0.044564895
+Image-Label-PairSet # =  21  : Loss = 0.052326653
+Image-Label-PairSet # =  22  : Loss = 0.048074603
+Image-Label-PairSet # =  23  : Loss = 0.058013637
+Image-Label-PairSet # =  24  : Loss = 0.052792247
+Image-Label-PairSet # =  25  : Loss = 0.046523836
+Image-Label-PairSet # =  26  : Loss = 0.0726443
+Image-Label-PairSet # =  27  : Loss = 0.043990456
+Image-Label-PairSet # =  28  : Loss = 0.052843764
+Image-Label-PairSet # =  29  : Loss = 0.063616455
+Image-Label-PairSet # =  30  : Loss = 0.056674905
+Image-Label-PairSet # =  31  : Loss = 0.057295524
+Image-Label-PairSet # =  32  : Loss = 0.047956806
+Image-Label-PairSet # =  33  : Loss = 0.04499287
+Image-Label-PairSet # =  34  : Loss = 0.04513148
+Image-Label-PairSet # =  35  : Loss = 0.044292543
+Image-Label-PairSet # =  36  : Loss = 0.06804213
+Image-Label-PairSet # =  37  : Loss = 0.038725678
+Image-Label-PairSet # =  38  : Loss = 0.043483336
+Image-Label-PairSet # =  39  : Loss = 0.06365414
+Image-Label-PairSet # =  40  : Loss = 0.04770709
+Image-Label-PairSet # =  41  : Loss = 0.06170334
+Image-Label-PairSet # =  42  : Loss = 0.050186593
+Image-Label-PairSet # =  43  : Loss = 0.051602684
+Image-Label-PairSet # =  44  : Loss = 0.043369696
+Image-Label-PairSet # =  45  : Loss = 0.05754395
+Image-Label-PairSet # =  46  : Loss = 0.06271271
+Image-Label-PairSet # =  47  : Loss = 0.047221232
+Image-Label-PairSet # =  48  : Loss = 0.0344184
+Image-Label-PairSet # =  49  : Loss = 0.05249756
+Image-Label-PairSet # =  50  : Loss = 0.045976363
+Image-Label-PairSet # =  51  : Loss = 0.06715021
+Image-Label-PairSet # =  52  : Loss = 0.022265345
+Image-Label-PairSet # =  53  : Loss = 0.02778087
+Image-Label-PairSet # =  54  : Loss = 0.044668853
+Image-Label-PairSet # =  55  : Loss = 0.038824573
+Image-Label-PairSet # =  56  : Loss = 0.060515985
+Image-Label-PairSet # =  57  : Loss = 0.046661105
+Image-Label-PairSet # =  58  : Loss = 0.04648908
+
+ Epoch # =  37 Average-Loss-Across-Batches(in this epoch) = 0.05066323861608218
+
+ Loss-cumulative = [0.05382331, 0.051509347, 0.050623175, 0.05587917, 0.036357705, 0.048865873, 0.059844393, 0.057238135, 0.062466517, 0.0258351, 0.0745068, 0.041170854, 0.038149983, 0.046757575, 0.049406707, 0.07086605, 0.06309889, 0.050171275, 0.046961095, 0.044564895, 0.052326653, 0.048074603, 0.058013637, 0.052792247, 0.046523836, 0.0726443, 0.043990456, 0.052843764, 0.063616455, 0.056674905, 0.057295524, 0.047956806, 0.04499287, 0.04513148, 0.044292543, 0.06804213, 0.038725678, 0.043483336, 0.06365414, 0.04770709, 0.06170334, 0.050186593, 0.051602684, 0.043369696, 0.05754395, 0.06271271, 0.047221232, 0.0344184, 0.05249756, 0.045976363, 0.06715021, 0.022265345, 0.02778087, 0.044668853, 0.038824573, 0.060515985, 0.046661105, 0.04648908]
+
+ Time Elapsed(HH:MM:SS)  06:42:39
+
+----------------------- EPOCH # :   38 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.06469306
+Image-Label-PairSet # =  2  : Loss = 0.0545752
+Image-Label-PairSet # =  3  : Loss = 0.03991038
+Image-Label-PairSet # =  4  : Loss = 0.030573972
+Image-Label-PairSet # =  5  : Loss = 0.0476401
+Image-Label-PairSet # =  6  : Loss = 0.06014835
+Image-Label-PairSet # =  7  : Loss = 0.05791426
+Image-Label-PairSet # =  8  : Loss = 0.052779634
+Image-Label-PairSet # =  9  : Loss = 0.04426892
+Image-Label-PairSet # =  10  : Loss = 0.036519658
+Image-Label-PairSet # =  11  : Loss = 0.046018828
+Image-Label-PairSet # =  12  : Loss = 0.06427
+Image-Label-PairSet # =  13  : Loss = 0.042170797
+Image-Label-PairSet # =  14  : Loss = 0.043293227
+Image-Label-PairSet # =  15  : Loss = 0.0691585
+Image-Label-PairSet # =  16  : Loss = 0.04804291
+Image-Label-PairSet # =  17  : Loss = 0.04555403
+Image-Label-PairSet # =  18  : Loss = 0.055123977
+Image-Label-PairSet # =  19  : Loss = 0.049371872
+Image-Label-PairSet # =  20  : Loss = 0.059389368
+Image-Label-PairSet # =  21  : Loss = 0.03886916
+Image-Label-PairSet # =  22  : Loss = 0.058033176
+Image-Label-PairSet # =  23  : Loss = 0.029916244
+Image-Label-PairSet # =  24  : Loss = 0.05099127
+Image-Label-PairSet # =  25  : Loss = 0.051382408
+Image-Label-PairSet # =  26  : Loss = 0.055972368
+Image-Label-PairSet # =  27  : Loss = 0.03250272
+Image-Label-PairSet # =  28  : Loss = 0.06248478
+Image-Label-PairSet # =  29  : Loss = 0.047957093
+Image-Label-PairSet # =  30  : Loss = 0.041150406
+Image-Label-PairSet # =  31  : Loss = 0.054307193
+Image-Label-PairSet # =  32  : Loss = 0.060590744
+Image-Label-PairSet # =  33  : Loss = 0.06545484
+Image-Label-PairSet # =  34  : Loss = 0.044255376
+Image-Label-PairSet # =  35  : Loss = 0.04874221
+Image-Label-PairSet # =  36  : Loss = 0.049918596
+Image-Label-PairSet # =  37  : Loss = 0.049318355
+Image-Label-PairSet # =  38  : Loss = 0.05548668
+Image-Label-PairSet # =  39  : Loss = 0.057343293
+Image-Label-PairSet # =  40  : Loss = 0.057782758
+Image-Label-PairSet # =  41  : Loss = 0.046798773
+Image-Label-PairSet # =  42  : Loss = 0.043812163
+Image-Label-PairSet # =  43  : Loss = 0.039013073
+Image-Label-PairSet # =  44  : Loss = 0.061503157
+Image-Label-PairSet # =  45  : Loss = 0.04199456
+Image-Label-PairSet # =  46  : Loss = 0.04488289
+Image-Label-PairSet # =  47  : Loss = 0.03664434
+Image-Label-PairSet # =  48  : Loss = 0.047526255
+Image-Label-PairSet # =  49  : Loss = 0.03200632
+Image-Label-PairSet # =  50  : Loss = 0.06636365
+Image-Label-PairSet # =  51  : Loss = 0.034732442
+Image-Label-PairSet # =  52  : Loss = 0.062440563
+Image-Label-PairSet # =  53  : Loss = 0.06981443
+Image-Label-PairSet # =  54  : Loss = 0.028920377
+Image-Label-PairSet # =  55  : Loss = 0.045168348
+Image-Label-PairSet # =  56  : Loss = 0.039215222
+Image-Label-PairSet # =  57  : Loss = 0.043247912
+Image-Label-PairSet # =  58  : Loss = 0.05035841
+
+ Epoch # =  38 Average-Loss-Across-Batches(in this epoch) = 0.04928137227122126
+
+ Loss-cumulative = [0.06469306, 0.0545752, 0.03991038, 0.030573972, 0.0476401, 0.06014835, 0.05791426, 0.052779634, 0.04426892, 0.036519658, 0.046018828, 0.06427, 0.042170797, 0.043293227, 0.0691585, 0.04804291, 0.04555403, 0.055123977, 0.049371872, 0.059389368, 0.03886916, 0.058033176, 0.029916244, 0.05099127, 0.051382408, 0.055972368, 0.03250272, 0.06248478, 0.047957093, 0.041150406, 0.054307193, 0.060590744, 0.06545484, 0.044255376, 0.04874221, 0.049918596, 0.049318355, 0.05548668, 0.057343293, 0.057782758, 0.046798773, 0.043812163, 0.039013073, 0.061503157, 0.04199456, 0.04488289, 0.03664434, 0.047526255, 0.03200632, 0.06636365, 0.034732442, 0.062440563, 0.06981443, 0.028920377, 0.045168348, 0.039215222, 0.043247912, 0.05035841]
+
+ Time Elapsed(HH:MM:SS)  06:51:23
+
+----------------------- EPOCH # :   39 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.044139218
+Image-Label-PairSet # =  2  : Loss = 0.04957542
+Image-Label-PairSet # =  3  : Loss = 0.05373045
+Image-Label-PairSet # =  4  : Loss = 0.0583987
+Image-Label-PairSet # =  5  : Loss = 0.04332328
+Image-Label-PairSet # =  6  : Loss = 0.029040754
+Image-Label-PairSet # =  7  : Loss = 0.0592874
+Image-Label-PairSet # =  8  : Loss = 0.05632548
+Image-Label-PairSet # =  9  : Loss = 0.05362708
+Image-Label-PairSet # =  10  : Loss = 0.040018197
+Image-Label-PairSet # =  11  : Loss = 0.063811935
+Image-Label-PairSet # =  12  : Loss = 0.030183071
+Image-Label-PairSet # =  13  : Loss = 0.048508175
+Image-Label-PairSet # =  14  : Loss = 0.047154676
+Image-Label-PairSet # =  15  : Loss = 0.03876281
+Image-Label-PairSet # =  16  : Loss = 0.039853305
+Image-Label-PairSet # =  17  : Loss = 0.06293759
+Image-Label-PairSet # =  18  : Loss = 0.028408632
+Image-Label-PairSet # =  19  : Loss = 0.048312943
+Image-Label-PairSet # =  20  : Loss = 0.041991413
+Image-Label-PairSet # =  21  : Loss = 0.05239212
+Image-Label-PairSet # =  22  : Loss = 0.03702341
+Image-Label-PairSet # =  23  : Loss = 0.051175494
+Image-Label-PairSet # =  24  : Loss = 0.0501849
+Image-Label-PairSet # =  25  : Loss = 0.050852645
+Image-Label-PairSet # =  26  : Loss = 0.046643592
+Image-Label-PairSet # =  27  : Loss = 0.061891105
+Image-Label-PairSet # =  28  : Loss = 0.055716444
+Image-Label-PairSet # =  29  : Loss = 0.054049257
+Image-Label-PairSet # =  30  : Loss = 0.033355776
+Image-Label-PairSet # =  31  : Loss = 0.043666974
+Image-Label-PairSet # =  32  : Loss = 0.05094475
+Image-Label-PairSet # =  33  : Loss = 0.046682637
+Image-Label-PairSet # =  34  : Loss = 0.037282176
+Image-Label-PairSet # =  35  : Loss = 0.050506864
+Image-Label-PairSet # =  36  : Loss = 0.050733227
+Image-Label-PairSet # =  37  : Loss = 0.047666032
+Image-Label-PairSet # =  38  : Loss = 0.047398087
+Image-Label-PairSet # =  39  : Loss = 0.056686297
+Image-Label-PairSet # =  40  : Loss = 0.07257107
+Image-Label-PairSet # =  41  : Loss = 0.035158888
+Image-Label-PairSet # =  42  : Loss = 0.05842625
+Image-Label-PairSet # =  43  : Loss = 0.052705023
+Image-Label-PairSet # =  44  : Loss = 0.038589973
+Image-Label-PairSet # =  45  : Loss = 0.033827234
+Image-Label-PairSet # =  46  : Loss = 0.050810575
+Image-Label-PairSet # =  47  : Loss = 0.034836765
+Image-Label-PairSet # =  48  : Loss = 0.06692357
+Image-Label-PairSet # =  49  : Loss = 0.060830384
+Image-Label-PairSet # =  50  : Loss = 0.04163699
+Image-Label-PairSet # =  51  : Loss = 0.049086355
+Image-Label-PairSet # =  52  : Loss = 0.037127685
+Image-Label-PairSet # =  53  : Loss = 0.034021143
+Image-Label-PairSet # =  54  : Loss = 0.053884946
+Image-Label-PairSet # =  55  : Loss = 0.06986303
+Image-Label-PairSet # =  56  : Loss = 0.062038656
+Image-Label-PairSet # =  57  : Loss = 0.06115751
+Image-Label-PairSet # =  58  : Loss = 0.03494775
+
+ Epoch # =  39 Average-Loss-Across-Batches(in this epoch) = 0.04846010540194552
+
+ Loss-cumulative = [0.044139218, 0.04957542, 0.05373045, 0.0583987, 0.04332328, 0.029040754, 0.0592874, 0.05632548, 0.05362708, 0.040018197, 0.063811935, 0.030183071, 0.048508175, 0.047154676, 0.03876281, 0.039853305, 0.06293759, 0.028408632, 0.048312943, 0.041991413, 0.05239212, 0.03702341, 0.051175494, 0.0501849, 0.050852645, 0.046643592, 0.061891105, 0.055716444, 0.054049257, 0.033355776, 0.043666974, 0.05094475, 0.046682637, 0.037282176, 0.050506864, 0.050733227, 0.047666032, 0.047398087, 0.056686297, 0.07257107, 0.035158888, 0.05842625, 0.052705023, 0.038589973, 0.033827234, 0.050810575, 0.034836765, 0.06692357, 0.060830384, 0.04163699, 0.049086355, 0.037127685, 0.034021143, 0.053884946, 0.06986303, 0.062038656, 0.06115751, 0.03494775]
+
+ Time Elapsed(HH:MM:SS)  07:00:05
+
+----------------------- EPOCH # :   40 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.056942552
+Image-Label-PairSet # =  2  : Loss = 0.05200432
+Image-Label-PairSet # =  3  : Loss = 0.048955396
+Image-Label-PairSet # =  4  : Loss = 0.045810282
+Image-Label-PairSet # =  5  : Loss = 0.040182646
+Image-Label-PairSet # =  6  : Loss = 0.056414653
+Image-Label-PairSet # =  7  : Loss = 0.06223994
+Image-Label-PairSet # =  8  : Loss = 0.044280685
+Image-Label-PairSet # =  9  : Loss = 0.05602096
+Image-Label-PairSet # =  10  : Loss = 0.03119369
+Image-Label-PairSet # =  11  : Loss = 0.05164573
+Image-Label-PairSet # =  12  : Loss = 0.036099285
+Image-Label-PairSet # =  13  : Loss = 0.05027599
+Image-Label-PairSet # =  14  : Loss = 0.053781252
+Image-Label-PairSet # =  15  : Loss = 0.037449826
+Image-Label-PairSet # =  16  : Loss = 0.039727785
+Image-Label-PairSet # =  17  : Loss = 0.042083062
+Image-Label-PairSet # =  18  : Loss = 0.03267908
+Image-Label-PairSet # =  19  : Loss = 0.051739383
+Image-Label-PairSet # =  20  : Loss = 0.039778672
+Image-Label-PairSet # =  21  : Loss = 0.055150274
+Image-Label-PairSet # =  22  : Loss = 0.048243236
+Image-Label-PairSet # =  23  : Loss = 0.02084418
+Image-Label-PairSet # =  24  : Loss = 0.042888056
+Image-Label-PairSet # =  25  : Loss = 0.052210502
+Image-Label-PairSet # =  26  : Loss = 0.038777456
+Image-Label-PairSet # =  27  : Loss = 0.045527562
+Image-Label-PairSet # =  28  : Loss = 0.040009547
+Image-Label-PairSet # =  29  : Loss = 0.07075704
+Image-Label-PairSet # =  30  : Loss = 0.06510667
+Image-Label-PairSet # =  31  : Loss = 0.042337976
+Image-Label-PairSet # =  32  : Loss = 0.041545894
+Image-Label-PairSet # =  33  : Loss = 0.056969754
+Image-Label-PairSet # =  34  : Loss = 0.053398877
+Image-Label-PairSet # =  35  : Loss = 0.049922623
+Image-Label-PairSet # =  36  : Loss = 0.037457123
+Image-Label-PairSet # =  37  : Loss = 0.050995067
+Image-Label-PairSet # =  38  : Loss = 0.04797915
+Image-Label-PairSet # =  39  : Loss = 0.052348692
+Image-Label-PairSet # =  40  : Loss = 0.039008696
+Image-Label-PairSet # =  41  : Loss = 0.059400238
+Image-Label-PairSet # =  42  : Loss = 0.039575156
+Image-Label-PairSet # =  43  : Loss = 0.04413319
+Image-Label-PairSet # =  44  : Loss = 0.047076706
+Image-Label-PairSet # =  45  : Loss = 0.038328305
+Image-Label-PairSet # =  46  : Loss = 0.033084016
+Image-Label-PairSet # =  47  : Loss = 0.039792188
+Image-Label-PairSet # =  48  : Loss = 0.03634022
+Image-Label-PairSet # =  49  : Loss = 0.04208047
+Image-Label-PairSet # =  50  : Loss = 0.049604777
+Image-Label-PairSet # =  51  : Loss = 0.054467514
+Image-Label-PairSet # =  52  : Loss = 0.05463535
+Image-Label-PairSet # =  53  : Loss = 0.084287584
+Image-Label-PairSet # =  54  : Loss = 0.06802352
+Image-Label-PairSet # =  55  : Loss = 0.05928529
+Image-Label-PairSet # =  56  : Loss = 0.03944831
+Image-Label-PairSet # =  57  : Loss = 0.040924054
+Image-Label-PairSet # =  58  : Loss = 0.035647474
+
+ Epoch # =  40 Average-Loss-Across-Batches(in this epoch) = 0.047360653860558724
+
+ Loss-cumulative = [0.056942552, 0.05200432, 0.048955396, 0.045810282, 0.040182646, 0.056414653, 0.06223994, 0.044280685, 0.05602096, 0.03119369, 0.05164573, 0.036099285, 0.05027599, 0.053781252, 0.037449826, 0.039727785, 0.042083062, 0.03267908, 0.051739383, 0.039778672, 0.055150274, 0.048243236, 0.02084418, 0.042888056, 0.052210502, 0.038777456, 0.045527562, 0.040009547, 0.07075704, 0.06510667, 0.042337976, 0.041545894, 0.056969754, 0.053398877, 0.049922623, 0.037457123, 0.050995067, 0.04797915, 0.052348692, 0.039008696, 0.059400238, 0.039575156, 0.04413319, 0.047076706, 0.038328305, 0.033084016, 0.039792188, 0.03634022, 0.04208047, 0.049604777, 0.054467514, 0.05463535, 0.084287584, 0.06802352, 0.05928529, 0.03944831, 0.040924054, 0.035647474]
+
+ Time Elapsed(HH:MM:SS)  07:08:48
+
+----------------------- EPOCH # :   41 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.05984368
+Image-Label-PairSet # =  2  : Loss = 0.06187086
+Image-Label-PairSet # =  3  : Loss = 0.046071768
+Image-Label-PairSet # =  4  : Loss = 0.030461524
+Image-Label-PairSet # =  5  : Loss = 0.056018062
+Image-Label-PairSet # =  6  : Loss = 0.043091152
+Image-Label-PairSet # =  7  : Loss = 0.059301645
+Image-Label-PairSet # =  8  : Loss = 0.050923064
+Image-Label-PairSet # =  9  : Loss = 0.037094
+Image-Label-PairSet # =  10  : Loss = 0.060760673
+Image-Label-PairSet # =  11  : Loss = 0.0399418
+Image-Label-PairSet # =  12  : Loss = 0.05532525
+Image-Label-PairSet # =  13  : Loss = 0.051558923
+Image-Label-PairSet # =  14  : Loss = 0.050498564
+Image-Label-PairSet # =  15  : Loss = 0.034260157
+Image-Label-PairSet # =  16  : Loss = 0.037119094
+Image-Label-PairSet # =  17  : Loss = 0.050369367
+Image-Label-PairSet # =  18  : Loss = 0.039581824
+Image-Label-PairSet # =  19  : Loss = 0.032102175
+Image-Label-PairSet # =  20  : Loss = 0.044933014
+Image-Label-PairSet # =  21  : Loss = 0.04567535
+Image-Label-PairSet # =  22  : Loss = 0.05401291
+Image-Label-PairSet # =  23  : Loss = 0.061905738
+Image-Label-PairSet # =  24  : Loss = 0.026664766
+Image-Label-PairSet # =  25  : Loss = 0.042510044
+Image-Label-PairSet # =  26  : Loss = 0.06279674
+Image-Label-PairSet # =  27  : Loss = 0.06207583
+Image-Label-PairSet # =  28  : Loss = 0.07048689
+Image-Label-PairSet # =  29  : Loss = 0.033656344
+Image-Label-PairSet # =  30  : Loss = 0.04492523
+Image-Label-PairSet # =  31  : Loss = 0.04160945
+Image-Label-PairSet # =  32  : Loss = 0.055612106
+Image-Label-PairSet # =  33  : Loss = 0.03436054
+Image-Label-PairSet # =  34  : Loss = 0.05580011
+Image-Label-PairSet # =  35  : Loss = 0.03862319
+Image-Label-PairSet # =  36  : Loss = 0.04761902
+Image-Label-PairSet # =  37  : Loss = 0.04737432
+Image-Label-PairSet # =  38  : Loss = 0.03377377
+Image-Label-PairSet # =  39  : Loss = 0.059401043
+Image-Label-PairSet # =  40  : Loss = 0.0354263
+Image-Label-PairSet # =  41  : Loss = 0.04891789
+Image-Label-PairSet # =  42  : Loss = 0.06299843
+Image-Label-PairSet # =  43  : Loss = 0.036988355
+Image-Label-PairSet # =  44  : Loss = 0.044749223
+Image-Label-PairSet # =  45  : Loss = 0.067012995
+Image-Label-PairSet # =  46  : Loss = 0.046956714
+Image-Label-PairSet # =  47  : Loss = 0.058385327
+Image-Label-PairSet # =  48  : Loss = 0.03933652
+Image-Label-PairSet # =  49  : Loss = 0.04945193
+Image-Label-PairSet # =  50  : Loss = 0.0668417
+Image-Label-PairSet # =  51  : Loss = 0.04212554
+Image-Label-PairSet # =  52  : Loss = 0.054214936
+Image-Label-PairSet # =  53  : Loss = 0.04963316
+Image-Label-PairSet # =  54  : Loss = 0.043711346
+Image-Label-PairSet # =  55  : Loss = 0.052163746
+Image-Label-PairSet # =  56  : Loss = 0.03615634
+Image-Label-PairSet # =  57  : Loss = 0.045063116
+Image-Label-PairSet # =  58  : Loss = 0.039604854
+
+ Epoch # =  41 Average-Loss-Across-Batches(in this epoch) = 0.047926696756019675
+
+ Loss-cumulative = [0.05984368, 0.06187086, 0.046071768, 0.030461524, 0.056018062, 0.043091152, 0.059301645, 0.050923064, 0.037094, 0.060760673, 0.0399418, 0.05532525, 0.051558923, 0.050498564, 0.034260157, 0.037119094, 0.050369367, 0.039581824, 0.032102175, 0.044933014, 0.04567535, 0.05401291, 0.061905738, 0.026664766, 0.042510044, 0.06279674, 0.06207583, 0.07048689, 0.033656344, 0.04492523, 0.04160945, 0.055612106, 0.03436054, 0.05580011, 0.03862319, 0.04761902, 0.04737432, 0.03377377, 0.059401043, 0.0354263, 0.04891789, 0.06299843, 0.036988355, 0.044749223, 0.067012995, 0.046956714, 0.058385327, 0.03933652, 0.04945193, 0.0668417, 0.04212554, 0.054214936, 0.04963316, 0.043711346, 0.052163746, 0.03615634, 0.045063116, 0.039604854]
+
+ Time Elapsed(HH:MM:SS)  07:17:32
+
+----------------------- EPOCH # :   42 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.04029664
+Image-Label-PairSet # =  2  : Loss = 0.051605355
+Image-Label-PairSet # =  3  : Loss = 0.02896284
+Image-Label-PairSet # =  4  : Loss = 0.0442344
+Image-Label-PairSet # =  5  : Loss = 0.050836496
+Image-Label-PairSet # =  6  : Loss = 0.05129497
+Image-Label-PairSet # =  7  : Loss = 0.030919379
+Image-Label-PairSet # =  8  : Loss = 0.035081808
+Image-Label-PairSet # =  9  : Loss = 0.056199815
+Image-Label-PairSet # =  10  : Loss = 0.046470243
+Image-Label-PairSet # =  11  : Loss = 0.048916683
+Image-Label-PairSet # =  12  : Loss = 0.05040618
+Image-Label-PairSet # =  13  : Loss = 0.04146469
+Image-Label-PairSet # =  14  : Loss = 0.0503322
+Image-Label-PairSet # =  15  : Loss = 0.04457053
+Image-Label-PairSet # =  16  : Loss = 0.044751134
+Image-Label-PairSet # =  17  : Loss = 0.035535693
+Image-Label-PairSet # =  18  : Loss = 0.042864926
+Image-Label-PairSet # =  19  : Loss = 0.033186987
+Image-Label-PairSet # =  20  : Loss = 0.02634816
+Image-Label-PairSet # =  21  : Loss = 0.06508285
+Image-Label-PairSet # =  22  : Loss = 0.03986368
+Image-Label-PairSet # =  23  : Loss = 0.053473882
+Image-Label-PairSet # =  24  : Loss = 0.07115268
+Image-Label-PairSet # =  25  : Loss = 0.054899808
+Image-Label-PairSet # =  26  : Loss = 0.041196823
+Image-Label-PairSet # =  27  : Loss = 0.037115823
+Image-Label-PairSet # =  28  : Loss = 0.039604027
+Image-Label-PairSet # =  29  : Loss = 0.046803955
+Image-Label-PairSet # =  30  : Loss = 0.0316645
+Image-Label-PairSet # =  31  : Loss = 0.063220344
+Image-Label-PairSet # =  32  : Loss = 0.04404718
+Image-Label-PairSet # =  33  : Loss = 0.048644215
+Image-Label-PairSet # =  34  : Loss = 0.035508312
+Image-Label-PairSet # =  35  : Loss = 0.04047613
+Image-Label-PairSet # =  36  : Loss = 0.05014194
+Image-Label-PairSet # =  37  : Loss = 0.041838676
+Image-Label-PairSet # =  38  : Loss = 0.041124165
+Image-Label-PairSet # =  39  : Loss = 0.044634808
+Image-Label-PairSet # =  40  : Loss = 0.06528767
+Image-Label-PairSet # =  41  : Loss = 0.04593456
+Image-Label-PairSet # =  42  : Loss = 0.042454608
+Image-Label-PairSet # =  43  : Loss = 0.049832188
+Image-Label-PairSet # =  44  : Loss = 0.051993113
+Image-Label-PairSet # =  45  : Loss = 0.05923129
+Image-Label-PairSet # =  46  : Loss = 0.063583106
+Image-Label-PairSet # =  47  : Loss = 0.043507226
+Image-Label-PairSet # =  48  : Loss = 0.034506403
+Image-Label-PairSet # =  49  : Loss = 0.07718834
+Image-Label-PairSet # =  50  : Loss = 0.046868544
+Image-Label-PairSet # =  51  : Loss = 0.034508515
+Image-Label-PairSet # =  52  : Loss = 0.04159544
+Image-Label-PairSet # =  53  : Loss = 0.05010876
+Image-Label-PairSet # =  54  : Loss = 0.040751036
+Image-Label-PairSet # =  55  : Loss = 0.052064065
+Image-Label-PairSet # =  56  : Loss = 0.050763734
+Image-Label-PairSet # =  57  : Loss = 0.03598008
+Image-Label-PairSet # =  58  : Loss = 0.0346383
+
+ Epoch # =  42 Average-Loss-Across-Batches(in this epoch) = 0.04595810187787845
+
+ Loss-cumulative = [0.04029664, 0.051605355, 0.02896284, 0.0442344, 0.050836496, 0.05129497, 0.030919379, 0.035081808, 0.056199815, 0.046470243, 0.048916683, 0.05040618, 0.04146469, 0.0503322, 0.04457053, 0.044751134, 0.035535693, 0.042864926, 0.033186987, 0.02634816, 0.06508285, 0.03986368, 0.053473882, 0.07115268, 0.054899808, 0.041196823, 0.037115823, 0.039604027, 0.046803955, 0.0316645, 0.063220344, 0.04404718, 0.048644215, 0.035508312, 0.04047613, 0.05014194, 0.041838676, 0.041124165, 0.044634808, 0.06528767, 0.04593456, 0.042454608, 0.049832188, 0.051993113, 0.05923129, 0.063583106, 0.043507226, 0.034506403, 0.07718834, 0.046868544, 0.034508515, 0.04159544, 0.05010876, 0.040751036, 0.052064065, 0.050763734, 0.03598008, 0.0346383]
+
+ Time Elapsed(HH:MM:SS)  07:26:16
+
+----------------------- EPOCH # :   43 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.03982136
+Image-Label-PairSet # =  2  : Loss = 0.046160966
+Image-Label-PairSet # =  3  : Loss = 0.046325684
+Image-Label-PairSet # =  4  : Loss = 0.0538247
+Image-Label-PairSet # =  5  : Loss = 0.03260629
+Image-Label-PairSet # =  6  : Loss = 0.038710944
+Image-Label-PairSet # =  7  : Loss = 0.043107178
+Image-Label-PairSet # =  8  : Loss = 0.057808165
+Image-Label-PairSet # =  9  : Loss = 0.036989987
+Image-Label-PairSet # =  10  : Loss = 0.07518692
+Image-Label-PairSet # =  11  : Loss = 0.04553438
+Image-Label-PairSet # =  12  : Loss = 0.038214028
+Image-Label-PairSet # =  13  : Loss = 0.041040234
+Image-Label-PairSet # =  14  : Loss = 0.04035018
+Image-Label-PairSet # =  15  : Loss = 0.04066969
+Image-Label-PairSet # =  16  : Loss = 0.048866592
+Image-Label-PairSet # =  17  : Loss = 0.045257114
+Image-Label-PairSet # =  18  : Loss = 0.056678146
+Image-Label-PairSet # =  19  : Loss = 0.053064812
+Image-Label-PairSet # =  20  : Loss = 0.0425073
+Image-Label-PairSet # =  21  : Loss = 0.044945203
+Image-Label-PairSet # =  22  : Loss = 0.038056444
+Image-Label-PairSet # =  23  : Loss = 0.03584498
+Image-Label-PairSet # =  24  : Loss = 0.061917923
+Image-Label-PairSet # =  25  : Loss = 0.05275978
+Image-Label-PairSet # =  26  : Loss = 0.030599881
+Image-Label-PairSet # =  27  : Loss = 0.040728033
+Image-Label-PairSet # =  28  : Loss = 0.04635087
+Image-Label-PairSet # =  29  : Loss = 0.04066157
+Image-Label-PairSet # =  30  : Loss = 0.049688667
+Image-Label-PairSet # =  31  : Loss = 0.03907728
+Image-Label-PairSet # =  32  : Loss = 0.028292038
+Image-Label-PairSet # =  33  : Loss = 0.032470234
+Image-Label-PairSet # =  34  : Loss = 0.036049753
+Image-Label-PairSet # =  35  : Loss = 0.035504214
+Image-Label-PairSet # =  36  : Loss = 0.040513594
+Image-Label-PairSet # =  37  : Loss = 0.040112317
+Image-Label-PairSet # =  38  : Loss = 0.054444216
+Image-Label-PairSet # =  39  : Loss = 0.04694496
+Image-Label-PairSet # =  40  : Loss = 0.051577035
+Image-Label-PairSet # =  41  : Loss = 0.04325339
+Image-Label-PairSet # =  42  : Loss = 0.04602122
+Image-Label-PairSet # =  43  : Loss = 0.05423063
+Image-Label-PairSet # =  44  : Loss = 0.05777401
+Image-Label-PairSet # =  45  : Loss = 0.04744801
+Image-Label-PairSet # =  46  : Loss = 0.029812723
+Image-Label-PairSet # =  47  : Loss = 0.06100561
+Image-Label-PairSet # =  48  : Loss = 0.04185335
+Image-Label-PairSet # =  49  : Loss = 0.049339756
+Image-Label-PairSet # =  50  : Loss = 0.045349896
+Image-Label-PairSet # =  51  : Loss = 0.033758253
+Image-Label-PairSet # =  52  : Loss = 0.036242466
+Image-Label-PairSet # =  53  : Loss = 0.063407876
+Image-Label-PairSet # =  54  : Loss = 0.045659017
+Image-Label-PairSet # =  55  : Loss = 0.05208265
+Image-Label-PairSet # =  56  : Loss = 0.047218747
+Image-Label-PairSet # =  57  : Loss = 0.04408823
+Image-Label-PairSet # =  58  : Loss = 0.048009656
+
+ Epoch # =  43 Average-Loss-Across-Batches(in this epoch) = 0.04510033027879123
+
+ Loss-cumulative = [0.03982136, 0.046160966, 0.046325684, 0.0538247, 0.03260629, 0.038710944, 0.043107178, 0.057808165, 0.036989987, 0.07518692, 0.04553438, 0.038214028, 0.041040234, 0.04035018, 0.04066969, 0.048866592, 0.045257114, 0.056678146, 0.053064812, 0.0425073, 0.044945203, 0.038056444, 0.03584498, 0.061917923, 0.05275978, 0.030599881, 0.040728033, 0.04635087, 0.04066157, 0.049688667, 0.03907728, 0.028292038, 0.032470234, 0.036049753, 0.035504214, 0.040513594, 0.040112317, 0.054444216, 0.04694496, 0.051577035, 0.04325339, 0.04602122, 0.05423063, 0.05777401, 0.04744801, 0.029812723, 0.06100561, 0.04185335, 0.049339756, 0.045349896, 0.033758253, 0.036242466, 0.063407876, 0.045659017, 0.05208265, 0.047218747, 0.04408823, 0.048009656]
+
+ Time Elapsed(HH:MM:SS)  07:34:58
+
+----------------------- EPOCH # :   44 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.05372558
+Image-Label-PairSet # =  2  : Loss = 0.050598264
+Image-Label-PairSet # =  3  : Loss = 0.04010923
+Image-Label-PairSet # =  4  : Loss = 0.037532467
+Image-Label-PairSet # =  5  : Loss = 0.046092566
+Image-Label-PairSet # =  6  : Loss = 0.03718038
+Image-Label-PairSet # =  7  : Loss = 0.041698337
+Image-Label-PairSet # =  8  : Loss = 0.028170245
+Image-Label-PairSet # =  9  : Loss = 0.037888832
+Image-Label-PairSet # =  10  : Loss = 0.041500617
+Image-Label-PairSet # =  11  : Loss = 0.035032958
+Image-Label-PairSet # =  12  : Loss = 0.05158086
+Image-Label-PairSet # =  13  : Loss = 0.039637778
+Image-Label-PairSet # =  14  : Loss = 0.056128286
+Image-Label-PairSet # =  15  : Loss = 0.049803697
+Image-Label-PairSet # =  16  : Loss = 0.037660457
+Image-Label-PairSet # =  17  : Loss = 0.040684763
+Image-Label-PairSet # =  18  : Loss = 0.04391159
+Image-Label-PairSet # =  19  : Loss = 0.045372434
+Image-Label-PairSet # =  20  : Loss = 0.044087347
+Image-Label-PairSet # =  21  : Loss = 0.028077843
+Image-Label-PairSet # =  22  : Loss = 0.02868132
+Image-Label-PairSet # =  23  : Loss = 0.026123479
+Image-Label-PairSet # =  24  : Loss = 0.053341124
+Image-Label-PairSet # =  25  : Loss = 0.05158122
+Image-Label-PairSet # =  26  : Loss = 0.05604617
+Image-Label-PairSet # =  27  : Loss = 0.047016755
+Image-Label-PairSet # =  28  : Loss = 0.031102393
+Image-Label-PairSet # =  29  : Loss = 0.047816955
+Image-Label-PairSet # =  30  : Loss = 0.04142524
+Image-Label-PairSet # =  31  : Loss = 0.04544459
+Image-Label-PairSet # =  32  : Loss = 0.05499729
+Image-Label-PairSet # =  33  : Loss = 0.04778364
+Image-Label-PairSet # =  34  : Loss = 0.04825352
+Image-Label-PairSet # =  35  : Loss = 0.0392958
+Image-Label-PairSet # =  36  : Loss = 0.037978016
+Image-Label-PairSet # =  37  : Loss = 0.058509886
+Image-Label-PairSet # =  38  : Loss = 0.05056513
+Image-Label-PairSet # =  39  : Loss = 0.042701866
+Image-Label-PairSet # =  40  : Loss = 0.052738775
+Image-Label-PairSet # =  41  : Loss = 0.05424965
+Image-Label-PairSet # =  42  : Loss = 0.06505729
+Image-Label-PairSet # =  43  : Loss = 0.027589658
+Image-Label-PairSet # =  44  : Loss = 0.04787669
+Image-Label-PairSet # =  45  : Loss = 0.033623766
+Image-Label-PairSet # =  46  : Loss = 0.041295353
+Image-Label-PairSet # =  47  : Loss = 0.048473213
+Image-Label-PairSet # =  48  : Loss = 0.087964766
+Image-Label-PairSet # =  49  : Loss = 0.047091655
+Image-Label-PairSet # =  50  : Loss = 0.038187727
+Image-Label-PairSet # =  51  : Loss = 0.06521203
+Image-Label-PairSet # =  52  : Loss = 0.039361577
+Image-Label-PairSet # =  53  : Loss = 0.04296032
+Image-Label-PairSet # =  54  : Loss = 0.0443006
+Image-Label-PairSet # =  55  : Loss = 0.03883039
+Image-Label-PairSet # =  56  : Loss = 0.050788242
+Image-Label-PairSet # =  57  : Loss = 0.04805365
+Image-Label-PairSet # =  58  : Loss = 0.04703239
+
+ Epoch # =  44 Average-Loss-Across-Batches(in this epoch) = 0.04510045986108739
+
+ Loss-cumulative = [0.05372558, 0.050598264, 0.04010923, 0.037532467, 0.046092566, 0.03718038, 0.041698337, 0.028170245, 0.037888832, 0.041500617, 0.035032958, 0.05158086, 0.039637778, 0.056128286, 0.049803697, 0.037660457, 0.040684763, 0.04391159, 0.045372434, 0.044087347, 0.028077843, 0.02868132, 0.026123479, 0.053341124, 0.05158122, 0.05604617, 0.047016755, 0.031102393, 0.047816955, 0.04142524, 0.04544459, 0.05499729, 0.04778364, 0.04825352, 0.0392958, 0.037978016, 0.058509886, 0.05056513, 0.042701866, 0.052738775, 0.05424965, 0.06505729, 0.027589658, 0.04787669, 0.033623766, 0.041295353, 0.048473213, 0.087964766, 0.047091655, 0.038187727, 0.06521203, 0.039361577, 0.04296032, 0.0443006, 0.03883039, 0.050788242, 0.04805365, 0.04703239]
+
+ Time Elapsed(HH:MM:SS)  07:43:41
+
+----------------------- EPOCH # :   45 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.048533514
+Image-Label-PairSet # =  2  : Loss = 0.04582526
+Image-Label-PairSet # =  3  : Loss = 0.041209918
+Image-Label-PairSet # =  4  : Loss = 0.072497115
+Image-Label-PairSet # =  5  : Loss = 0.052608985
+Image-Label-PairSet # =  6  : Loss = 0.07346551
+Image-Label-PairSet # =  7  : Loss = 0.045878213
+Image-Label-PairSet # =  8  : Loss = 0.047812544
+Image-Label-PairSet # =  9  : Loss = 0.046900306
+Image-Label-PairSet # =  10  : Loss = 0.037216067
+Image-Label-PairSet # =  11  : Loss = 0.036516476
+Image-Label-PairSet # =  12  : Loss = 0.041496042
+Image-Label-PairSet # =  13  : Loss = 0.04782812
+Image-Label-PairSet # =  14  : Loss = 0.05546492
+Image-Label-PairSet # =  15  : Loss = 0.03517818
+Image-Label-PairSet # =  16  : Loss = 0.039951086
+Image-Label-PairSet # =  17  : Loss = 0.05527503
+Image-Label-PairSet # =  18  : Loss = 0.06158254
+Image-Label-PairSet # =  19  : Loss = 0.056278646
+Image-Label-PairSet # =  20  : Loss = 0.037969276
+Image-Label-PairSet # =  21  : Loss = 0.03609153
+Image-Label-PairSet # =  22  : Loss = 0.03886293
+Image-Label-PairSet # =  23  : Loss = 0.042058937
+Image-Label-PairSet # =  24  : Loss = 0.02944442
+Image-Label-PairSet # =  25  : Loss = 0.04139205
+Image-Label-PairSet # =  26  : Loss = 0.047901984
+Image-Label-PairSet # =  27  : Loss = 0.045630433
+Image-Label-PairSet # =  28  : Loss = 0.054219157
+Image-Label-PairSet # =  29  : Loss = 0.032402832
+Image-Label-PairSet # =  30  : Loss = 0.05945013
+Image-Label-PairSet # =  31  : Loss = 0.049277928
+Image-Label-PairSet # =  32  : Loss = 0.05232828
+Image-Label-PairSet # =  33  : Loss = 0.030808464
+Image-Label-PairSet # =  34  : Loss = 0.039422914
+Image-Label-PairSet # =  35  : Loss = 0.051487215
+Image-Label-PairSet # =  36  : Loss = 0.041002765
+Image-Label-PairSet # =  37  : Loss = 0.029474525
+Image-Label-PairSet # =  38  : Loss = 0.033974968
+Image-Label-PairSet # =  39  : Loss = 0.03447887
+Image-Label-PairSet # =  40  : Loss = 0.04380638
+Image-Label-PairSet # =  41  : Loss = 0.047655836
+Image-Label-PairSet # =  42  : Loss = 0.035853826
+Image-Label-PairSet # =  43  : Loss = 0.050855517
+Image-Label-PairSet # =  44  : Loss = 0.037582207
+Image-Label-PairSet # =  45  : Loss = 0.05009584
+Image-Label-PairSet # =  46  : Loss = 0.0464976
+Image-Label-PairSet # =  47  : Loss = 0.033240747
+Image-Label-PairSet # =  48  : Loss = 0.05103884
+Image-Label-PairSet # =  49  : Loss = 0.032403536
+Image-Label-PairSet # =  50  : Loss = 0.049021237
+Image-Label-PairSet # =  51  : Loss = 0.033494323
+Image-Label-PairSet # =  52  : Loss = 0.045052648
+Image-Label-PairSet # =  53  : Loss = 0.029864902
+Image-Label-PairSet # =  54  : Loss = 0.047318753
+Image-Label-PairSet # =  55  : Loss = 0.039661985
+Image-Label-PairSet # =  56  : Loss = 0.044100866
+Image-Label-PairSet # =  57  : Loss = 0.037734985
+Image-Label-PairSet # =  58  : Loss = 0.060287297
+
+ Epoch # =  45 Average-Loss-Across-Batches(in this epoch) = 0.04456492079871482
+
+ Loss-cumulative = [0.048533514, 0.04582526, 0.041209918, 0.072497115, 0.052608985, 0.07346551, 0.045878213, 0.047812544, 0.046900306, 0.037216067, 0.036516476, 0.041496042, 0.04782812, 0.05546492, 0.03517818, 0.039951086, 0.05527503, 0.06158254, 0.056278646, 0.037969276, 0.03609153, 0.03886293, 0.042058937, 0.02944442, 0.04139205, 0.047901984, 0.045630433, 0.054219157, 0.032402832, 0.05945013, 0.049277928, 0.05232828, 0.030808464, 0.039422914, 0.051487215, 0.041002765, 0.029474525, 0.033974968, 0.03447887, 0.04380638, 0.047655836, 0.035853826, 0.050855517, 0.037582207, 0.05009584, 0.0464976, 0.033240747, 0.05103884, 0.032403536, 0.049021237, 0.033494323, 0.045052648, 0.029864902, 0.047318753, 0.039661985, 0.044100866, 0.037734985, 0.060287297]
+
+ Time Elapsed(HH:MM:SS)  07:52:25
+
+----------------------- EPOCH # :   46 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.05578078
+Image-Label-PairSet # =  2  : Loss = 0.026084963
+Image-Label-PairSet # =  3  : Loss = 0.025049662
+Image-Label-PairSet # =  4  : Loss = 0.03560693
+Image-Label-PairSet # =  5  : Loss = 0.03786487
+Image-Label-PairSet # =  6  : Loss = 0.036276735
+Image-Label-PairSet # =  7  : Loss = 0.053410172
+Image-Label-PairSet # =  8  : Loss = 0.04757085
+Image-Label-PairSet # =  9  : Loss = 0.052048873
+Image-Label-PairSet # =  10  : Loss = 0.047798302
+Image-Label-PairSet # =  11  : Loss = 0.031154336
+Image-Label-PairSet # =  12  : Loss = 0.046516452
+Image-Label-PairSet # =  13  : Loss = 0.03454547
+Image-Label-PairSet # =  14  : Loss = 0.041708264
+Image-Label-PairSet # =  15  : Loss = 0.035117954
+Image-Label-PairSet # =  16  : Loss = 0.06358032
+Image-Label-PairSet # =  17  : Loss = 0.06635442
+Image-Label-PairSet # =  18  : Loss = 0.064441785
+Image-Label-PairSet # =  19  : Loss = 0.031091232
+Image-Label-PairSet # =  20  : Loss = 0.042368885
+Image-Label-PairSet # =  21  : Loss = 0.051363897
+Image-Label-PairSet # =  22  : Loss = 0.052732073
+Image-Label-PairSet # =  23  : Loss = 0.04375874
+Image-Label-PairSet # =  24  : Loss = 0.03773404
+Image-Label-PairSet # =  25  : Loss = 0.0569786
+Image-Label-PairSet # =  26  : Loss = 0.050122835
+Image-Label-PairSet # =  27  : Loss = 0.03412572
+Image-Label-PairSet # =  28  : Loss = 0.038257714
+Image-Label-PairSet # =  29  : Loss = 0.033092327
+Image-Label-PairSet # =  30  : Loss = 0.047439747
+Image-Label-PairSet # =  31  : Loss = 0.04004162
+Image-Label-PairSet # =  32  : Loss = 0.041133706
+Image-Label-PairSet # =  33  : Loss = 0.038264144
+Image-Label-PairSet # =  34  : Loss = 0.042096354
+Image-Label-PairSet # =  35  : Loss = 0.02104852
+Image-Label-PairSet # =  36  : Loss = 0.045533463
+Image-Label-PairSet # =  37  : Loss = 0.046161626
+Image-Label-PairSet # =  38  : Loss = 0.0374181
+Image-Label-PairSet # =  39  : Loss = 0.043067787
+Image-Label-PairSet # =  40  : Loss = 0.033394363
+Image-Label-PairSet # =  41  : Loss = 0.063744344
+Image-Label-PairSet # =  42  : Loss = 0.039430074
+Image-Label-PairSet # =  43  : Loss = 0.04384567
+Image-Label-PairSet # =  44  : Loss = 0.054735947
+Image-Label-PairSet # =  45  : Loss = 0.04587589
+Image-Label-PairSet # =  46  : Loss = 0.04808476
+Image-Label-PairSet # =  47  : Loss = 0.037008252
+Image-Label-PairSet # =  48  : Loss = 0.03790576
+Image-Label-PairSet # =  49  : Loss = 0.039452564
+Image-Label-PairSet # =  50  : Loss = 0.04738642
+Image-Label-PairSet # =  51  : Loss = 0.032028727
+Image-Label-PairSet # =  52  : Loss = 0.048132874
+Image-Label-PairSet # =  53  : Loss = 0.03132767
+Image-Label-PairSet # =  54  : Loss = 0.05376187
+Image-Label-PairSet # =  55  : Loss = 0.035105642
+Image-Label-PairSet # =  56  : Loss = 0.048045076
+Image-Label-PairSet # =  57  : Loss = 0.04010621
+Image-Label-PairSet # =  58  : Loss = 0.046263345
+
+ Epoch # =  46 Average-Loss-Across-Batches(in this epoch) = 0.043109960597136926
+
+ Loss-cumulative = [0.05578078, 0.026084963, 0.025049662, 0.03560693, 0.03786487, 0.036276735, 0.053410172, 0.04757085, 0.052048873, 0.047798302, 0.031154336, 0.046516452, 0.03454547, 0.041708264, 0.035117954, 0.06358032, 0.06635442, 0.064441785, 0.031091232, 0.042368885, 0.051363897, 0.052732073, 0.04375874, 0.03773404, 0.0569786, 0.050122835, 0.03412572, 0.038257714, 0.033092327, 0.047439747, 0.04004162, 0.041133706, 0.038264144, 0.042096354, 0.02104852, 0.045533463, 0.046161626, 0.0374181, 0.043067787, 0.033394363, 0.063744344, 0.039430074, 0.04384567, 0.054735947, 0.04587589, 0.04808476, 0.037008252, 0.03790576, 0.039452564, 0.04738642, 0.032028727, 0.048132874, 0.03132767, 0.05376187, 0.035105642, 0.048045076, 0.04010621, 0.046263345]
+
+ Time Elapsed(HH:MM:SS)  08:01:08
+
+----------------------- EPOCH # :   47 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.032669116
+Image-Label-PairSet # =  2  : Loss = 0.0483416
+Image-Label-PairSet # =  3  : Loss = 0.050046656
+Image-Label-PairSet # =  4  : Loss = 0.050384674
+Image-Label-PairSet # =  5  : Loss = 0.039849058
+Image-Label-PairSet # =  6  : Loss = 0.04264231
+Image-Label-PairSet # =  7  : Loss = 0.03316269
+Image-Label-PairSet # =  8  : Loss = 0.04885298
+Image-Label-PairSet # =  9  : Loss = 0.05240943
+Image-Label-PairSet # =  10  : Loss = 0.046491113
+Image-Label-PairSet # =  11  : Loss = 0.044122934
+Image-Label-PairSet # =  12  : Loss = 0.036328036
+Image-Label-PairSet # =  13  : Loss = 0.06589928
+Image-Label-PairSet # =  14  : Loss = 0.0320736
+Image-Label-PairSet # =  15  : Loss = 0.052627146
+Image-Label-PairSet # =  16  : Loss = 0.03752155
+Image-Label-PairSet # =  17  : Loss = 0.03851004
+Image-Label-PairSet # =  18  : Loss = 0.02845675
+Image-Label-PairSet # =  19  : Loss = 0.054444656
+Image-Label-PairSet # =  20  : Loss = 0.057462834
+Image-Label-PairSet # =  21  : Loss = 0.052543525
+Image-Label-PairSet # =  22  : Loss = 0.03179408
+Image-Label-PairSet # =  23  : Loss = 0.03761472
+Image-Label-PairSet # =  24  : Loss = 0.03892484
+Image-Label-PairSet # =  25  : Loss = 0.03846944
+Image-Label-PairSet # =  26  : Loss = 0.031291854
+Image-Label-PairSet # =  27  : Loss = 0.032416657
+Image-Label-PairSet # =  28  : Loss = 0.04224695
+Image-Label-PairSet # =  29  : Loss = 0.03610173
+Image-Label-PairSet # =  30  : Loss = 0.05946673
+Image-Label-PairSet # =  31  : Loss = 0.037259355
+Image-Label-PairSet # =  32  : Loss = 0.037543654
+Image-Label-PairSet # =  33  : Loss = 0.041187122
+Image-Label-PairSet # =  34  : Loss = 0.040713415
+Image-Label-PairSet # =  35  : Loss = 0.04528334
+Image-Label-PairSet # =  36  : Loss = 0.038339946
+Image-Label-PairSet # =  37  : Loss = 0.032109044
+Image-Label-PairSet # =  38  : Loss = 0.050474625
+Image-Label-PairSet # =  39  : Loss = 0.037904643
+Image-Label-PairSet # =  40  : Loss = 0.042743023
+Image-Label-PairSet # =  41  : Loss = 0.042193178
+Image-Label-PairSet # =  42  : Loss = 0.033798404
+Image-Label-PairSet # =  43  : Loss = 0.073168606
+Image-Label-PairSet # =  44  : Loss = 0.042857047
+Image-Label-PairSet # =  45  : Loss = 0.02796444
+Image-Label-PairSet # =  46  : Loss = 0.050386082
+Image-Label-PairSet # =  47  : Loss = 0.035446357
+Image-Label-PairSet # =  48  : Loss = 0.03717448
+Image-Label-PairSet # =  49  : Loss = 0.033312425
+Image-Label-PairSet # =  50  : Loss = 0.045689646
+Image-Label-PairSet # =  51  : Loss = 0.053781264
+Image-Label-PairSet # =  52  : Loss = 0.038874097
+Image-Label-PairSet # =  53  : Loss = 0.035456605
+Image-Label-PairSet # =  54  : Loss = 0.036078583
+Image-Label-PairSet # =  55  : Loss = 0.05449717
+Image-Label-PairSet # =  56  : Loss = 0.047346056
+Image-Label-PairSet # =  57  : Loss = 0.037691694
+Image-Label-PairSet # =  58  : Loss = 0.028290372
+
+ Epoch # =  47 Average-Loss-Across-Batches(in this epoch) = 0.04225399393331388
+
+ Loss-cumulative = [0.032669116, 0.0483416, 0.050046656, 0.050384674, 0.039849058, 0.04264231, 0.03316269, 0.04885298, 0.05240943, 0.046491113, 0.044122934, 0.036328036, 0.06589928, 0.0320736, 0.052627146, 0.03752155, 0.03851004, 0.02845675, 0.054444656, 0.057462834, 0.052543525, 0.03179408, 0.03761472, 0.03892484, 0.03846944, 0.031291854, 0.032416657, 0.04224695, 0.03610173, 0.05946673, 0.037259355, 0.037543654, 0.041187122, 0.040713415, 0.04528334, 0.038339946, 0.032109044, 0.050474625, 0.037904643, 0.042743023, 0.042193178, 0.033798404, 0.073168606, 0.042857047, 0.02796444, 0.050386082, 0.035446357, 0.03717448, 0.033312425, 0.045689646, 0.053781264, 0.038874097, 0.035456605, 0.036078583, 0.05449717, 0.047346056, 0.037691694, 0.028290372]
+
+ Time Elapsed(HH:MM:SS)  08:09:51
+
+----------------------- EPOCH # :   48 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.0270123
+Image-Label-PairSet # =  2  : Loss = 0.04148046
+Image-Label-PairSet # =  3  : Loss = 0.057306577
+Image-Label-PairSet # =  4  : Loss = 0.036819406
+Image-Label-PairSet # =  5  : Loss = 0.034827765
+Image-Label-PairSet # =  6  : Loss = 0.042822942
+Image-Label-PairSet # =  7  : Loss = 0.058002193
+Image-Label-PairSet # =  8  : Loss = 0.058176737
+Image-Label-PairSet # =  9  : Loss = 0.035343073
+Image-Label-PairSet # =  10  : Loss = 0.041848246
+Image-Label-PairSet # =  11  : Loss = 0.03876241
+Image-Label-PairSet # =  12  : Loss = 0.039856598
+Image-Label-PairSet # =  13  : Loss = 0.049201485
+Image-Label-PairSet # =  14  : Loss = 0.04198806
+Image-Label-PairSet # =  15  : Loss = 0.04178702
+Image-Label-PairSet # =  16  : Loss = 0.049255483
+Image-Label-PairSet # =  17  : Loss = 0.03996665
+Image-Label-PairSet # =  18  : Loss = 0.042414162
+Image-Label-PairSet # =  19  : Loss = 0.042166308
+Image-Label-PairSet # =  20  : Loss = 0.039160233
+Image-Label-PairSet # =  21  : Loss = 0.028121566
+Image-Label-PairSet # =  22  : Loss = 0.047170307
+Image-Label-PairSet # =  23  : Loss = 0.04542857
+Image-Label-PairSet # =  24  : Loss = 0.036521025
+Image-Label-PairSet # =  25  : Loss = 0.04215776
+Image-Label-PairSet # =  26  : Loss = 0.06456998
+Image-Label-PairSet # =  27  : Loss = 0.03902896
+Image-Label-PairSet # =  28  : Loss = 0.045722123
+Image-Label-PairSet # =  29  : Loss = 0.05181924
+Image-Label-PairSet # =  30  : Loss = 0.03452819
+Image-Label-PairSet # =  31  : Loss = 0.03676505
+Image-Label-PairSet # =  32  : Loss = 0.030035686
+Image-Label-PairSet # =  33  : Loss = 0.02986757
+Image-Label-PairSet # =  34  : Loss = 0.034284584
+Image-Label-PairSet # =  35  : Loss = 0.042424332
+Image-Label-PairSet # =  36  : Loss = 0.037112024
+Image-Label-PairSet # =  37  : Loss = 0.039378867
+Image-Label-PairSet # =  38  : Loss = 0.04975251
+Image-Label-PairSet # =  39  : Loss = 0.043185852
+Image-Label-PairSet # =  40  : Loss = 0.042943474
+Image-Label-PairSet # =  41  : Loss = 0.057043023
+Image-Label-PairSet # =  42  : Loss = 0.039128676
+Image-Label-PairSet # =  43  : Loss = 0.038236164
+Image-Label-PairSet # =  44  : Loss = 0.0420844
+Image-Label-PairSet # =  45  : Loss = 0.043317046
+Image-Label-PairSet # =  46  : Loss = 0.03965433
+Image-Label-PairSet # =  47  : Loss = 0.03650924
+Image-Label-PairSet # =  48  : Loss = 0.039026424
+Image-Label-PairSet # =  49  : Loss = 0.039560523
+Image-Label-PairSet # =  50  : Loss = 0.040464103
+Image-Label-PairSet # =  51  : Loss = 0.03292952
+Image-Label-PairSet # =  52  : Loss = 0.02993002
+Image-Label-PairSet # =  53  : Loss = 0.044063415
+Image-Label-PairSet # =  54  : Loss = 0.030097751
+Image-Label-PairSet # =  55  : Loss = 0.046893984
+Image-Label-PairSet # =  56  : Loss = 0.05170322
+Image-Label-PairSet # =  57  : Loss = 0.033484433
+Image-Label-PairSet # =  58  : Loss = 0.04074846
+
+ Epoch # =  48 Average-Loss-Across-Batches(in this epoch) = 0.041446388056822894
+
+ Loss-cumulative = [0.0270123, 0.04148046, 0.057306577, 0.036819406, 0.034827765, 0.042822942, 0.058002193, 0.058176737, 0.035343073, 0.041848246, 0.03876241, 0.039856598, 0.049201485, 0.04198806, 0.04178702, 0.049255483, 0.03996665, 0.042414162, 0.042166308, 0.039160233, 0.028121566, 0.047170307, 0.04542857, 0.036521025, 0.04215776, 0.06456998, 0.03902896, 0.045722123, 0.05181924, 0.03452819, 0.03676505, 0.030035686, 0.02986757, 0.034284584, 0.042424332, 0.037112024, 0.039378867, 0.04975251, 0.043185852, 0.042943474, 0.057043023, 0.039128676, 0.038236164, 0.0420844, 0.043317046, 0.03965433, 0.03650924, 0.039026424, 0.039560523, 0.040464103, 0.03292952, 0.02993002, 0.044063415, 0.030097751, 0.046893984, 0.05170322, 0.033484433, 0.04074846]
+
+ Time Elapsed(HH:MM:SS)  08:18:35
+
+----------------------- EPOCH # :   49 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.05317531
+Image-Label-PairSet # =  2  : Loss = 0.03465752
+Image-Label-PairSet # =  3  : Loss = 0.037026186
+Image-Label-PairSet # =  4  : Loss = 0.046648536
+Image-Label-PairSet # =  5  : Loss = 0.038854852
+Image-Label-PairSet # =  6  : Loss = 0.044224728
+Image-Label-PairSet # =  7  : Loss = 0.04287195
+Image-Label-PairSet # =  8  : Loss = 0.046160594
+Image-Label-PairSet # =  9  : Loss = 0.046386126
+Image-Label-PairSet # =  10  : Loss = 0.034057517
+Image-Label-PairSet # =  11  : Loss = 0.03918563
+Image-Label-PairSet # =  12  : Loss = 0.044314913
+Image-Label-PairSet # =  13  : Loss = 0.029390108
+Image-Label-PairSet # =  14  : Loss = 0.03357838
+Image-Label-PairSet # =  15  : Loss = 0.03994447
+Image-Label-PairSet # =  16  : Loss = 0.0451209
+Image-Label-PairSet # =  17  : Loss = 0.03908822
+Image-Label-PairSet # =  18  : Loss = 0.042301144
+Image-Label-PairSet # =  19  : Loss = 0.046775337
+Image-Label-PairSet # =  20  : Loss = 0.033389702
+Image-Label-PairSet # =  21  : Loss = 0.03765706
+Image-Label-PairSet # =  22  : Loss = 0.05636856
+Image-Label-PairSet # =  23  : Loss = 0.028076159
+Image-Label-PairSet # =  24  : Loss = 0.046710934
+Image-Label-PairSet # =  25  : Loss = 0.04694347
+Image-Label-PairSet # =  26  : Loss = 0.02681676
+Image-Label-PairSet # =  27  : Loss = 0.036574766
+Image-Label-PairSet # =  28  : Loss = 0.038193487
+Image-Label-PairSet # =  29  : Loss = 0.042143445
+Image-Label-PairSet # =  30  : Loss = 0.037424527
+Image-Label-PairSet # =  31  : Loss = 0.05881651
+Image-Label-PairSet # =  32  : Loss = 0.0417302
+Image-Label-PairSet # =  33  : Loss = 0.043942597
+Image-Label-PairSet # =  34  : Loss = 0.032980148
+Image-Label-PairSet # =  35  : Loss = 0.046439998
+Image-Label-PairSet # =  36  : Loss = 0.045819998
+Image-Label-PairSet # =  37  : Loss = 0.04647383
+Image-Label-PairSet # =  38  : Loss = 0.0507766
+Image-Label-PairSet # =  39  : Loss = 0.03702903
+Image-Label-PairSet # =  40  : Loss = 0.030666031
+Image-Label-PairSet # =  41  : Loss = 0.052977066
+Image-Label-PairSet # =  42  : Loss = 0.02885927
+Image-Label-PairSet # =  43  : Loss = 0.051025815
+Image-Label-PairSet # =  44  : Loss = 0.05495582
+Image-Label-PairSet # =  45  : Loss = 0.04473452
+Image-Label-PairSet # =  46  : Loss = 0.042891115
+Image-Label-PairSet # =  47  : Loss = 0.024197701
+Image-Label-PairSet # =  48  : Loss = 0.038942583
+Image-Label-PairSet # =  49  : Loss = 0.027682597
+Image-Label-PairSet # =  50  : Loss = 0.052574776
+Image-Label-PairSet # =  51  : Loss = 0.029600648
+Image-Label-PairSet # =  52  : Loss = 0.05090841
+Image-Label-PairSet # =  53  : Loss = 0.046787053
+Image-Label-PairSet # =  54  : Loss = 0.031302612
+Image-Label-PairSet # =  55  : Loss = 0.03332896
+Image-Label-PairSet # =  56  : Loss = 0.030226015
+Image-Label-PairSet # =  57  : Loss = 0.055821273
+Image-Label-PairSet # =  58  : Loss = 0.047211632
+
+ Epoch # =  49 Average-Loss-Across-Batches(in this epoch) = 0.04125455349426845
+
+ Loss-cumulative = [0.05317531, 0.03465752, 0.037026186, 0.046648536, 0.038854852, 0.044224728, 0.04287195, 0.046160594, 0.046386126, 0.034057517, 0.03918563, 0.044314913, 0.029390108, 0.03357838, 0.03994447, 0.0451209, 0.03908822, 0.042301144, 0.046775337, 0.033389702, 0.03765706, 0.05636856, 0.028076159, 0.046710934, 0.04694347, 0.02681676, 0.036574766, 0.038193487, 0.042143445, 0.037424527, 0.05881651, 0.0417302, 0.043942597, 0.032980148, 0.046439998, 0.045819998, 0.04647383, 0.0507766, 0.03702903, 0.030666031, 0.052977066, 0.02885927, 0.051025815, 0.05495582, 0.04473452, 0.042891115, 0.024197701, 0.038942583, 0.027682597, 0.052574776, 0.029600648, 0.05090841, 0.046787053, 0.031302612, 0.03332896, 0.030226015, 0.055821273, 0.047211632]
+
+ Time Elapsed(HH:MM:SS)  08:27:18
+
+----------------------- EPOCH # :   50 ----------------------------------
+Image-Label-PairSet # =  1  : Loss = 0.03463205
+Image-Label-PairSet # =  2  : Loss = 0.03970224
+Image-Label-PairSet # =  3  : Loss = 0.03122348
+Image-Label-PairSet # =  4  : Loss = 0.024164606
+Image-Label-PairSet # =  5  : Loss = 0.053285412
+Image-Label-PairSet # =  6  : Loss = 0.042873155
+Image-Label-PairSet # =  7  : Loss = 0.044049818
+Image-Label-PairSet # =  8  : Loss = 0.03554331
+Image-Label-PairSet # =  9  : Loss = 0.0333327
+Image-Label-PairSet # =  10  : Loss = 0.044477236
+Image-Label-PairSet # =  11  : Loss = 0.03288118
+Image-Label-PairSet # =  12  : Loss = 0.035152715
+Image-Label-PairSet # =  13  : Loss = 0.034610234
+Image-Label-PairSet # =  14  : Loss = 0.041535094
+Image-Label-PairSet # =  15  : Loss = 0.057538968
+Image-Label-PairSet # =  16  : Loss = 0.05189415
+Image-Label-PairSet # =  17  : Loss = 0.053020757
+Image-Label-PairSet # =  18  : Loss = 0.028128797
+Image-Label-PairSet # =  19  : Loss = 0.057235245
+Image-Label-PairSet # =  20  : Loss = 0.043085285
+Image-Label-PairSet # =  21  : Loss = 0.036100674
+Image-Label-PairSet # =  22  : Loss = 0.035376225
+Image-Label-PairSet # =  23  : Loss = 0.04226248
+Image-Label-PairSet # =  24  : Loss = 0.035989933
+Image-Label-PairSet # =  25  : Loss = 0.0704129
+Image-Label-PairSet # =  26  : Loss = 0.03871943
+Image-Label-PairSet # =  27  : Loss = 0.037489675
+Image-Label-PairSet # =  28  : Loss = 0.040586725
+Image-Label-PairSet # =  29  : Loss = 0.051385615
+Image-Label-PairSet # =  30  : Loss = 0.0299754
+Image-Label-PairSet # =  31  : Loss = 0.031113192
+Image-Label-PairSet # =  32  : Loss = 0.032277267
+Image-Label-PairSet # =  33  : Loss = 0.03993271
+Image-Label-PairSet # =  34  : Loss = 0.04485983
+Image-Label-PairSet # =  35  : Loss = 0.04146626
+Image-Label-PairSet # =  36  : Loss = 0.030413954
+Image-Label-PairSet # =  37  : Loss = 0.04242767
+Image-Label-PairSet # =  38  : Loss = 0.041111197
+Image-Label-PairSet # =  39  : Loss = 0.04772795
+Image-Label-PairSet # =  40  : Loss = 0.039744746
+Image-Label-PairSet # =  41  : Loss = 0.041555252
+Image-Label-PairSet # =  42  : Loss = 0.043175854
+Image-Label-PairSet # =  43  : Loss = 0.05535239
+Image-Label-PairSet # =  44  : Loss = 0.053054232
+Image-Label-PairSet # =  45  : Loss = 0.030649222
+Image-Label-PairSet # =  46  : Loss = 0.045707874
+Image-Label-PairSet # =  47  : Loss = 0.041281365
+Image-Label-PairSet # =  48  : Loss = 0.040025502
+Image-Label-PairSet # =  49  : Loss = 0.03243518
+Image-Label-PairSet # =  50  : Loss = 0.025915582
+Image-Label-PairSet # =  51  : Loss = 0.03474102
+Image-Label-PairSet # =  52  : Loss = 0.03276754
+Image-Label-PairSet # =  53  : Loss = 0.03464092
+Image-Label-PairSet # =  54  : Loss = 0.027531398
+Image-Label-PairSet # =  55  : Loss = 0.033268426
+Image-Label-PairSet # =  56  : Loss = 0.04886547
+Image-Label-PairSet # =  57  : Loss = 0.037041668
+Image-Label-PairSet # =  58  : Loss = 0.07197666
+
+ Epoch # =  50 Average-Loss-Across-Batches(in this epoch) = 0.04065044522927753
+
+ Loss-cumulative = [0.03463205, 0.03970224, 0.03122348, 0.024164606, 0.053285412, 0.042873155, 0.044049818, 0.03554331, 0.0333327, 0.044477236, 0.03288118, 0.035152715, 0.034610234, 0.041535094, 0.057538968, 0.05189415, 0.053020757, 0.028128797, 0.057235245, 0.043085285, 0.036100674, 0.035376225, 0.04226248, 0.035989933, 0.0704129, 0.03871943, 0.037489675, 0.040586725, 0.051385615, 0.0299754, 0.031113192, 0.032277267, 0.03993271, 0.04485983, 0.04146626, 0.030413954, 0.04242767, 0.041111197, 0.04772795, 0.039744746, 0.041555252, 0.043175854, 0.05535239, 0.053054232, 0.030649222, 0.045707874, 0.041281365, 0.040025502, 0.03243518, 0.025915582, 0.03474102, 0.03276754, 0.03464092, 0.027531398, 0.033268426, 0.04886547, 0.037041668, 0.07197666]
+
+ Time Elapsed(HH:MM:SS)  08:36:00
+
+ Training Complete !!!! :D :D :D
+Training Finished. Saving test images to: ./runs/1562923796.276793
+
