@@ -22,6 +22,7 @@ import helper
 import warnings
 from distutils.version import LooseVersion
 import project_tests as tests
+import time
 
 
 # Check TensorFlow Version
@@ -45,7 +46,7 @@ def load_vgg(sess, vgg_path):
 
     vgg_tag                    = 'vgg16'
     vgg_input_tensor_name      = 'image_input:0'
-    vgg_keep_prob_tensor_name  = 'keep_prob:0'
+    vgg_keep_prob_tensor_name  = 'keep_prob:0' #dropout keep probability
     vgg_layer3_out_tensor_name = 'layer3_out:0'
     vgg_layer4_out_tensor_name = 'layer4_out:0'
     vgg_layer7_out_tensor_name = 'layer7_out:0'
@@ -256,10 +257,15 @@ def optimize(nn_last_layer, correct_labels_ph, learning_rate_ph, num_classes):
 
     # iii) Define the loss-function= cross_entropy_loss
     # based on Lesson 10:Scene-Understanding/Concept11-FCN-8-Classification & Loss
-    cross_entropy_loss     = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits= logits, labels= shape_corrected_labels))
+    cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits= logits, labels= shape_corrected_labels)
+    #You wrap this function with reduce_mean(), which computes the mean of elements across dimensions of a tensor.(lol so many operations)
+    cross_entropy_loss     = tf.reduce_mean(cross_entropy)
 
     # iv) Use Adam Optimizer
     # based on Lesson 12: Elective Project :Semantic Segmentation/Concept-2-Project Q&A:  Aaron Brown's instructions approx ~17 minutes into the video)
+    #Some of the most popular optimization algorithms used are the Stochastic Gradient Descent (SGD), ADAM and RMSprop.
+    #Depending on whichever algorithm you choose, you’ll need to tune certain parameters, such as learning rate or momentum.
+    #In this case, you pick the ADAM optimizer, for which you need to define the learning rate
     adam_optimizer = tf.train.AdamOptimizer(learning_rate= learning_rate_ph)
 
     # v) The actual training operation : Use the adam_optimizer to minimize the cross_entropy loss
@@ -290,17 +296,19 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
     #  See Lesson 12: Elective Project :Semantic Segmenation /Concept-2-Project Q&A:  Aaron Brown's instruction video ~19.30minutes
     sess.run(tf.global_variables_initializer())
 
+
     print("Beginning Training...... Total #Epochs = ", epochs, "batch_size =", batch_size)
+    start_time = time.time()
     #Begin for loop1: iterate through Epochs-------------------------------------------------------------------------------
     for epoch_num in range(epochs):
         print("\n----------------------- EPOCH # :  ",epoch_num+1,"----------------------------------")
         loss_cumulative = []
         loss_avg        = 0
-        batch_num       = 0
+        batch_num    = 0
         # Begin for loop2: iterate through Batches--------------------------------------------------------------------------
         # get_batches_fn, returns: Batches of training data : np.array(images), np.array(gt_images)
         for images_array, labels_array in get_batches_fn(batch_size):
-            batch_num = batch_num + 1
+            batch_num  += 1
             _, loss = sess.run([train_op, cross_entropy_loss],
                                feed_dict={input_images_ph   : images_array,
                                           correct_labels_ph : labels_array,
@@ -308,12 +316,14 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
                                           learning_rate_ph  : 0.00001})
             loss_cumulative.append(loss)
             loss_avg = loss_avg + loss
-            print("Batch # = ", batch_num, " : Loss =", loss)
+            print("Batch-Num # = ", batch_num , " : Loss =", loss)
         #EOF for loop2: iterate through Batches: for image, label in get_batches_fn(batch_size):----------------------------
 
-        loss_avg = loss_avg/float(batch_size)
-        print("Epoch # = ", epoch_num, "Average-Loss-Across-Batches(in this epoch) =", loss_avg)
-        print("Loss-cumulative =", loss_cumulative)
+        loss_avg = loss_avg/float(batch_num)
+        print("\n Epoch # = ", epoch_num+1, "Average-Loss-Across-Batches(in this epoch) =", loss_avg)
+        print("\n Loss-cumulative =", loss_cumulative)
+        elapsed_time = time.time() - start_time
+        print("\n Time Elapsed(HH:MM:SS) ", time.strftime("%H:%M:%S", time.gmtime(elapsed_time)))
     #End for loop1: iterate through Epochs : for epoch_num in range(epochs): -------------------------------------------------
     print("\n Training Complete !!!! :D :D :D")
 
@@ -382,13 +392,24 @@ def run():
 
         # iii) TODO: Save inference data using helper.save_inference_samples
         #  helper.save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_prob, input_image)
+        # SESSION FOR TRAINING
+        #---> the train_nn above launches a session for training within a framework of epochs and batches.
+        #---> it evaluates train_op and cross_entropy_loss
+        #---> the feed_dict is input_images, labels, dropu-keep-probability and learning rate
+        #---> _, loss = sess.run([train_op, cross_entropy_loss], feed_dict={input_images_ph: images_array, correct_labels_ph : labels_array, keep_prob_ph : 0.5, learning_rate_ph:0.0001})
+
+        # SESSION FOR TESTING
+        #---> the helper.save_inference_samples launches a session for testing (so  framework of epochs and batches not necessary).
+        #---> it evaluates softmax on logits (instead of evaluating the trainin-operation and loss function)
+        #---> the feed_dict is onnly input_images & drop-out-keep-probability: (labels and learning rate not required)
+        #---> im_softmax = sess.run([tf.nn.softmax(logits)],{keep_prob: 1.0, image_pl: [image]})
         helper.save_inference_samples(runs_dir    = runs_dir,
-                                   data_dir    = data_dir,
-                                   sess        = sess,
-                                   image_shape = image_shape,
-                                   logits      = logits,
-                                   keep_prob   = vgg_keep_prob,
-                                   input_image = vgg_input_layer)
+                                      data_dir    = data_dir,
+                                      sess        = sess,
+                                      image_shape = image_shape,
+                                      logits      = logits,
+                                      keep_prob   = vgg_keep_prob,
+                                      input_image = vgg_input_layer)
 
         # OPTIONAL: Apply the trained model to a video
 
