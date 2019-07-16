@@ -1,18 +1,46 @@
 /*
 main.cpp :
 Version 0:  Base code from udacity
+
 Version 1:  Make car drive in straight line, based on udacity code (car over shoots road)
+
 Version 2:  Make car drive in circular path, based on udacity code
+
 Version 3:  Make car drive in straight line along 's'
+
 Version 4:  Make car drive in straight line along 's' using speed equations(no acceleration), car path explodes
+
 Version 5:  Attempt at lane keeping (drive in straight line along s) using speed and acceleration limits.
             Car maintains lane However car still exceeds speed, accel and jerk limits several times
             Car Collision not handled
+
 Version 6: Attempt at lane keeping (drive in straight line along s) using spline. Based on Udacity's Aaron's Code
-           Car maintians speed, accel and jerk limits (exceeds accel and jerk only during cold start i.e)
-           Issues to address:
-           i) Handle accel and jerk exceeding during cold start
-           ii) Handle collisions
+Logic:
+STEP 1: CREATE 5 POINTS SPACED FAR APART : GENERATE ptsx & ptsy: so this will be
+(ptsx &,ptsy)= 5 points = {(ref_x,ref_y), (ref_prev_x,ref_prev_y), getXY(ego_s_30),getXY(ego_s_60),getXY(ego_s_90)}
+
+STEP 2: CREATE SPLINE : FROM THE FAR SPACED 5 POINTS
+spl = spline-from(ptsx,ptsy)
+
+STEP 3: CREATE THE ACTUAL PATH POINTS: next_x_vals, next_y_vals for the Path Planner
+STEP 3a: USE previous_path POINTS TO CREATE :next_x_vals, next_y_vals (DOES NOT USE THE SPLINE POINTS-spl)
+---> This step does not require the use of the newly generated spline, we just use the previous_path_x & previous_path_y.
+---> However spline could have been used to generate previous_path_x & previous_path_y (in the previous cycle of course)
+---> Note: previous_path_x, previous_path_y  DO-NOT INCLUDE ALL  the points generated the previous cycle.
+     They only consist of the remainder of the path points that the car did not use/did not travel in the previous cycle
+
+STEP 3b: USE THE SPLINE 'spl' TO SAMPLE : finer next_x_vals, next_y_val
+Ideally the distance we'd like to move every time step to maintain speed limit is per_time_step_dist  =  0.02*REF_VEL/2.24
+But we need a way to map this 'per_time_step_dist ' to x & y co-ordinates on a curved road.
+We achieve this using the spline points and 2-similar-triangles. See the write up that accompanies the code for more details
+
+Resolved Issues:
+Car maintians speed, accel and jerk limits (exceeds accel and jerk only during cold start i.e)
+
+Issues to address:
+i)   Handle accel and jerk exceeding during cold start
+ii)  Handle collisions
+iii) Handle Lane Changes
 */
 
 
@@ -164,10 +192,13 @@ int main() {
           }
           */
 
-          // ----------------------------------------------------------------------------------------------------------------------
-          // ------------------------------------ Generate ptsx & ptsy ------------------------------------------------------------
-          // ----------------------------------------------------------------------------------------------------------------------
-          // Create a list of widely space (9x,y) waypoints, evenly spaced at 30m
+
+
+          // --------------------------------------------------------------------------------------------------------------------------------------------
+          // ----------------------------- STEP 1: CREATE 5 POINTS SPACED FAR APART : GENERATE ptsx & ptsy ----------------------------------------------
+          // --------- (ptsx &,ptsy)= 5 points = {(ref_x,ref_y), (ref_prev_x,ref_prev_y), getXY(ego_s_30),getXY(ego_s_60),getXY(ego_s_90) ---------------
+          // --------------------------------------------------------------------------------------------------------------------------------------------
+          // Create a list of widely space (x,y) waypoints, evenly spaced at 30m
           // Later we will interpolate these waypoints with a spline and fill it in with more points that control spacing
           vector <double> ptsx;
           vector <double> ptsy;
@@ -209,7 +240,7 @@ int main() {
 
           }
 
-          //In Frenet add evenly 30m spaced points ahead of the starting reference 9look out for 30m, 60m, 90m)
+          //In Frenet add evenly 30m spaced points ahead of the starting reference look out for 30m, 60m, 90m)
           vector<double> next_wp0 = getXY(ego_s+30, (2+4*lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
           vector<double> next_wp1 = getXY(ego_s+60, (2+4*lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
           vector<double> next_wp2 = getXY(ego_s+90, (2+4*lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
@@ -249,9 +280,10 @@ int main() {
 
 
 
-          // ----------------------------------------------------------------------------------------------------------------------
-          // ------------------------------------- Create the Spline --------------------------------------------------------------
-          // ----------------------------------------------------------------------------------------------------------------------
+          // ----------------------------------------------------------------------------------------------------------------------------------------
+          // ------------------------------- STEP 2: CREATE SPLINE : FROM THE FAR SPACED 5 POINTS ---------------------------------------------------
+          // ------------------------------- spl = spline-from(ptsx,ptsy) ---------------------------------------------------------------------------
+          // ----------------------------------------------------------------------------------------------------------------------------------------
           //ksw comments: define a spline spl
           tk::spline spl;
 
@@ -262,10 +294,13 @@ int main() {
 
 
 
+          // ---------------------------------------------------------------------------------------------------------------------------------------
+          // ------ STEP 3: CREATE THE ACTUAL PATH POINTS: next_x_vals, next_y_vals for the Path Planner -------------------------------------------
+          // ------ STEP 3a: USE previous_path POINTS TO CREATE :next_x_vals, next_y_vals (DOES NOT USE THE SPLINE POINTS-spl) ---------------------
+          // -------Note: previous_path_x, previous_path_y  DO-NOT INCLUDE ALL the points generated the previous cycle.-----------------------------
+          // -------They only consist of the remainder of the path points that the car did not use/did not travel in the previous cycle-------------
+          // ---------------------------------------------------------------------------------------------------------------------------------------
 
-          // ----------------------------------------------------------------------------------------------------------------------
-          // ----- Generate next_x_vals, next_y_vals for the Path Planner Part 1 (using previous_path values)----------------------
-          // ----------------------------------------------------------------------------------------------------------------------
           //Define the actual (x,y) points we will use for the Planner
           vector<double> next_x_vals;
           vector<double> next_y_vals;
@@ -276,12 +311,12 @@ int main() {
             next_y_vals.push_back(previous_path_y[i]);
           }
 
-          // ----------------------------------------------------------------------------------------------------------------------
-          // ----- Generate next_x_vals, next_y_vals for the Path Planner Part 2a (using spline points)----------------------------
-          // ----------------------------------------------------------------------------------------------------------------------
+          // ----------------------------------------------------------------------------------------------------------------------------------------
+          // ------ STEP 3b: USE THE SPLINE 'spl' TO SAMPLE : finer next_x_vals, next_y_val (USES SPLINE POINTS-spl) --------------------------------
+          // ----------------------------------------------------------------------------------------------------------------------------------------
 
-
-          // ksw comments:  see write up for explanation below
+          // ksw comments:  see write up that accompanies code & explanation below
+          // look at Project Q&A video at ~33min: in the project video 'd' is not the Frenet 'd', it is the 'distance'(hypotenuse calc as : dist= sqrt(x*x+y*y)
           // Calculate how to break up spline points so that we travel at our desired reference velocity
           // sample_x: is the distance how far into the horizon you want to approximate the spline to
           // Just because you choose sample_x = 30m doesn't mean that the car will actually cover 30 meters along x in 50 time steps
@@ -291,14 +326,14 @@ int main() {
           // By change I mean that arc/polynomial : sample_y @0.5m could be significantly different from the spline sample_y @ 60m
           // And hence  dimensions of the similar triangle you are trying to approximate could be significantly different
           // sample_dist: the path between two consecutive x,y points is an arc(characterised by a spline/polynomial)
-          //              However this is just approximated as a striaght line (hypotenuse) to make life easier
+          //              However this is just approximated as a straight line (hypotenuse) to make life easier
           //So sample_x, sample_y, sample_dist form the base, height and hypotenuse respectively  of the Right-Angled-Triangle-1(generated using spline)
           double sample_x        = 30.0 ;
           double sample_y        = spl(sample_x) ;
           double sample_dist     = sqrt((sample_x*sample_x)+(sample_y*sample_y));
 
           // We want the car to move at 49.5 mph(49.5/2.24 m/s). so the per_time_step_dist covered needs to be 0.02*REF_VEL/2.24 meter
-          // This is distance is an arc along the spline. However similar to sample_dist, we approximate per_time_step_dist as a straight line instead of arc
+          // This distance is an arc along the spline. However similar to sample_dist, we approximate per_time_step_dist as a straight line instead of arc
           // Hence per_time_step_x, per_time_step_y, per_time_step_dist form the base, height and hypotenuse respectively of the Right-Angled-Triangle-2
           // Right-Angled-Triangle-1 & Right-Angled-Triangle-2 are 'similar'. This is used to establish unknowns per_time_step_x
           // per_time_step_y is not estimated from right_triangle but use spline directly (in loop)
