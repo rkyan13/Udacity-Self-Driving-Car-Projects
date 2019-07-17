@@ -72,6 +72,9 @@ int ego_lane = 1;
 //have a reference velocity to target
 double REF_VEL = 49.5 ; //mph
 
+-------------------------------------------------------------------------------
+Version 7c: Attempt at Handling CollisionsVersion 7b: Attempt at Handling Collisions
+Car slows down to the 0.9*speed-of-car-in-front instead of a standard (29.5mph)
 -------------------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -219,10 +222,10 @@ int main() {
                     //Do some logic here
                     //i) lower reference velocity so that we dont crash into the car in front of is
                     //ii) also flag to try to change ego_lanes
-                    REF_VEL = 29.5; //30mph
+                    //REF_VEL = 29.5; //30mph
 
                     //Set the REF_VEL to 0.95 of the other_car in front of you. other_car_s is m/s, convert to mph by multiplying by 2.24
-                    //REF_VEL = (other_car_speed*2.24)*0.9 ; //mph
+                    REF_VEL = (other_car_speed*2.24)*0.9 ; //mph
                     //too_close = true ;
                   }
 
