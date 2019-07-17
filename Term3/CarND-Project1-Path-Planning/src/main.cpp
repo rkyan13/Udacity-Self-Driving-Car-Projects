@@ -1,18 +1,24 @@
 /*
 main.cpp :
 Version 0:  Base code from udacity
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 Version 1:  Make car drive in straight line, based on udacity code (car over shoots road)
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 Version 2:  Make car drive in circular path, based on udacity code
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 Version 3:  Make car drive in straight line along 's'
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 Version 4:  Make car drive in straight line along 's' using speed equations(no acceleration), car path explodes
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 Version 5:  Attempt at lane keeping (drive in straight line along s) using speed and acceleration limits.
             Car maintains lane However car still exceeds speed, accel and jerk limits several times
             Car Collision not handled
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 Version 6: Attempt at lane keeping (drive in straight line along s) using spline. Based on Udacity's Aaron's Code
 Logic:
@@ -41,6 +47,19 @@ Issues to address:
 i)   Handle accel and jerk exceeding during cold start
 ii)  Handle collisions
 iii) Handle Lane Changes
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Version 7a: Attempt at Handling Collisions
+Resolved Issues:
+Ego car does not collide: slows down to 29.5 mph if there is a car in front
+(but ego-car reference velocity keeps changing from 29.5 to 49.5 mph every cycle. Quite irritating !!!)
+
+Issues to address:
+i)  Handle collisions in a better way
+--> ego-car reference velocity keeps changing from 29.5 to 49.5 mph every cycle
+--> ego-car slows down to 29.5 mph but never picks up the speed back to 49.5 mph
+ii)   Handle accel and jerk exceeding during cold start
+iii) Handle Lane Changes
 */
 
 
@@ -60,6 +79,8 @@ using nlohmann::json;
 using std::string;
 using std::vector;
 using namespace std;
+
+
 
 int main() {
   uWS::Hub h;
@@ -99,7 +120,6 @@ int main() {
   }
 
 
-
   h.onMessage([&map_waypoints_x,&map_waypoints_y,&map_waypoints_s,
                &map_waypoints_dx,&map_waypoints_dy]
               (uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length,
@@ -113,8 +133,8 @@ int main() {
 
       if (s != "") {
         auto j = json::parse(s);
-
         string event = j[0].get<string>();
+
 
         if (event == "telemetry") {
           // j[1] is the data JSON object
@@ -126,16 +146,15 @@ int main() {
           double ego_d     = j[1]["d"];
           double ego_yaw   = j[1]["yaw"];
           double ego_speed_mph = j[1]["speed"];
-          int    egoC_lane  = ego_d/4 ;
+          int    egoCaar_lane     = ego_d/4 ;
           cout<<"\n\n ego_speed_mph ="<<ego_speed_mph <<"; ego_s ="     << ego_s ;
-          cout<<"\n   ego_d     ="<<ego_d     <<"; egoC_lane ="   << egoC_lane ;
+          cout<<"\n   ego_d     ="<<ego_d     <<"; egoCaar_lane ="   << egoCaar_lane ;
 
-          //start in lane 1
-          int lane = 1;
+          //start in ego_lane 1
+          int ego_lane = 1;
 
           //have a reference velocity to target
           double REF_VEL = 49.5 ; //mph
-
 
 
           // Previous path data given to the Planner
@@ -151,37 +170,53 @@ int main() {
 
           int prev_size = previous_path_x.size();
 
-          /*
+          // --------------------------------------------------------------------------------------------------------------------------------------------
+          // ----------------------------- HANDLING COLLISIONS (Project Q & A : 40min - 49min ) ---------------------------------------------------------
+          // --------------------------------------------------------------------------------------------------------------------------------------------
           if(prev_size > 0) {
-            car_s = end_path_s;
+            ego_s = end_path_s;
           }
 
           bool too_close = false;
 
+          float  other_car_d     ; //m
+          double other_car_vx    ; //m/s
+          double other_car_vy    ; //m/s
+          double other_car_speed ; //m/s
+          double other_car_s, other_car_s_future  ; //m
+
           //find ref_v to use
           for(int i =0; i< sensor_fusion.size(); i++) {
+              //sensor_fusion[i] has the values from ith car on the road
+              other_car_d = sensor_fusion[i][6];
 
-              //car is in my lane
-              float d = sensor_fusion[i][6];
-              if(d < (2+4*lane+2) && d >(2+4*lane-2)) {
-                  double vx          = sensor_fusion[i][3];
-                  double vy          = sensor_fusion[i][4];
-                  double check_speed = sqrt(vx*vx + vy*vy);
-                  double check_car_s = sensor_fusion[i][5];
+              //check if other_car is in ego_car-lane
+              if(other_car_d < (2+4*ego_lane+2) && other_car_d >(2+4*ego_lane-2)) {
+                  other_car_vx    = sensor_fusion[i][3];
+                  other_car_vy    = sensor_fusion[i][4];
+                  other_car_speed = sqrt(other_car_vx*other_car_vx + other_car_vy*other_car_vy);
 
-                  check_car_s+=((double)prev_size*0.02*check_speed); //if using previous points cann project s value out
-                  //check s values greater than mine and s gap
-                  if((check_car_s > car_s) && ((check_car_s - car_s)<30)) {
+                  other_car_s     = sensor_fusion[i][5];
+                  //project other_car_s into the future. i.e if prev_size has 10 remaining values. where will the other car be in 10 time steps
+                  //KSW Question : previous_size differs every time. and everytime we calculate path for 50 time steps. Shouldn't we be projecting for more than previous_time step size
+                  other_car_s_future = other_car_s + ((double)prev_size*0.02*other_car_speed); //if using previous points cann project s value out
 
-                    //Do some logic here, lower reference velocity so that we dont crash into the car in front of is
-                    //also flag to try to change lanes
+                  //Check if other_car_s in the future is ahead of ego_s and within 30m of the ego_s: check s values greater than mine and s gap
+                  if((other_car_s_future > ego_s) && ((other_car_s_future - ego_s)<30)) {
+
+                    //Do some logic here
+                    //i) lower reference velocity so that we dont crash into the car in front of is
+                    //ii) also flag to try to change ego_lanes
                     REF_VEL = 29.5; //30mph
+
+                    //Set the REF_VEL to 0.95 of the other_car in front of you. other_car_s is m/s, convert to mph by multiplying by 2.23694
+                    //REF_VEL = (other_car_s*2.23694)*0.95 ; //mph
                     //too_close = true ;
                   }
 
               }
           }
-          */
+
 
           /*
           if(too_close) {
@@ -241,9 +276,9 @@ int main() {
           }
 
           //In Frenet add evenly 30m spaced points ahead of the starting reference look out for 30m, 60m, 90m)
-          vector<double> next_wp0 = getXY(ego_s+30, (2+4*lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
-          vector<double> next_wp1 = getXY(ego_s+60, (2+4*lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
-          vector<double> next_wp2 = getXY(ego_s+90, (2+4*lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
+          vector<double> next_wp0 = getXY(ego_s+30, (2+4*ego_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
+          vector<double> next_wp1 = getXY(ego_s+60, (2+4*ego_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
+          vector<double> next_wp2 = getXY(ego_s+90, (2+4*ego_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
 
           // So there are 5 waypoints
           //  i) previous 2 locations of the cars
