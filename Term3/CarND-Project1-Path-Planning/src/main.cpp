@@ -77,7 +77,7 @@ Attempt 7c: Attempt at Handling CollisionsVersion 7b: Attempt at Handling Collis
 Car slows down to the 0.9*speed-of-car-in-front instead of a standard (29.5mph)
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-Attempt 8a: Collision Avoidance & Cold Start : Slow-Down, Speed up Gradually (EVERY CYCLE, outside PATH PLANNER)
+Attempt 8a: Collision Avoidance & Cold Start : Slow-Down, Speed up Gradually (EVERY CYCLE, OUTSIDE PATH PLANNER)
 Resolved Issues:
 i) Collision Handling: Smooth Accelerartion/Deceleration & Jerk Minimization
 ---> Ego car does not collide
@@ -87,8 +87,20 @@ ii) Cold Start Jerk Mimization
 ---> Car will start at 0 and gradually ramp up to IDEAL_SPEED_LIMIT @REF_VEL -= 0.224(acceleration 5m/s^2) every cycle (outside path planner)
 
 Issues to address:
-i)  Increment/Decrement the ego-speed every way-point,inside the path-planner (instead of doing it every cycle outside the path planner)
+i)  Increment/Decrement the ego-speed(i.e the REF_VEL) every way-point,inside the path-planner (instead of doing it every cycle outside the path planner)
 ii) Handle lane Changes
+
+-------------------------------------------------------------------------------
+Attempt 8b: Collision Avoidance & Cold Start : Slow-Down, Speed up Gradually (EVERY WAYPOINT, INSIDE PATH PLANNER)
+Resolved Issues:
+i)  Increment/Decrement the ego-speed(i.e the REF_VEL) every way-point,inside the path-planner loop (instead of doing it every cycle outside the path planner)
+But Increment/Decrement-ing REF_VEL @0.224 every way-point causes jerk issues + collisions.
+Hence ---> I decrement REF_VEL at a slower rate of 0.224/2.0, &
+      ---> I increment REF_VEL at a slower rate of 0.224/3.0
+
+Issues to address:
+i) Handle lane Changes
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 */
 
@@ -259,22 +271,21 @@ int main() {
           ---> we can also increment/decrement REF_VEL for every waypoint in the PATH PLANNER BELOW
           */
 
+          /*
           //Decrease the REF_VEL of the ego-car gradually when
           //---> There is another car in front pg eg0-car.
-          //---> This corresponds to a decrease in acceleration of ~5m/s^2
+          //---> 0.224 corresponds to a decrease in acceleration of ~5m/s^2
           if(too_close) {
             REF_VEL -= 0.224;
           }
           //Increase the REF_VEL of the ego-car gradually when
           //---> i) when there is a cold start(starting at REF_VEL =0)
           //---> ii) if the ego-speed had falled since there was a slower car in front of ego-car and the ego-speed needs to pick up again
-          //---> This corresponds to a increase in acceleration of ~5m/s^2
+          //---> 0.224 corresponds to a increase in acceleration of ~5m/s^2
           else if(REF_VEL < IDEAL_SPEED_LIMIT){
             REF_VEL += 0.224;
           }
-
-
-
+          */
 
 
           // --------------------------------------------------------------------------------------------------------------------------------------------
@@ -415,21 +426,45 @@ int main() {
           double sample_y        = spl(sample_x) ;
           double sample_dist     = sqrt((sample_x*sample_x)+(sample_y*sample_y));
 
-          // We want the car to move at 49.5 mph(49.5/2.24 m/s). so the per_time_step_dist covered needs to be 0.02*REF_VEL/2.24 meter
-          // This distance is an arc along the spline. However similar to sample_dist, we approximate per_time_step_dist as a straight line instead of arc
-          // Hence per_time_step_x, per_time_step_y, per_time_step_dist form the base, height and hypotenuse respectively of the Right-Angled-Triangle-2
-          // Right-Angled-Triangle-1 & Right-Angled-Triangle-2 are 'similar'. This is used to establish unknowns per_time_step_x
-          // per_time_step_y is not estimated from right_triangle but use spline directly (in loop)
-          double per_time_step_dist  =  0.02*REF_VEL/2.24 ;
-          double per_time_step_x     = sample_x*per_time_step_dist/sample_dist    ;
-
-
+          double per_time_step_dist ;
+          double per_time_step_x    ;
 
           double x_point_car_coord, y_point_car_coord;
           double x_point_map_coord, y_point_map_coord;
           //Fill up the rest of our path planner after filling it with previous points,
           //Here we will always output 50 points
           for(int i =1; i<=50-previous_path_x.size(); i++) {
+              /*
+              INCREMENTING/DECREMENTING REF_VEL
+              ---> The following code increments/decrements the REF_VEL only every cycle and is inefficient.
+              ---> Since there are many waypoints a car needs to go to in one cycle (we say 50waypoints but could be lesser),
+              ---> we can also increment/decrement REF_VEL for every waypoint in the PATH PLANNER BELOW
+              */
+
+              //Decrease the REF_VEL of the ego-car gradually when
+              //---> There is another car in front pg eg0-car.
+              //---> 0.224 corresponds to a decrease in acceleration of ~5m/s^2.
+              //---> But since we are decrementing every waypoint (and not every cycle) I decrement it at an even slower rate of 0.224/2.0
+              if(too_close) {
+                REF_VEL -= 0.224/2.0;
+              }
+              //Increase the REF_VEL of the ego-car gradually when
+              //---> i) when there is a cold start(starting at REF_VEL =0)
+              //---> ii) if the ego-speed had falled since there was a slower car in front of ego-car and the ego-speed needs to pick up again
+              //---> 0.224 corresponds to a increase in acceleration of ~5m/s^2
+              //---> But since we are incrementing every waypoint (and not every cycle) I increment it at a slower rate of 0.224/3.0
+              else if(REF_VEL < IDEAL_SPEED_LIMIT){
+                REF_VEL += 0.224/3.0;
+              }
+
+              // We want the car to move at 49.5 mph(49.5/2.24 m/s). so the per_time_step_dist covered needs to be 0.02*REF_VEL/2.24 meter
+              // This distance is an arc along the spline. However similar to sample_dist, we approximate per_time_step_dist as a straight line instead of arc
+              // Hence per_time_step_x, per_time_step_y, per_time_step_dist form the base, height and hypotenuse respectively of the Right-Angled-Triangle-2
+              // Right-Angled-Triangle-1 & Right-Angled-Triangle-2 are 'similar'. This is used to establish unknowns per_time_step_x
+              // per_time_step_y is not estimated from right_triangle but use spline directly (in loop)
+              per_time_step_dist  =  0.02*REF_VEL/2.24 ;
+              per_time_step_x     = sample_x*per_time_step_dist/sample_dist    ;
+
               x_point_car_coord = per_time_step_x*i ;
               y_point_car_coord = spl(x_point_car_coord) ;
 
