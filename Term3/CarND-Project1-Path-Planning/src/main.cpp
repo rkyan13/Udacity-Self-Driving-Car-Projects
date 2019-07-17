@@ -1,26 +1,26 @@
 /*
 main.cpp :
-Version 0:  Base code from udacity
+Attempt 0:  Base code from udacity
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-Version 1:  Make car drive in straight line, based on udacity code (car over shoots road)
+Attempt 1:  Make car drive in straight line, based on udacity code (car over shoots road)
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-Version 2:  Make car drive in circular path, based on udacity code
+Attempt 2:  Make car drive in circular path, based on udacity code
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-Version 3:  Make car drive in straight line along 's'
+Attempt 3:  Make car drive in straight line along 's'
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-Version 4:  Make car drive in straight line along 's' using speed equations(no acceleration), car path explodes
+Attempt 4:  Make car drive in straight line along 's' using speed equations(no acceleration), car path explodes
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-Version 5:  Attempt at lane keeping (drive in straight line along s) using speed and acceleration limits.
+Attempt 5:  Attempt at lane keeping (drive in straight line along s) using speed and acceleration limits.
             Car maintains lane However car still exceeds speed, accel and jerk limits several times
             Car Collision not handled
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-Version 6: Attempt at lane keeping (drive in straight line along s) using spline. Based on Udacity's Aaron's Code
+Attempt 6: Attempt at lane keeping (drive in straight line along s) using spline. Based on Udacity's Aaron's Code
 Logic:
 STEP 1: CREATE 5 POINTS SPACED FAR APART : GENERATE ptsx & ptsy: so this will be
 (ptsx &,ptsy)= 5 points = {(ref_x,ref_y), (ref_prev_x,ref_prev_y), getXY(ego_s_30),getXY(ego_s_60),getXY(ego_s_90)}
@@ -49,7 +49,7 @@ ii)  Handle collisions
 iii) Handle Lane Changes
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-Version 7a: Attempt at Handling Collisions
+Attempt 7a: Attempt at Handling Collisions
 Resolved Issues:
 Ego car does not collide: slows down to 29.5 mph if there is a car in front
 (but ego-car reference velocity keeps changing from 29.5 to 49.5 mph every cycle. Quite irritating !!!)
@@ -62,7 +62,7 @@ ii)   Handle accel and jerk exceeding during cold start
 iii) Handle Lane Changes
 -------------------------------------------------------------------------------
 
-Version 7b: Attempt at Handling Collisions
+Attempt 7b: Attempt at Handling Collisions
 ---> Resolved the velocity changing from 29.5mph to 49.5 mph every cycle.Now ego-car-velocity remains at 29.5mph every cycle
 
 --> Moved the following piece of code from inside int main()/h.onMessage(...) to outside int main()
@@ -73,9 +73,23 @@ int ego_lane = 1;
 double REF_VEL = 49.5 ; //mph
 
 -------------------------------------------------------------------------------
-Version 7c: Attempt at Handling CollisionsVersion 7b: Attempt at Handling Collisions
+Attempt 7c: Attempt at Handling CollisionsVersion 7b: Attempt at Handling Collisions
 Car slows down to the 0.9*speed-of-car-in-front instead of a standard (29.5mph)
 -------------------------------------------------------------------------------------------------------------------------------------------
+
+Attempt 8a: Collision Avoidance & Cold Start : Slow-Down, Speed up Gradually (EVERY CYCLE, outside PATH PLANNER)
+Resolved Issues:
+i) Collision Handling: Smooth Accelerartion/Deceleration & Jerk Minimization
+---> Ego car does not collide
+---> Ego car slows down GRADUALLY @REF_VEL -= 0.224(deceleration 5m/s^2) every cycle(outside path planner)
+---> Once the slow moving car has passed the ego-car gradually ramps up to IDEAL_SPEED_LIMIT @REF_VEL -= 0.224(acceleration 5m/s^2) every cycle(outside path planner)
+ii) Cold Start Jerk Mimization
+---> Car will start at 0 and gradually ramp up to IDEAL_SPEED_LIMIT @REF_VEL -= 0.224(acceleration 5m/s^2) every cycle (outside path planner)
+
+Issues to address:
+i)  Increment/Decrement the ego-speed every way-point,inside the path-planner (instead of doing it every cycle outside the path planner)
+ii) Handle lane Changes
+
 */
 
 
@@ -100,7 +114,12 @@ using namespace std;
 int ego_lane = 1;
 
 //have a reference velocity to target
-double REF_VEL = 49.5 ; //mph
+const  double IDEAL_SPEED_LIMIT = 49.5;//mph
+// REF_VEL will be the running reference_velocity based on what other cars are around/ lane change etc.
+// start REF_VEL at 0 mph to take care of cold start
+double REF_VEL = 0 ; //mph
+
+
 
 
 int main() {
@@ -220,32 +239,46 @@ int main() {
                   if((other_car_s_future > ego_s) && ((other_car_s_future - ego_s)<30)) {
 
                     //Do some logic here
-                    //i) lower reference velocity so that we dont crash into the car in front of is
-                    //ii) also flag to try to change ego_lanes
-                    //REF_VEL = 29.5; //30mph
-
+                    //i) lower reference velocity so that we dont crash into the car in front of us (or do that later outside the loop)
+                    //Set the REF_VEL to 29.5 mph
+                    //REF_VEL = 29.5
                     //Set the REF_VEL to 0.95 of the other_car in front of you. other_car_s is m/s, convert to mph by multiplying by 2.24
-                    REF_VEL = (other_car_speed*2.24)*0.9 ; //mph
-                    //too_close = true ;
+                    //REF_VEL = (other_car_speed*2.24)*0.9 ; //mph
+
+                    //ii) also flag to try to change ego_lanes
+                    too_close = true ;
                   }
 
               }
           }
 
-
           /*
+          INCREMENTING/DECREMENTING REF_VEL
+          ---> The following code increments/decrements the REF_VEL only every cycle and is inefficient.
+          ---> Since there are many waypoints a car needs to go to in one cycle (we say 50waypoints but could be lesser),
+          ---> we can also increment/decrement REF_VEL for every waypoint in the PATH PLANNER BELOW
+          */
+
+          //Decrease the REF_VEL of the ego-car gradually when
+          //---> There is another car in front pg eg0-car.
+          //---> This corresponds to a decrease in acceleration of ~5m/s^2
           if(too_close) {
             REF_VEL -= 0.224;
           }
-          else if(REF_VEL < 49.5){
+          //Increase the REF_VEL of the ego-car gradually when
+          //---> i) when there is a cold start(starting at REF_VEL =0)
+          //---> ii) if the ego-speed had falled since there was a slower car in front of ego-car and the ego-speed needs to pick up again
+          //---> This corresponds to a increase in acceleration of ~5m/s^2
+          else if(REF_VEL < IDEAL_SPEED_LIMIT){
             REF_VEL += 0.224;
           }
-          */
+
+
 
 
 
           // --------------------------------------------------------------------------------------------------------------------------------------------
-          // ----------------------------- STEP 1: CREATE 5 POINTS SPACED FAR APART : GENERATE ptsx & ptsy ----------------------------------------------
+          // ------------------------ STEP 1 of PATH PLANNER: CREATE 5 POINTS SPACED FAR APART : GENERATE ptsx & ptsy -----------------------------------
           // --------- (ptsx &,ptsy)= 5 points = {(ref_x,ref_y), (ref_prev_x,ref_prev_y), getXY(ego_s_30),getXY(ego_s_60),getXY(ego_s_90) ---------------
           // --------------------------------------------------------------------------------------------------------------------------------------------
           // Create a list of widely space (x,y) waypoints, evenly spaced at 30m
@@ -331,7 +364,7 @@ int main() {
 
 
           // ----------------------------------------------------------------------------------------------------------------------------------------
-          // ------------------------------- STEP 2: CREATE SPLINE : FROM THE FAR SPACED 5 POINTS ---------------------------------------------------
+          // ------------------------ STEP 2 of PATH PLANNER: CREATE SPLINE : FROM THE FAR SPACED 5 POINTS ------------------------------------------
           // ------------------------------- spl = spline-from(ptsx,ptsy) ---------------------------------------------------------------------------
           // ----------------------------------------------------------------------------------------------------------------------------------------
           //ksw comments: define a spline spl
@@ -345,7 +378,7 @@ int main() {
 
 
           // ---------------------------------------------------------------------------------------------------------------------------------------
-          // ------ STEP 3: CREATE THE ACTUAL PATH POINTS: next_x_vals, next_y_vals for the Path Planner -------------------------------------------
+          // ------ STEP 3 of PATH PLANNER: CREATE THE ACTUAL PATH POINTS: next_x_vals, next_y_vals for the Path Planner ---------------------------
           // ------ STEP 3a: USE previous_path POINTS TO CREATE :next_x_vals, next_y_vals (DOES NOT USE THE SPLINE POINTS-spl) ---------------------
           // -------Note: previous_path_x, previous_path_y  DO-NOT INCLUDE ALL the points generated the previous cycle.-----------------------------
           // -------They only consist of the remainder of the path points that the car did not use/did not travel in the previous cycle-------------
@@ -395,7 +428,7 @@ int main() {
           double x_point_car_coord, y_point_car_coord;
           double x_point_map_coord, y_point_map_coord;
           //Fill up the rest of our path planner after filling it with previous points,
-          //Here we ill always output 50 points
+          //Here we will always output 50 points
           for(int i =1; i<=50-previous_path_x.size(); i++) {
               x_point_car_coord = per_time_step_x*i ;
               y_point_car_coord = spl(x_point_car_coord) ;
