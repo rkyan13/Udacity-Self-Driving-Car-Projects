@@ -56,10 +56,23 @@ Ego car does not collide: slows down to 29.5 mph if there is a car in front
 
 Issues to address:
 i)  Handle collisions in a better way
---> ego-car reference velocity keeps changing from 29.5 to 49.5 mph every cycle
+--> ego-car velocity keeps changing from 29.5 to 49.5 mph every cycle
 --> ego-car slows down to 29.5 mph but never picks up the speed back to 49.5 mph
 ii)   Handle accel and jerk exceeding during cold start
 iii) Handle Lane Changes
+-------------------------------------------------------------------------------
+
+Version 7b: Attempt at Handling Collisions
+---> Resolved the velocity changing from 29.5mph to 49.5 mph every cycle.Now ego-car-velocity remains at 29.5mph every cycle
+
+--> Moved the following piece of code from inside int main()/h.onMessage(...) to outside int main()
+//start in ego_lane 1
+int ego_lane = 1;
+
+//have a reference velocity to target
+double REF_VEL = 49.5 ; //mph
+
+-------------------------------------------------------------------------------------------------------------------------------------------
 */
 
 
@@ -80,6 +93,11 @@ using std::string;
 using std::vector;
 using namespace std;
 
+//start in ego_lane 1
+int ego_lane = 1;
+
+//have a reference velocity to target
+double REF_VEL = 49.5 ; //mph
 
 
 int main() {
@@ -150,12 +168,6 @@ int main() {
           cout<<"\n\n ego_speed_mph ="<<ego_speed_mph <<"; ego_s ="     << ego_s ;
           cout<<"\n   ego_d     ="<<ego_d     <<"; egoCaar_lane ="   << egoCaar_lane ;
 
-          //start in ego_lane 1
-          int ego_lane = 1;
-
-          //have a reference velocity to target
-          double REF_VEL = 49.5 ; //mph
-
 
           // Previous path data given to the Planner
           auto previous_path_x = j[1]["previous_path_x"];
@@ -209,8 +221,8 @@ int main() {
                     //ii) also flag to try to change ego_lanes
                     REF_VEL = 29.5; //30mph
 
-                    //Set the REF_VEL to 0.95 of the other_car in front of you. other_car_s is m/s, convert to mph by multiplying by 2.23694
-                    //REF_VEL = (other_car_s*2.23694)*0.95 ; //mph
+                    //Set the REF_VEL to 0.95 of the other_car in front of you. other_car_s is m/s, convert to mph by multiplying by 2.24
+                    //REF_VEL = (other_car_speed*2.24)*0.9 ; //mph
                     //too_close = true ;
                   }
 
