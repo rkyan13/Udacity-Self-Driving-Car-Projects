@@ -1,24 +1,40 @@
 /*
+Note:
+---> in Frenet co-ordinates d is lateral distance, s is vertical distance along the length of the road
+
+---> d-value for lanes {0,
+                       LeftLane:   Lane#0: (1,2,3),
+                       4,
+                       MiddleLane: Lane#1: (5,6,7),
+                       8,
+                       RightLane: Lane#2:  (9,10,11),
+                       12}
+
+---> previous_path_x, previous_path_y  DO-NOT INCLUDE ALL  the points generated the previous cycle.
+    They only consist of the remainder of the path points that the car did not use/did not travel in the previous cycle
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 main.cpp :
 Attempt 0:  Base code from udacity
--------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Attempt 1:  Make car drive in straight line, based on udacity code (car over shoots road)
--------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Attempt 2:  Make car drive in circular path, based on udacity code
--------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Attempt 3:  Make car drive in straight line along 's'
--------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Attempt 4:  Make car drive in straight line along 's' using speed equations(no acceleration), car path explodes
--------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Attempt 5:  Attempt at lane keeping (drive in straight line along s) using speed and acceleration limits.
             Car maintains lane However car still exceeds speed, accel and jerk limits several times
             Car Collision not handled
--------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Attempt 6: Attempt at lane keeping (drive in straight line along s) using spline. Based on Udacity's Aaron's Code
 Logic:
@@ -47,7 +63,7 @@ Issues to address:
 i)   Handle accel and jerk exceeding during cold start
 ii)  Handle collisions
 iii) Handle Lane Changes
--------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Attempt 7a: Attempt at Handling Collisions
 Resolved Issues:
@@ -73,9 +89,10 @@ int ego_lane = 1;
 double REF_VEL = 49.5 ; //mph
 
 -------------------------------------------------------------------------------
+
 Attempt 7c: Attempt at Handling CollisionsVersion 7b: Attempt at Handling Collisions
 Car slows down to the 0.9*speed-of-car-in-front instead of a standard (29.5mph)
--------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Attempt 8a: Collision Avoidance & Cold Start : Slow-Down, Speed up Gradually (EVERY CYCLE, OUTSIDE PATH PLANNER)
 Resolved Issues:
@@ -91,6 +108,7 @@ i)  Increment/Decrement the ego-speed(i.e the REF_VEL) every way-point,inside th
 ii) Handle lane Changes
 
 -------------------------------------------------------------------------------
+
 Attempt 8b: Collision Avoidance & Cold Start : Slow-Down, Speed up Gradually (EVERY WAYPOINT, INSIDE PATH PLANNER)
 Resolved Issues:
 i)  Increment/Decrement the ego-speed(i.e the REF_VEL) every way-point,inside the path-planner loop (instead of doing it every cycle outside the path planner)
@@ -100,13 +118,24 @@ Hence ---> I decrement REF_VEL at a slower rate of 0.224/2.0, &
 
 Issues to address:
 i) Handle lane Changes
--------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 Attempt 9: First take on Lane change (See project Q&A 52.30min to 57min )
 i) If there is is a slow moving car ahead, ego_car will move to the left lane (if left lane exists)
 
 Issues to address:
 i) Does not check if it is safe to change lanes.i.e does not check if car on left lane is within colliding distance, just blindly changes lane
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Attempt 10: First Rubric Passing Version with Good Lane Changes !!!!
+i) If there is is a car ahead, ego_car will change lanes to as appropriate left or right lane  whichever is clear of traffic
+(or continue in the same lane, if neither left nor right lane is clear)
+
+Issues to address:
+i) If Ego-Car is in High-Speed-Left-Lane(Lane0) or Low-Speed-Right-Lane(Lane2), it does not make an effort to get back to Center-Lane1
+
 */
+
 
 
 #include <uWS/uWS.h>
@@ -114,11 +143,13 @@ i) Does not check if it is safe to change lanes.i.e does not check if car on lef
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cmath>
 #include "Eigen-3.3/Eigen/Core"
 #include "Eigen-3.3/Eigen/QR"
 #include "helpers.h"
 #include "json.hpp"
 #include "spline.h"
+
 
 // for convenience
 using nlohmann::json;
@@ -127,14 +158,15 @@ using std::vector;
 using namespace std;
 
 //start in ego_lane 1
-int ego_lane = 1;
+int ego_lane_intended = 1;
 
 //have a reference velocity to target
 const  double IDEAL_SPEED_LIMIT = 49.5;//mph
-// REF_VEL will be the running reference_velocity based on what other cars are around/ lane change etc.
+// REF_VEL will be the running reference_velocity of the ego_car based on what other cars are around/ lane change etc.
 // start REF_VEL at 0 mph to take care of cold start
 double REF_VEL = 0 ; //mph
 
+const int debug = 0;
 
 
 
@@ -175,14 +207,13 @@ int main() {
     map_waypoints_dy.push_back(d_y);
   }
 
-
+  //the h.onMessage is called/occurs every cycle
   h.onMessage([&map_waypoints_x,&map_waypoints_y,&map_waypoints_s,
                &map_waypoints_dx,&map_waypoints_dy]
               (uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length,
                uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
-    // The 4 signifies a websocket message
-    // The 2 signifies a websocket event
+    // The 4 signifies a websocket message. The 2 signifies a websocket event
     if (length && length > 2 && data[0] == '4' && data[1] == '2') {
 
       auto s = hasData(data);
@@ -196,15 +227,21 @@ int main() {
           // j[1] is the data JSON object
 
           // Main car's localization Data
-          double ego_x     = j[1]["x"];
-          double ego_y     = j[1]["y"];
-          double ego_s     = j[1]["s"];
-          double ego_d     = j[1]["d"];
-          double ego_yaw   = j[1]["yaw"];
-          double ego_speed_mph = j[1]["speed"];
-          int    egoCaar_lane     = ego_d/4 ;
-          cout<<"\n\n ego_speed_mph ="<<ego_speed_mph <<"; ego_s ="     << ego_s ;
-          cout<<"\n   ego_d     ="<<ego_d     <<"; egoCaar_lane ="   << egoCaar_lane ;
+          double ego_x            = j[1]["x"];
+          double ego_y            = j[1]["y"];
+          double ego_s            = j[1]["s"];
+          double ego_d            = j[1]["d"];
+          double ego_yaw          = j[1]["yaw"];
+          double ego_speed_mph    = j[1]["speed"];
+          int    ego_lane_actual  = ego_d/4 ;
+          //if d =4 , ego_lane_actual will become 3, but there are only 3 lanes: Lane 0,1 & 2
+          if(ego_lane_actual == 3)
+                 ego_lane_actual =2 ;
+
+          if(debug == 1) {
+                cout<<"\n\n ego_speed_mph ="<<ego_speed_mph <<"; ego_s ="     << ego_s ;
+                cout<<"\n   ego_d     ="<<ego_d     <<"; ego_lane_actual ="   << ego_lane_actual     <<"; ego_lane_intended ="   << ego_lane_intended ;
+          }
 
 
           // Previous path data given to the Planner
@@ -221,83 +258,150 @@ int main() {
           int prev_size = previous_path_x.size();
 
           // --------------------------------------------------------------------------------------------------------------------------------------------
-          // ----------------------------- HANDLING COLLISIONS (Project Q & A : 40min - 49min ) ---------------------------------------------------------
+          // ---------------- HANDLING COLLISIONS (Project Q & A : 40min - 49min ) ----------------------------------------------------------------------
+          // ---------------- HANDLING COLLISIONS -PART 1: Read Sensor Fusion Data of Other Cars --------------------------------------------------------
           // --------------------------------------------------------------------------------------------------------------------------------------------
           if(prev_size > 0) {
             ego_s = end_path_s;
           }
 
-          bool too_close = false;
+          bool car_ahead = false;
+          bool car_left  = false;
+          bool car_right = false;
 
-          float  other_car_d     ; //m
+          double car_ahead_distance = 9999.99;
+          double car_left_distance  = 9999.99;
+          double car_right_distance = 9999.99;
+
+          int car_ahead_num = -99,  car_ahead_lane  = -99;
+          int car_left_num  = -99,  car_left_lane   = -99;
+          int car_right_num = -99,  car_right_lane  = -99;
+
+
           double other_car_vx    ; //m/s
           double other_car_vy    ; //m/s
           double other_car_speed ; //m/s
+          float  other_car_d     ; //m
+          int    other_car_lane  ;
           double other_car_s, other_car_s_future  ; //m
 
           //find ref_v to use
           //Use sensor fusion data of all the other surrounding cars
           for(int i =0; i< sensor_fusion.size(); i++) {
               //sensor_fusion[i] has the values from ith car on the road
-              other_car_d = sensor_fusion[i][6];
 
-              //check if other_car is in ego_car-lane
-              if(other_car_d < (2+4*ego_lane+2) && other_car_d >(2+4*ego_lane-2)) {
-                    other_car_vx    = sensor_fusion[i][3];
-                    other_car_vy    = sensor_fusion[i][4];
-                    other_car_speed = sqrt(other_car_vx*other_car_vx + other_car_vy*other_car_vy);
+              other_car_vx    = sensor_fusion[i][3];
+              other_car_vy    = sensor_fusion[i][4];
+              other_car_speed = sqrt(other_car_vx*other_car_vx + other_car_vy*other_car_vy);
 
-                    other_car_s     = sensor_fusion[i][5];
-                    //project other_car_s into the future. i.e if prev_size has 10 remaining values. where will the other car be in 10 time steps
-                    //KSW Question : previous_size differs every time. and everytime we calculate path for 50 time steps. Shouldn't we be projecting for more than previous_time step size
-                    other_car_s_future = other_car_s + ((double)prev_size*0.02*other_car_speed); //if using previous points cann project s value out
+              other_car_s     = sensor_fusion[i][5];
+              //project other_car_s into the future. i.e if prev_size has 10 remaining values. where will the other car be in 10 time steps
+              //KSW Question : previous_size differs every time. and everytime we calculate path for 50 time steps. Shouldn't we be projecting for more than previous_time step size
+              other_car_s_future = other_car_s + ((double)prev_size*0.02*other_car_speed); //if using previous points cann project s value out
 
-                    //Check if other_car_s in the future is ahead of ego_s and within 30m of the ego_s: check s values greater than mine and s gap
-                    if((other_car_s_future > ego_s) && ((other_car_s_future - ego_s)<30)) {
-                          //Do some logic here
-                          //i) lower reference velocity so that we dont crash into the car in front of us (or do that later outside the loop)
-                          //Set the REF_VEL to 29.5 mph
-                          //REF_VEL = 29.5
-                          //Set the REF_VEL to 0.95 of the other_car in front of you. other_car_s is m/s, convert to mph by multiplying by 2.24
-                          //REF_VEL = (other_car_speed*2.24)*0.9 ; //mph
+              other_car_d     = sensor_fusion[i][6];
+              other_car_lane  = other_car_d/4;
+              //if d =4 , other_car_lane will become 3, but there are only 3 lanes: Lane 0,1 & 2
+              if(other_car_lane == 3)
+                     other_car_lane =2;
 
-                          //ii) also flag to try to change ego_lanes
-                          too_close = true ;
-                          //if on ego_lane 1 or ego_lane 2 try to move to the left lane
-                          if(ego_lane >0) {
-                            //check if left lane is safe to move to
+              //check if other_car is in ego_lane
+              if(other_car_lane == ego_lane_actual) {
+                    if(0<(other_car_s_future - ego_s) &&(other_car_s_future - ego_s)<30) {
+                          car_ahead          = true ;
+                          car_ahead_num      = i+1  ;
+                          car_ahead_lane     = other_car_lane ;
+                          car_ahead_distance = other_car_s_future - ego_s ;
+                    }
+              }
 
-                            //Decrement the lane value by 1
-                            ego_lane = ego_lane -1;
-                          }//eof if(lane >0)
+              if(other_car_lane == ego_lane_actual-1){
+                    if(abs(other_car_s_future - ego_s)<20){
+                          car_left          = true ;
+                          car_left_num      = i+1  ;
+                          car_left_lane     = other_car_lane ;
+                          car_left_distance = other_car_s_future - ego_s ;
+                    }
+              }
 
-                    }// eof if((other_car_s_future > ego_s) && ((other_car_s_future - ego_s)<30))
+              if(other_car_lane == ego_lane_actual+1){
+                    if(abs(other_car_s_future - ego_s)<20){
+                          car_right          = true ;
+                          car_right_num      = i+1  ;
+                          car_right_lane     = other_car_lane ;
+                          car_right_distance = other_car_s_future - ego_s ;
+                    }
+              }
 
-              } //if(other_car_d < (2+4*ego_lane+2) && other_car_d >(2+4*ego_lane-2))
           } //end of sensor fusion: for(int i =0; i< sensor_fusion.size(); i++)
+          // ---------------- END of HANDLING COLLISIONS -PART 1: Reading Sensor Fusion Data of Other Cars Complete----------------------------------------------------------------------
 
-          /*
-          INCREMENTING/DECREMENTING REF_VEL
-          ---> The following code increments/decrements the REF_VEL only every cycle and is inefficient.
-          ---> Since there are many waypoints a car needs to go to in one cycle (we say 50waypoints but could be lesser),
-          ---> we can also increment/decrement REF_VEL for every waypoint in the PATH PLANNER BELOW
-          */
 
-          /*
-          //Decrease the REF_VEL of the ego-car gradually when
-          //---> There is another car in front pg eg0-car.
-          //---> 0.224 corresponds to a decrease in acceleration of ~5m/s^2
-          if(too_close) {
-            REF_VEL -= 0.224;
-          }
-          //Increase the REF_VEL of the ego-car gradually when
-          //---> i) when there is a cold start(starting at REF_VEL =0)
-          //---> ii) if the ego-speed had falled since there was a slower car in front of ego-car and the ego-speed needs to pick up again
-          //---> 0.224 corresponds to a increase in acceleration of ~5m/s^2
-          else if(REF_VEL < IDEAL_SPEED_LIMIT){
-            REF_VEL += 0.224;
-          }
-          */
+
+          // --------------------------------------------------------------------------------------------------------------------------------------------
+          // ---------------- HANDLING COLLISIONS -PART 2: LANE CHANGE LOGIC ----------------------------------------------------------------------------
+          // --------------------------------------------------------------------------------------------------------------------------------------------
+
+          //If there is a slow moving car_ahead i) try to change lanes ii) definitely slow down to not collide with the car
+          if(car_ahead == true){
+                //---------------------------- Print Some Messages for Clarity ---------------------------------------------------------------------------------------
+                cout<<"\n\n CAR#" << car_ahead_num <<" AHEAD: ,@Lane: "<<car_ahead_lane<<" ,@Distance-ahead: "<<car_ahead_distance<<" meter.";
+                if(car_left == true) {
+                      if(car_left_distance>=0 )
+                          cout<<"\n NOT SAFE to move LEFT!!! Car#" << car_left_num <<" ,@Lane: "<<car_left_lane<<" ,@Distance-ahead: "<<car_left_distance<<" meter.";
+                      else
+                          cout<<"\n NOT SAFE to move LEFT!!! Car#" << car_left_num <<" ,@Lane: "<<car_left_lane<<" ,@Distance-behind: "<<abs(car_left_distance)<<" meter.";
+                }
+                if(car_right == true) {
+                      if(car_right_distance>=0 )
+                          cout<<"\n NOT SAFE to move RIGHT!!! Car#" << car_right_num <<" ,@Lane: "<<car_right_lane<<" ,@Distance-ahead: "<<car_right_distance<<" meter.";
+                      else
+                          cout<<"\n NOT SAFE to move RIGHT!!! Car#" << car_right_num <<" ,@Lane: "<<car_right_lane<<" ,@Distance-behind: "<<abs(car_right_distance)<<" meter.";
+                }
+                //---------------------------- End of Print Messages for Clarity ---------------------------------------------------------------------------------------
+
+
+                //-------------------------- LANE CHANGE LOGIC --------------------------------------------
+                //If the ego_car is in Lane1, or Lane2 and there is no car on the left, move to left lane
+                if((ego_lane_actual >0) && (car_left == false)) {
+                    ego_lane_intended = ego_lane_actual -1;
+                    cout<<"\n Ego-Car Moving Left to Lane#"<<ego_lane_intended;
+                }
+                //If the ego_car is in Lane0, or Lane1 and there is no car on the right, move to right lane
+                else if((ego_lane_actual <2) && (car_right == false)) {
+                    ego_lane_intended = ego_lane_actual +1;
+                    cout<<"\n Ego-Car Moving Right to Lane#"<<ego_lane_intended;
+                }
+                //It is not safe to change lanes. Continue on the same lane
+                else {
+                    ego_lane_intended = ego_lane_actual ;
+                    cout<<"\n Ego-Car NOT SAFE to Change Lane !!! Continuing in SAME LANE#"<<ego_lane_intended;
+                }
+                //-------------------------- END OF LANE CHANGE LOGIC --------------------------------------------
+                /*
+
+                //--------------------------  INCREMENTING/DECREMENTING REF_VEL --------------------------------------------
+                ---> The following code increments/decrements the REF_VEL only every cycle and is inefficient.
+                ---> Since there are many waypoints a car needs to go to in one cycle (we say 50waypoints but could be lesser),
+                ---> we can also increment/decrement REF_VEL for every waypoint in the PATH PLANNER BELOW
+                */
+
+                /*
+                //Decrease the REF_VEL of the ego-car gradually when
+                //---> There is another car in front pg eg0-car.
+                //---> 0.224 corresponds to a decrease in acceleration of ~5m/s^2
+                if(car_ahead == true) {
+                  REF_VEL -= 0.224;
+                }
+                //Increase the REF_VEL of the ego-car gradually when
+                //---> i) when there is a cold start(starting at REF_VEL =0)
+                //---> ii) if the ego-speed had falled since there was a slower car in front of ego-car and the ego-speed needs to pick up again
+                //---> 0.224 corresponds to a increase in acceleration of ~5m/s^2
+                else if(REF_VEL < IDEAL_SPEED_LIMIT){
+                  REF_VEL += 0.224;
+                }
+                */
+          }//eof if(car_ahead == true)
 
 
           // --------------------------------------------------------------------------------------------------------------------------------------------
@@ -347,9 +451,9 @@ int main() {
           }
 
           //In Frenet add evenly 30m spaced points ahead of the starting reference look out for 30m, 60m, 90m)
-          vector<double> next_wp0 = getXY(ego_s+30, (2+4*ego_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
-          vector<double> next_wp1 = getXY(ego_s+60, (2+4*ego_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
-          vector<double> next_wp2 = getXY(ego_s+90, (2+4*ego_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
+          vector<double> next_wp0 = getXY(ego_s+30, (2+4*ego_lane_intended), map_waypoints_s, map_waypoints_x, map_waypoints_y);
+          vector<double> next_wp1 = getXY(ego_s+60, (2+4*ego_lane_intended), map_waypoints_s, map_waypoints_x, map_waypoints_y);
+          vector<double> next_wp2 = getXY(ego_s+90, (2+4*ego_lane_intended), map_waypoints_s, map_waypoints_x, map_waypoints_y);
 
           // So there are 5 waypoints
           //  i) previous 2 locations of the cars
@@ -457,7 +561,7 @@ int main() {
               //---> There is another car in front pg eg0-car.
               //---> 0.224 corresponds to a decrease in acceleration of ~5m/s^2.
               //---> But since we are decrementing every waypoint (and not every cycle) I decrement it at an even slower rate of 0.224/2.0
-              if(too_close) {
+              if(car_ahead == true) {
                 REF_VEL -= 0.224/2.0;
               }
               //Increase the REF_VEL of the ego-car gradually when
