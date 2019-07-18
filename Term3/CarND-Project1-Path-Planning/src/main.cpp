@@ -101,7 +101,11 @@ Hence ---> I decrement REF_VEL at a slower rate of 0.224/2.0, &
 Issues to address:
 i) Handle lane Changes
 -------------------------------------------------------------------------------------------------------------------------------------------
+Attempt 9: First take on Lane change (See project Q&A 52.30min to 57min )
+i) If there is is a slow moving car ahead, ego_car will move to the left lane (if left lane exists)
 
+Issues to address:
+i) Does not check if it is safe to change lanes.i.e does not check if car on left lane is within colliding distance, just blindly changes lane
 */
 
 
@@ -232,37 +236,45 @@ int main() {
           double other_car_s, other_car_s_future  ; //m
 
           //find ref_v to use
+          //Use sensor fusion data of all the other surrounding cars
           for(int i =0; i< sensor_fusion.size(); i++) {
               //sensor_fusion[i] has the values from ith car on the road
               other_car_d = sensor_fusion[i][6];
 
               //check if other_car is in ego_car-lane
               if(other_car_d < (2+4*ego_lane+2) && other_car_d >(2+4*ego_lane-2)) {
-                  other_car_vx    = sensor_fusion[i][3];
-                  other_car_vy    = sensor_fusion[i][4];
-                  other_car_speed = sqrt(other_car_vx*other_car_vx + other_car_vy*other_car_vy);
+                    other_car_vx    = sensor_fusion[i][3];
+                    other_car_vy    = sensor_fusion[i][4];
+                    other_car_speed = sqrt(other_car_vx*other_car_vx + other_car_vy*other_car_vy);
 
-                  other_car_s     = sensor_fusion[i][5];
-                  //project other_car_s into the future. i.e if prev_size has 10 remaining values. where will the other car be in 10 time steps
-                  //KSW Question : previous_size differs every time. and everytime we calculate path for 50 time steps. Shouldn't we be projecting for more than previous_time step size
-                  other_car_s_future = other_car_s + ((double)prev_size*0.02*other_car_speed); //if using previous points cann project s value out
+                    other_car_s     = sensor_fusion[i][5];
+                    //project other_car_s into the future. i.e if prev_size has 10 remaining values. where will the other car be in 10 time steps
+                    //KSW Question : previous_size differs every time. and everytime we calculate path for 50 time steps. Shouldn't we be projecting for more than previous_time step size
+                    other_car_s_future = other_car_s + ((double)prev_size*0.02*other_car_speed); //if using previous points cann project s value out
 
-                  //Check if other_car_s in the future is ahead of ego_s and within 30m of the ego_s: check s values greater than mine and s gap
-                  if((other_car_s_future > ego_s) && ((other_car_s_future - ego_s)<30)) {
+                    //Check if other_car_s in the future is ahead of ego_s and within 30m of the ego_s: check s values greater than mine and s gap
+                    if((other_car_s_future > ego_s) && ((other_car_s_future - ego_s)<30)) {
+                          //Do some logic here
+                          //i) lower reference velocity so that we dont crash into the car in front of us (or do that later outside the loop)
+                          //Set the REF_VEL to 29.5 mph
+                          //REF_VEL = 29.5
+                          //Set the REF_VEL to 0.95 of the other_car in front of you. other_car_s is m/s, convert to mph by multiplying by 2.24
+                          //REF_VEL = (other_car_speed*2.24)*0.9 ; //mph
 
-                    //Do some logic here
-                    //i) lower reference velocity so that we dont crash into the car in front of us (or do that later outside the loop)
-                    //Set the REF_VEL to 29.5 mph
-                    //REF_VEL = 29.5
-                    //Set the REF_VEL to 0.95 of the other_car in front of you. other_car_s is m/s, convert to mph by multiplying by 2.24
-                    //REF_VEL = (other_car_speed*2.24)*0.9 ; //mph
+                          //ii) also flag to try to change ego_lanes
+                          too_close = true ;
+                          //if on ego_lane 1 or ego_lane 2 try to move to the left lane
+                          if(ego_lane >0) {
+                            //check if left lane is safe to move to
 
-                    //ii) also flag to try to change ego_lanes
-                    too_close = true ;
-                  }
+                            //Decrement the lane value by 1
+                            ego_lane = ego_lane -1;
+                          }//eof if(lane >0)
 
-              }
-          }
+                    }// eof if((other_car_s_future > ego_s) && ((other_car_s_future - ego_s)<30))
+
+              } //if(other_car_d < (2+4*ego_lane+2) && other_car_d >(2+4*ego_lane-2))
+          } //end of sensor fusion: for(int i =0; i< sensor_fusion.size(); i++)
 
           /*
           INCREMENTING/DECREMENTING REF_VEL
