@@ -77,7 +77,7 @@ class TLDetector(object):
 
     def pose_cb(self, msg):
         self.pose = msg
-        #self.traffic_light_state_routine()
+        self.traffic_light_state_routine()
 
 
 
@@ -121,7 +121,7 @@ class TLDetector(object):
         #Save the camera_image
         self.camera_image = msg
 
-        self.traffic_light_state_routine()
+        #self.traffic_light_state_routine()
 
 
 
