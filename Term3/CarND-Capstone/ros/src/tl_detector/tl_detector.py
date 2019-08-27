@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+#Note in order for tl_detector.py to actually get called and work. In the simulator, uncheck the  Manual mode and be sure to check the Camera mode
+#The /final_waypoint topic will get published only if the camera mode has been checked in the simulator
 import rospy
 from scipy.spatial     import KDTree
 from std_msgs.msg      import Int32
@@ -13,6 +16,7 @@ import cv2
 import yaml
 
 STATE_COUNT_THRESHOLD = 3
+DEBUG = 0
 
 class TLDetector(object):
     def __init__(self):
@@ -53,7 +57,7 @@ class TLDetector(object):
 
         #------- ii) def __init__ : All the publishers -------------------------------------------------------------
         #So we are publishing the traffic_waypoint
-        self.upcoming_red_light_pub = rospy.Publisher('/traffic_waypoint', Int32, queue_size=1)
+        self.upcoming_traffic_light_waypoint_pub = rospy.Publisher('/traffic_waypoint', Int32, queue_size=1)
 
         #------- iii) def __init__ : Configure some things for the Classifier---------------------------------------
 
@@ -73,6 +77,8 @@ class TLDetector(object):
 
     def pose_cb(self, msg):
         self.pose = msg
+        #self.traffic_light_state_routine()
+
 
 
     def waypoints_cb(self, base_waypts):
@@ -115,6 +121,12 @@ class TLDetector(object):
         #Save the camera_image
         self.camera_image = msg
 
+        self.traffic_light_state_routine()
+
+
+
+
+    def traffic_light_state_routine(self):
         # get the waypoint-closest-to-tl and state-of-tl using self.process_traffic_lights
         light_wp, state = self.process_traffic_lights()
 
@@ -125,21 +137,39 @@ class TLDetector(object):
         '''
         #If you determine that the state of the traffic light has changed, start a counter
         if self.state != state:
-            self.state_count = 0
-            self.state = state
+                self.state_count = 0
+                self.state = state
         #if the state has not been flickering and has remained the same, deal with red light(publish the NEW way point associated with this traffic light)
         #also add logic for yellow light
         elif self.state_count >= STATE_COUNT_THRESHOLD:
-            self.last_state = self.state
-            # If the light is red: publish the NEW way point associated with this traffic light
-            # For green and yellow , we just publish -1, which means you can continue driving through
-            # TODO: do something better with yellow traffic light
-            light_wp = light_wp if state == TrafficLight.RED else -1
-            self.last_wp = light_wp
-            self.upcoming_red_light_pub.publish(Int32(light_wp))
+                self.last_state = self.state
+                # If the light is red: publish the NEW way point associated with this traffic light
+                # For green and yellow , we just publish -1, which means you can continue driving through
+                # TODO: do something better with yellow traffic light
+                if   state == TrafficLight.RED :
+                    light_wp = light_wp
+                    print_color = "TR: RED :"
+                elif state == TrafficLight.GREEN :
+                    light_wp = -1
+                    print_color = "TR: GREEN :"
+                elif state == TrafficLight.YELLOW :
+                    light_wp = -1
+                    print_color = "TR: YELLOW :"
+                elif state == TrafficLight.UNKNOWN :
+                    light_wp = -1
+                    print_color = "TR: UNKNOWN :"
+                else :
+                    light_wp = -1
+                    print_color = "TR:---------- :"
+                self.last_wp = light_wp
+                self.upcoming_traffic_light_waypoint_pub.publish(Int32(light_wp))
+                if(DEBUG == 1):
+                    print(print_color,light_wp)
         # If the state has been flickering, just publish the previous way point
         else:
-            self.upcoming_red_light_pub.publish(Int32(self.last_wp))
+                self.upcoming_traffic_light_waypoint_pub.publish(Int32(self.last_wp))
+                if(DEBUG == 1):
+                    print("Flickering State:-----",self.last_wp)
         self.state_count += 1
 
 
@@ -160,27 +190,27 @@ class TLDetector(object):
         # List of positions that correspond to the line to stop in front of for a given intersection
         stop_line_positions = self.config['stop_line_positions']
         if(self.pose):
-                car_wp_idx = self.get_closest_waypoint_idx(self.pose.pose.position.x, self.pose.pose.postion.y)
+                car_wp_idx = self.get_closest_waypoint_idx(self.pose.pose.position.x, self.pose.pose.position.y)
 
                 #TODO find the closest visible traffic light (if one exists)
                 #Iterate through all the traffic lights to find the closest one (there are only 8 traffic lights, so it is not much of a gain using the KD tree lol)
                 #but the KD tree is useful when iterating through the base waypoints which are of the order of a 1000
                 diff = len(self.base_waypoints.waypoints)
-		for i, temp_light in enumerate(self.lights):
-			# Get stop line waypoint index
-			temp_line   = stop_line_positions[i]
-			temp_wp_idx = self.get_closest_waypoint_dx(temp_line[0], temp_line[1])
-			# Find closest stop line waypoint index
-			d = temp_wp_idx - car_wp_idx
-			if d>=0 and d<diff:
-				diff                = d
-				closest_light       = temp_light
-				closest_line_wp_idx = temp_wp_idx
+                for i, temp_light in enumerate(self.lights):
+                        # Get stop line waypoint index
+                        temp_line   = stop_line_positions[i]
+                        temp_wp_idx = self.get_closest_waypoint_idx(temp_line[0], temp_line[1])
+                        # Find closest stop line waypoint index
+                        d = temp_wp_idx - car_wp_idx
+                        if d>=0 and d<diff:
+                                diff                = d
+                                closest_light       = temp_light
+                                closest_line_wp_idx = temp_wp_idx
 
         # ksw thinks: this might need to be changed
         if closest_light:
-            closest_light_state = self.get_light_state(closest_light)
-            return closest_line_wp_dix, closest_light_state
+                closest_light_state = self.get_light_state(closest_light)
+                return closest_line_wp_idx, closest_light_state
 
         # If the TrafficLight State is unknown just keep the car moving. The car will be tested in a very controlled environment
         return -1, TrafficLight.UNKNOWN
