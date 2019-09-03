@@ -63,9 +63,11 @@ class TLDetector(object):
 
         config_string         = rospy.get_param("/traffic_light_config")
         self.config           = yaml.load(config_string)
+        self.is_site          = self.config["is_site"]
+        self.model_source_num = 1 #1: ssd_inception(also default), 2:faster_rcnn_inception, 3:faster_rcnn_resnet
         self.bridge           = CvBridge()
         #Code to setup the classifier
-        self.light_classifier = TLClassifier()
+        self.light_classifier = TLClassifier(self.is_site,seld.model_source_num)
         self.listener         = tf.TransformListener()
         self.state            = TrafficLight.UNKNOWN
         self.last_state       = TrafficLight.UNKNOWN
@@ -77,7 +79,7 @@ class TLDetector(object):
 
     def pose_cb(self, msg):
         self.pose = msg
-        self.traffic_light_state_routine()
+        #self.traffic_light_state_routine()
 
 
 
@@ -121,7 +123,7 @@ class TLDetector(object):
         #Save the camera_image
         self.camera_image = msg
 
-        #self.traffic_light_state_routine()
+        self.traffic_light_state_routine()
 
 
 
@@ -228,16 +230,16 @@ class TLDetector(object):
 
         """
         #For testing, just return the light state
-        return light.state
+        #return light.state
 
-        #if(not self.has_image):
-        #    self.prev_light_loc = None
-        #    return False
+        if(not self.has_image):
+            self.prev_light_loc = None
+            return False
 
-        #cv_image = self.bridge.imgmsg_to_cv2(self.camera_image, "bgr8")
+        cv_image = self.bridge.imgmsg_to_cv2(self.camera_image, "bgr8")
 
-        ##Get classification
-        #return self.light_classifier.get_classification(cv_image)
+        #Get classification
+        return self.light_classifier.get_classification(cv_image)
 
 
 
