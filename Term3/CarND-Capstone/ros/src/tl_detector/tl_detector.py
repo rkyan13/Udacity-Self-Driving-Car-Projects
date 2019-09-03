@@ -67,7 +67,7 @@ class TLDetector(object):
         self.model_source_num = 1 #1: ssd_inception(also default), 2:faster_rcnn_inception, 3:faster_rcnn_resnet
         self.bridge           = CvBridge()
         #Code to setup the classifier
-        self.light_classifier = TLClassifier(self.is_site,seld.model_source_num)
+        self.light_classifier = TLClassifier(self.is_site,self.model_source_num)
         self.listener         = tf.TransformListener()
         self.state            = TrafficLight.UNKNOWN
         self.last_state       = TrafficLight.UNKNOWN
