@@ -91,7 +91,11 @@ double REF_VEL = 49.5 ; //mph
 -------------------------------------------------------------------------------
 
 Attempt 7c: Attempt at Handling CollisionsVersion 7b: Attempt at Handling Collisions
-Car slows down to the 0.9*speed-of-car-in-front instead of a standard (29.5mph)
+Car slows down to the
+
+
+
+3..333*speed-of-car-in-front instead of a standard (29.5mph)
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Attempt 8a: Collision Avoidance & Cold Start : Slow-Down, Speed up Gradually (EVERY CYCLE, OUTSIDE PATH PLANNER)
@@ -127,23 +131,51 @@ Issues to address:
 i) Does not check if it is safe to change lanes.i.e does not check if car on left lane is within colliding distance, just blindly changes lane
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Attempt 10: First Rubric Passing Version with Good Lane Changes !!!!
+Attempt 10a: First Rubric Passing Version with Good Lane Changes !!!!
 i) If there is is a car ahead, ego_car will change lanes to as appropriate left or right lane  whichever is clear of traffic
 (or continue in the same lane, if neither left nor right lane is clear)
 
 Issues to address:
+i) Lane changes are sloppy. Often car undecided on whether to change lanes or not
+ii) Fine tuning of some parameters required
+
+Other possible improvments
 i) If Ego-Car is in High-Speed-Left-Lane(Lane0) or Low-Speed-Right-Lane(Lane2), it does not make an effort to get back to Center-Lane1
+Possibly address this later since this is not required in the rubric
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Attempt 10b: FRubric Passing Version with Cleaner Lane Changes and Better Collision Avoidance
 
-Attempt 11a:  Ego-car tries to get back to center lane after passing cars
-i) If there is is a car ahead, ego_car will change lanes to as appropriate left or right lane  whichever is clear of traffic
-(or continue in the same lane, if neither left nor right lane is clear)
-ii) If Ego-Car is in High-Speed-Left-Lane(Lane0) or Low-Speed-Right-Lane(Lane2), it  makes an effort to get back to Center (but need to fine tune this further)
+Resolved issues
+i) Better Speed Limit Maintenance by ego_car
+Changed the following line of code
+if((car_ahead == true)
+to
+if((car_ahead == true) && (REF_VEL > car_ahead_speed*2.24*0.93 )) to ensure that the speed of the ego_car never drops below 93% of the car_ahead.
+Without this change the ego_car speed would often drop dangerously low to values as low as 15mph making lane change impossible/dangerous and would also lead to collisions
+
+ii) Smoother Lane changes
+      If there is a slower moving car at distance of <30m ahead the ego_car will attempt to change lanes to the left or right.In the
+previous version the code was written so that the adjacent car lanes also needed to be clear of cars for 30meters to facilitate lane change.
+This caused sloppy lane changes.
+      For example assume ego_car travelling in Lane2(the right most lane) encounters a slow moving car ~29 meters ahead.
+Also assume there is a slow moving car ~32 metres ahead of ego_car but on the Middle Lane (Lane 1) i.e. to the left of the ego car
+The ego_car would move left from Lane-2(right lane) to Lane-1(middle lane) only to realise very quickly the car in Lane-1(Middle lane)
+is also slow moving and jump back to Lane-1 . This would cause the ego_car to straddle lanes
+
+      In order to facilitate smoother lane change I added the following parameters
+SAFE_DIST_FROM_SAME_LANE_CARS            = 30.0
+SAFE_DIST_FROM_ADJACENT_LANE_CARS_AHEAD = 40 & SAFE_DIST_FROM_ADJACENT_LANE_CARS_BEHIND =17 (I spent a fair amount of time fine tuning the values)
+This way the ego_car will change lanes only if the adjacent lanes are clear of traffic 40m ahead (i.e more than the same_lane clearance of 30m) since there is really
+no point in changing lanes and landing in a similar situation
+    Also 30m for checking for cars behing the ego_car in adjacent lanes was too much making lane change tooo conservative and frustrating.
+So I fine tuned SAFE_DIST_FROM_ADJACENT_LANE_CARS_BEHIND to 17m using trial and experimentation
 
 
+Other possible improvments
+i) If Ego-Car is in High-Speed-Left-Lane(Lane0) or Low-Speed-Right-Lane(Lane2), it does not make an effort to get back to Center-Lane1
+Possibly address this later since this is not required in the rubric
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 */
 
 
@@ -178,9 +210,9 @@ double REF_VEL = 0 ; //mph
 
 const int debug = 0;
 
-int num_cycles_ego_in_high_speed_lane = 0;
-int num_cycles_ego_in_low_speed_lane  = 0;
-
+const double SAFE_DIST_FROM_SAME_LANE_CARS            = 30.0 ; //meter
+const double SAFE_DIST_FROM_ADJACENT_LANE_CARS_AHEAD  = 40.0 ; //meter
+const double SAFE_DIST_FROM_ADJACENT_LANE_CARS_BEHIND = 17.0 ; //meter
 
 
 int main() {
@@ -246,14 +278,11 @@ int main() {
           double ego_d            = j[1]["d"];
           double ego_yaw          = j[1]["yaw"];
           double ego_speed_mph    = j[1]["speed"];
-
-          double ego_speed        = ego_speed_mph/2.24; //m/s
           int    ego_lane_actual  = ego_d/4 ;
           //if d =4 , ego_lane_actual will become 3, but there are only 3 lanes: Lane 0,1 & 2
           if(ego_lane_actual == 3)
                  ego_lane_actual =2 ;
 
-          //cout<<"\n\n------------------------------------------------------------------------";
           if(debug == 1) {
                 cout<<"\n\n ego_speed_mph ="<<ego_speed_mph <<"; ego_s ="     << ego_s ;
                 cout<<"\n   ego_d     ="<<ego_d     <<"; ego_lane_actual ="   << ego_lane_actual     <<"; ego_lane_intended ="   << ego_lane_intended ;
@@ -273,7 +302,6 @@ int main() {
 
           int prev_size = previous_path_x.size();
 
-
           // --------------------------------------------------------------------------------------------------------------------------------------------
           // ---------------- HANDLING COLLISIONS (Project Q & A : 40min - 49min ) ----------------------------------------------------------------------
           // ---------------- HANDLING COLLISIONS -PART 1: Read Sensor Fusion Data of Other Cars --------------------------------------------------------
@@ -283,25 +311,20 @@ int main() {
           }
 
           bool car_ahead = false;
-          bool car_left_alert  = false, car_left_alert_centerLane  = false;
-          bool car_right_alert = false, car_right_alert_centerLane = false;
+          bool car_left  = false;
+          bool car_right = false;
 
-          double car_ahead_distance = 9999.99 , car_ahead_speed = 999.99;
-          double car_left_distance  = 9999.99 , car_left_speed  = 999.99;
-          double car_right_distance = 9999.99,  car_right_speed = 999.99;
+          double car_ahead_distance = 9999.99;
+          double car_left_distance  = 9999.99;
+          double car_right_distance = 9999.99;
+
+          double car_ahead_speed = 999.99;
+          double car_left_speed  = 999.99;
+          double car_right_speed = 999.99;
 
           int car_ahead_num = -99,  car_ahead_lane  = -99;
           int car_left_num  = -99,  car_left_lane   = -99;
           int car_right_num = -99,  car_right_lane  = -99;
-
-          bool ego_consistently_in_high_speed_lane = false;
-          bool ego_consistently_in_low_speed_lane  = false;
-          bool ego_lane_change_flag                = false;
-
-          if(1.5<ego_d && ego_d<2.5)
-            ego_consistently_in_high_speed_lane = true;
-          else if (9.5<ego_d && ego_d<10.5)
-            ego_consistently_in_low_speed_lane  = true;
 
 
           double other_car_vx    ; //m/s
@@ -331,9 +354,9 @@ int main() {
               if(other_car_lane == 3)
                      other_car_lane =2;
 
-              //check if other_car is in ego_lane and ahead of it within 30m
+              //check if other_car is in ego_lane
               if(other_car_lane == ego_lane_actual) {
-                    if(0<(other_car_s_future - ego_s) &&(other_car_s_future - ego_s)<30) {
+                    if(0<(other_car_s_future - ego_s) &&(other_car_s_future - ego_s)< SAFE_DIST_FROM_SAME_LANE_CARS) {
                           car_ahead          = true ;
                           car_ahead_num      = i+1  ;
                           car_ahead_lane     = other_car_lane ;
@@ -342,39 +365,37 @@ int main() {
                     }
               }
 
-              //check if other_car is left of ego-car and  within 20m
               if(other_car_lane == ego_lane_actual-1){
-                   if(abs(other_car_s_future - ego_s)<=25){
-                          car_left_alert    = true ;
+                    if(0<(other_car_s_future - ego_s) && abs(other_car_s_future - ego_s)< SAFE_DIST_FROM_ADJACENT_LANE_CARS_AHEAD){
+                          car_left          = true ;
                           car_left_num      = i+1  ;
                           car_left_lane     = other_car_lane ;
                           car_left_distance = other_car_s_future - ego_s ;
                           car_left_speed    = other_car_speed ;
                     }
-                   if(abs(other_car_s_future - ego_s)<=40){
-                          car_left_alert_centerLane    = true ;
-                          car_left_num                 = i+1  ;
-                          car_left_lane                = other_car_lane ;
-                          car_left_distance            = other_car_s_future - ego_s ;
-                          car_left_speed               = other_car_speed ;
+                    else if(0>(other_car_s_future - ego_s) && abs(other_car_s_future - ego_s)< SAFE_DIST_FROM_ADJACENT_LANE_CARS_BEHIND){
+                          car_left          = true ;
+                          car_left_num      = i+1  ;
+                          car_left_lane     = other_car_lane ;
+                          car_left_distance = other_car_s_future - ego_s ;
+                          car_left_speed    = other_car_speed ;
                     }
               }
 
-              //check if other_car is right of ego-car and  within 20m
               if(other_car_lane == ego_lane_actual+1){
-                    if(abs(other_car_s_future - ego_s)<=25){
-                          car_right_alert    = true ;
+                    if(0<(other_car_s_future - ego_s) && abs(other_car_s_future - ego_s)< SAFE_DIST_FROM_ADJACENT_LANE_CARS_AHEAD){
+                          car_right          = true ;
                           car_right_num      = i+1  ;
                           car_right_lane     = other_car_lane ;
                           car_right_distance = other_car_s_future - ego_s ;
                           car_right_speed    = other_car_speed ;
                     }
-                    if(abs(other_car_s_future - ego_s)<=40){
-                          car_right_alert_centerLane    = true ;
-                          car_right_num                 = i+1  ;
-                          car_right_lane                = other_car_lane ;
-                          car_right_distance            = other_car_s_future - ego_s ;
-                          car_right_speed               = other_car_speed ;
+                    else if(0>(other_car_s_future - ego_s) && abs(other_car_s_future - ego_s)< SAFE_DIST_FROM_ADJACENT_LANE_CARS_BEHIND){
+                          car_right          = true ;
+                          car_right_num      = i+1  ;
+                          car_right_lane     = other_car_lane ;
+                          car_right_distance = other_car_s_future - ego_s ;
+                          car_right_speed    = other_car_speed ;
                     }
               }
 
@@ -390,120 +411,63 @@ int main() {
           //If there is a slow moving car_ahead i) try to change lanes ii) definitely slow down to not collide with the car
           if(car_ahead == true){
                 //---------------------------- Print Some Messages for Clarity ---------------------------------------------------------------------------------------
-                if(car_ahead==true) {
-                  cout<<"\n\n CAR#" << car_ahead_num <<" AHEAD: ,@Lane: "<<car_ahead_lane<<" ,@Distance-ahead: "<<car_ahead_distance<<" meter.";
-                }
-
-
-                if(car_left_alert == true) {
+                cout<<"\n\n CAR#" << car_ahead_num <<" AHEAD: ,@Lane: "<<car_ahead_lane<<" ,@Distance-ahead: "<<car_ahead_distance<<" m ,@Speed: "<<car_ahead_speed*2.24<<" mph .";
+                if(car_left == true) {
                       if(car_left_distance>=0 )
-                          cout<<"\n NOT SAFE to move LEFT!!! Car#" << car_left_num <<" ,@Lane: "<<car_left_lane<<" ,@Distance-ahead: "<<car_left_distance<<" meter.";
+                          cout<<"\n NOT SAFE to move LEFT!!! Car#" << car_left_num <<" ,@Lane: "<<car_left_lane<<" ,@Distance-ahead: "<<car_left_distance<<" m ,@Speed: "<<car_left_speed*2.24<<" mph .";
                       else
-                          cout<<"\n NOT SAFE to move LEFT!!! Car#" << car_left_num <<" ,@Lane: "<<car_left_lane<<" ,@Distance-behind: "<<abs(car_left_distance)<<" meter.";
+                          cout<<"\n NOT SAFE to move LEFT!!! Car#" << car_left_num <<" ,@Lane: "<<car_left_lane<<" ,@Distance-behind: "<<abs(car_left_distance)<<" m ,@Speed: "<<car_left_speed*2.24<<" mph .";
                 }
-                if(car_right_alert== true) {
+                if(car_right == true) {
                       if(car_right_distance>=0 )
-                          cout<<"\n NOT SAFE to move RIGHT!!! Car#" << car_right_num <<" ,@Lane: "<<car_right_lane<<" ,@Distance-ahead: "<<car_right_distance<<" meter.";
+                          cout<<"\n NOT SAFE to move RIGHT!!! Car#" << car_right_num <<" ,@Lane: "<<car_right_lane<<" ,@Distance-ahead: "<<car_right_distance<<" m ,@Speed: "<<car_right_speed*2.24<<" mph .";
                       else
-                          cout<<"\n NOT SAFE to move RIGHT!!! Car#" << car_right_num <<" ,@Lane: "<<car_right_lane<<" ,@Distance-behind: "<<abs(car_right_distance)<<" meter.";
+                          cout<<"\n NOT SAFE to move RIGHT!!! Car#" << car_right_num <<" ,@Lane: "<<car_right_lane<<" ,@Distance-behind: "<<abs(car_right_distance)<<" m ,@Speed: "<<car_right_speed*2.24<<" mph .";
                 }
                 //---------------------------- End of Print Messages for Clarity ---------------------------------------------------------------------------------------
 
 
                 //-------------------------- LANE CHANGE LOGIC --------------------------------------------
                 //If the ego_car is in Lane1, or Lane2 and there is no car on the left, move to left lane
-                if((ego_lane_actual >0) && (car_left_alert == false)) {
-                        ego_lane_change_flag = true ;
-                        ego_lane_intended    = ego_lane_actual -1;
-                        cout<<"\n Ego-Car Moving Left to Lane#"<<ego_lane_intended;
-                }
-
-                //If the ego_car is in Lane0, or Lane1 and there is no car on the right, move to right lane
-                else if((ego_lane_actual <2) && (car_right_alert == false)){
-                        ego_lane_change_flag = true ;
-                        ego_lane_intended = ego_lane_actual +1;
-                        cout<<"\n Ego-Car Moving Right to Lane#"<<ego_lane_intended;
-                }
-                //It is not safe to change lanes. Continue on the same lane
-                else {
-                    ego_lane_change_flag = false ;
-                    ego_lane_intended = ego_lane_actual ;
-                    cout<<"\n Ego-Car NOT SAFE to Change Lane !!! Continuing in SAME LANE#"<<ego_lane_intended;
-                }
-                //-------------------------- END OF LANE CHANGE LOGIC --------------------------------------------
-          }//EOF : if((car_ahead == true) ||(ego_consistently_in_high_speed_lane==true)||(ego_consistently_in_low_speed_lane==true)))
-
-
-          else if((ego_consistently_in_high_speed_lane==true)||(ego_consistently_in_low_speed_lane==true)){
-                //---------------------------- Print Some Messages for Clarity ---------------------------------------------------------------------------------------
-
-                if(ego_consistently_in_high_speed_lane==true){
-                  cout<<"\n\n EGO CONSISTENTLY in High Speed Lane: ego_d = "<<ego_d;
-                }
-                else if(ego_consistently_in_low_speed_lane==true){
-                  cout<<"\n\n EGO CONSISTENTLY in Low Speed Lane: ego_d = "<<ego_d;
-                }
-
-                if(car_left_alert_centerLane == true) {
-                      if(car_left_distance>=0 )
-                          cout<<"\n NO NEED to move LEFT!!! Car#" << car_left_num <<" ,@Lane: "<<car_left_lane<<" ,@Distance-ahead: "<<car_left_distance<<" meter.";
-                      else
-                          cout<<"\n NO NEED to move LEFT!!! Car#" << car_left_num <<" ,@Lane: "<<car_left_lane<<" ,@Distance-behind: "<<abs(car_left_distance)<<" meter.";
-                }
-                if(car_right_alert_centerLane == true) {
-                      if(car_right_distance>=0 )
-                          cout<<"\n NO NEED to move RIGHT!!! Car#" << car_right_num <<" ,@Lane: "<<car_right_lane<<" ,@Distance-ahead: "<<car_right_distance<<" meter.";
-                      else
-                          cout<<"\n NO NEED to move RIGHT!!! Car#" << car_right_num <<" ,@Lane: "<<car_right_lane<<" ,@Distance-behind: "<<abs(car_right_distance)<<" meter.";
-                }
-                //---------------------------- End of Print Messages for Clarity ---------------------------------------------------------------------------------------
-
-
-                //-------------------------- LANE CHANGE LOGIC --------------------------------------------
-                //If the ego_car is in Lane2 and there is no car on the left, move to left lane
-                if((ego_lane_actual ==2) && (car_left_alert_centerLane == false)) {
-                    ego_lane_change_flag = true ;
-                    ego_lane_intended    = ego_lane_actual -1;
+                if((ego_lane_actual >0) && (car_left == false)) {
+                    ego_lane_intended = ego_lane_actual -1;
                     cout<<"\n Ego-Car Moving Left to Lane#"<<ego_lane_intended;
                 }
-                //If the ego_car is in Lane0, and there is no car on the right, move to right lane
-                else if((ego_lane_actual ==0) && (car_right_alert_centerLane == false)) {
-                    ego_lane_change_flag = true ;
-                    ego_lane_intended    = ego_lane_actual +1;
+                //If the ego_car is in Lane0, or Lane1 and there is no car on the right, move to right lane
+                else if((ego_lane_actual <2) && (car_right == false)) {
+                    ego_lane_intended = ego_lane_actual +1;
                     cout<<"\n Ego-Car Moving Right to Lane#"<<ego_lane_intended;
                 }
                 //It is not safe to change lanes. Continue on the same lane
                 else {
-                    ego_lane_change_flag = false ;
                     ego_lane_intended = ego_lane_actual ;
                     cout<<"\n Ego-Car NOT SAFE to Change Lane !!! Continuing in SAME LANE#"<<ego_lane_intended;
                 }
                 //-------------------------- END OF LANE CHANGE LOGIC --------------------------------------------
-          }//EOF : if((car_ahead == true) ||(ego_consistently_in_high_speed_lane==true)||(ego_consistently_in_low_speed_lane==true)))
+                /*
 
-          /*
-          //--------------------------  INCREMENTING/DECREMENTING REF_VEL --------------------------------------------
-          ---> The following code increments/decrements the REF_VEL only every cycle and is inefficient.
-          ---> Since there are many waypoints a car needs to go to in one cycle (we say 50waypoints but could be lesser),
-          ---> we can also increment/decrement REF_VEL for every waypoint in the PATH PLANNER BELOW
-          */
+                //--------------------------  INCREMENTING/DECREMENTING REF_VEL --------------------------------------------
+                ---> The following code increments/decrements the REF_VEL only every cycle and is inefficient.
+                ---> Since there are many waypoints a car needs to go to in one cycle (we say 50waypoints but could be lesser),
+                ---> we can also increment/decrement REF_VEL for every waypoint in the PATH PLANNER BELOW
+                */
 
-
-          //Decrease the REF_VEL of the ego-car gradually when
-          //---> There is another car in front pg eg0-car.
-          //---> 0.224 corresponds to a decrease in acceleration of ~5m/s^2
-          if((car_ahead == true)||(ego_lane_change_flag == true)) {
-            REF_VEL -= 0.224;
-          }
-          //Increase the REF_VEL of the ego-car gradually when
-          //---> i) when there is a cold start(starting at REF_VEL =0)
-          //---> ii) if the ego-speed had falled since there was a slower car in front of ego-car and the ego-speed needs to pick up again
-          //---> 0.224 corresponds to a increase in acceleration of ~5m/s^2
-          else if(REF_VEL < IDEAL_SPEED_LIMIT){
-            REF_VEL += 0.224;
-          }
-
-
+                /*
+                //Decrease the REF_VEL of the ego-car gradually when
+                //---> There is another car in front pg eg0-car.
+                //---> 0.224 corresponds to a decrease in acceleration of ~5m/s^2
+                if(car_ahead == true) {
+                  REF_VEL -= 0.224;
+                }
+                //Increase the REF_VEL of the ego-car gradually when
+                //---> i) when there is a cold start(starting at REF_VEL =0)
+                //---> ii) if the ego-speed had falled since there was a slower car in front of ego-car and the ego-speed needs to pick up again
+                //---> 0.224 corresponds to a increase in acceleration of ~5m/s^2
+                else if(REF_VEL < IDEAL_SPEED_LIMIT){
+                  REF_VEL += 0.224;
+                }
+                */
+          }//eof if(car_ahead == true)
 
 
           // --------------------------------------------------------------------------------------------------------------------------------------------
@@ -654,28 +618,25 @@ int main() {
           for(int i =1; i<=50-previous_path_x.size(); i++) {
               /*
               INCREMENTING/DECREMENTING REF_VEL
-              ---> The following code increments/decrements the REF_VEL only every cycle and is inefficient.
               ---> Since there are many waypoints a car needs to go to in one cycle (we say 50waypoints but could be lesser),
-              ---> we can also increment/decrement REF_VEL for every waypoint in the PATH PLANNER BELOW
+              ---> we increment/decrement REF_VEL for every waypoint in the PATH PLANNER BELOW. This is more efficient
               */
 
-              /*
               //Decrease the REF_VEL of the ego-car gradually when
               //---> There is another car in front pg eg0-car.
               //---> 0.224 corresponds to a decrease in acceleration of ~5m/s^2.
-              //---> But since we are decrementing every waypoint (and not every cycle) I decrement it at an even slower rate of 0.224/2.0
-              if((car_ahead == true) ||(ego_lane_change_flag ==true)){
-                REF_VEL -= 0.224/2.0;
+              //---> But since we are decrementing every waypoint (and not every cycle) I decrement it at an even slower rate of 0.224/2.0 or 0.224/1.5
+              if((car_ahead == true) && (REF_VEL > car_ahead_speed*2.24*0.93 )) {
+                REF_VEL -= 0.224/1.5;
               }
               //Increase the REF_VEL of the ego-car gradually when
               //---> i) when there is a cold start(starting at REF_VEL =0)
               //---> ii) if the ego-speed had falled since there was a slower car in front of ego-car and the ego-speed needs to pick up again
               //---> 0.224 corresponds to a increase in acceleration of ~5m/s^2
-              //---> But since we are incrementing every waypoint (and not every cycle) I increment it at a slower rate of 0.224/3.0
+              //---> But since we are incrementing every waypoint (and not every cycle) I increment it at a slower rate of 0.224/3.0 or 0.224/2.0
               else if(REF_VEL < IDEAL_SPEED_LIMIT){
-                REF_VEL += 0.224/3.0;
+                REF_VEL += 0.224/2.0;
               }
-              */
 
               // We want the car to move at 49.5 mph(49.5/2.24 m/s). so the per_time_step_dist covered needs to be 0.02*REF_VEL/2.24 meter
               // This distance is an arc along the spline. However similar to sample_dist, we approximate per_time_step_dist as a straight line instead of arc
